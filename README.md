@@ -57,10 +57,12 @@ nth node
 Simple templatedqueue data structure using the same container with the one
 used in doubly_linked_list.cpp. Initially, queue is implemented with
 singly-linked container. However, the code became less readable. Besides some
-general getters, such as get_size(), get_front(), get_back(), two critical
-methods are implemented: enqueue() & dequeue(). Basically, enqueue() is much
-like push_back() in linked-list, and dequeue() works like pop_front() but
-returns front node's data. Since queue.cpp uses increases its size by one at each time of enqueuing data, overflow is not a concern.
+general getters, such as `get_size()`, `get_front()`, `get_back()`, two
+critical methods are implemented: `enqueue()` & `dequeue()`. Basically,
+`enqueue()` is much like `push_back()` in linked-list, and `dequeue()` works
+like `pop_front()` but returns front node's data. Since queue.cpp uses
+increases its size by one at each time of enqueuing data, overflow is not a
+concern.
 ##### Methods
 + `isEmpty()`: return whether queue is empty
 + `get_size()`: return the size of queue
