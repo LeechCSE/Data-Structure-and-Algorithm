@@ -14,7 +14,7 @@ class SinglyLinkedList{
 private:
   Node<T> *head;
   Node<T> *tail;
-  int size = 0;
+  int size;
 
 public:
   // Constructor
@@ -61,6 +61,7 @@ template<typename T>
 SinglyLinkedList<T>::SinglyLinkedList(){
     head = nullptr;
     tail = nullptr;
+    size = 0;
   }
 // Destructor
 template<typename T>
@@ -92,10 +93,12 @@ int SinglyLinkedList<T>::find_by_data(T data){
   
   while(cur != nullptr){
     if (cur->data == data)
-return index;
+      return index;
     cur = cur->next;
     index++;
   }
+
+  cout << "[Err] find_by_data: data not found!" << endl;
   return -1; // not found
 }
 // return data of nth node
