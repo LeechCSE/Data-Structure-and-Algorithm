@@ -74,3 +74,23 @@ concern.
 ##### TODO
 + operator overloading
 + destructor: need to manually free Nodes
++ change return type of `dequeue()` from T to void
+
+### Stack
+Templated stack data structure using singly-pointing nodes. Initially, 'next'
+pointer is pointing up, meaning that nodes are toward top node, and the top
+node is pointing nowhere. It is troublesome in method `pop()`. As top node
+must be removed and freed in memory, something should be pointing to adjacent
+node of top. However, in current setting, top is the dead end. Therefore,
+the direction of pointer is reversed; everything is good now.
+##### Methods
++ `isEmpty()`: return whether stack is empty or not
++ `get_size()`: return the size of stack
++ `get_top()`: return top data
++ `push(T data)`: add a new data element into the top of stack in LIFO(Last
+In First Out) manner
++ `pop()`: remove top node
++ `print()`: print all data
+##### TODO
++ operator overloading
++ destructor
