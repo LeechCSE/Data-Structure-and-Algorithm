@@ -41,15 +41,17 @@ public:
   // Add a new node at the end
   void push_back(T data);
   // Add a new node in front
-  void push_front(T data);
+  void push_head(T data);
   // Add a new node at nth place
   void insert(T data, int n);
   // Delete the last node
   void pop_back();
   // Delete the first node
-  void pop_front();
+  void pop_head();
   // Delete nth node
   void erase(int n);
+  // Delete all nodes
+  void clear();
 };
 
 // Constructor
@@ -103,7 +105,7 @@ int DoublyLinkedList<T>::find(T data){
     index++;
   }
   
-  cout << "[Err] find: data not found!" << endl;
+  //cerr << "[Err] find: data not found!" << endl;
   return -1;
 }
 // Print all data
@@ -136,7 +138,7 @@ void DoublyLinkedList<T>::push_back(T data){
 }
 // Add a new node in front
 template <typename T>
-void DoublyLinkedList<T>::push_front(T data){
+void DoublyLinkedList<T>::push_head(T data){
   Node<T> *newNode = new Node<T>;
   newNode->data = data;
 
@@ -214,7 +216,7 @@ void DoublyLinkedList<T>::pop_back(){
 }
 // Delete the first node
 template <typename T>
-void DoublyLinkedList<T>::pop_front(){
+void DoublyLinkedList<T>::pop_head(){
   if (isEmpty()){
     cout << "[Err] pop_front: no data to pop-front!" << endl;
     return;
@@ -246,7 +248,7 @@ void DoublyLinkedList<T>::erase(int n){
   }
 
   if (n == 1)
-    pop_front();
+    pop_head();
   else if (n == size)
     pop_back();
   else{
@@ -263,7 +265,12 @@ void DoublyLinkedList<T>::erase(int n){
   }
   size--;
 }
-
-
+// Delete all nodes
+template <typename T>
+void DoublyLinkedList<T>::clear(){
+  while (size == 0){
+    pop_head();
+  }
+}
 
 #endif

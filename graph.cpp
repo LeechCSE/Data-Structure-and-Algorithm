@@ -1,14 +1,103 @@
-#include <iostream>
 #include "doubly_linked_list.h"
+#include "graph.h"
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-class Graph{
-private:
-  int 
-public:
-  // Constructor: initalize an empty graph with n vertices
-  Graph(int n);
-  ~Graph();
-  adjacent(
-};
+// Constructor: initialize an empty graph with n vertices
+Graph::Graph(int n){
+  num_vertex = n;
+  num_edge = 0;
+  
+  for (int i = 0; i < n; i++)
+    adjList.push_back(DoublyLinkedList<int>());
+}
+// Destructor
+Graph::~Graph(){}
+// Check whether vertex u is in graph
+bool Graph::is_member(int u){
+  if (u > (num_vertex - 1) || u < 0)
+    return false;
+  else
+    return true;
+}
+// Check if edge between vertex u and v is valid
+bool Graph::is_edge(int u, int v){
+  if (adjList[u].find(v) == -1)
+    return false;
+  else
+    return true;
+}
+// Print graph
+void Graph::print(){
+  for (int i = 0; i < adjList.size(); i++){
+    cout << "Node " << i << ": ";
+    adjList[i].print_data();
+  }
+  cout << num_vertex << " vertices with "  << num_edge << " edges" << endl;
+}
+// Add a new edge(undirected)
+void Graph::add_edge(int u, int v){ // TODO: maybe sorting?  
+  adjList[u].push_back(v);
+  adjList[v].push_back(u);
+  num_edge++;
+}
+// Remove edge between vertex u and v
+void Graph::remove_edge(int u, int v){
+  // arg sanity check
+  if (!is_edge(u, v))
+    return;
+  if (!is_member(u) || !is_member(v))
+    return;
+  
+  adjList[u].erase(adjList[u].find(v));
+  adjList[v].erase(adjList[v].find(u));
+  num_edge--;
+}
+// Add a new vertex
+void Graph::add_vertex(){
+  adjList.push_back(DoublyLinkedList<int>());
+  num_vertex++;
+}
+// Remove vertex u
+void Graph::remove_vertex(int u){
+  // arg sanity check
+  if (!is_member(u))
+    return;
+  // trace u in adj list and remove all
+  for (int i = 0; i < adjList[u].get_size(); i++){
+    remove_edge(u, adjList[u].get_head());
+    adjList[u].pop_head();
+  }
+  // remove vertex u
+  adjList.erase(adjList.begin() + u - 1);
+  num_vertex--;
+}
+
+
+int main(){
+  Graph g(5);
+  g.add_edge(0, 2);
+  g.add_edge(3, 0);
+  g.add_edge(1, 3);
+
+  g.print();
+
+  g.remove_edge(5, 0);
+  cout << "\nAfter rm edge ..." << endl;
+  g.print();
+
+  g.add_vertex();
+  g.add_edge(5, 1);
+  g.add_edge(5, 3);
+  g.add_edge(4, 5);
+  cout << "\nAfter adding vertex ..." << endl;
+  g.print();
+
+  g.remove_vertex(5);
+  cout << "\nAfter rm vertex 5 ..." << endl;
+  g.print();
+    
+  return 0;
+}
