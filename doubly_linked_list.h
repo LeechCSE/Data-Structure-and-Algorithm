@@ -1,5 +1,7 @@
+#ifndef DOUBLY_LINKED_LIST_H
+#define DOUBLY_LINKED_LIST_H
+
 #include <iostream>
-#include <string>
 
 using namespace std;
 
@@ -262,30 +264,6 @@ void DoublyLinkedList<T>::erase(int n){
   size--;
 }
 
-int main(){
-  DoublyLinkedList<int> list;
 
-  for (int i = 0; i < 5; i++)
-    list.push_back(i + 1);
 
-  cout << "size: " << list.get_size() << endl;
-  list.print_data();
-
-  cout << list.get_head() << " ... " << list.get_data_at(3) << " ... "
-       << list.get_tail() << endl;
-
-  list.pop_back();
-  list.push_front(99);
-  list.push_front(88);
-  list.push_back(0);
-  list.erase(2);
-  list.insert(77, list.get_size());
-  list.insert(-1, 0);
-  list.insert(123, 1);
-  list.insert(777, 4);
-  
-  cout << list.get_size() << ": "; 
-  list.print_data();
-  
-  return 0;
-}
+#endif
