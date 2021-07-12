@@ -29,9 +29,7 @@ public:
   // Add a new vertex
   void add_vertex();
   // Remove vertex u
-  void remove_vertex(int u);
-  // Print all adjacent vertices of vertex u
-  
+  void remove_vertex(int u);  
 };
 
 #endif

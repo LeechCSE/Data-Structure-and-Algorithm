@@ -94,3 +94,21 @@ In First Out) manner
 ##### TODO
 + operator overloading
 + destructor
+
+### Graph
+This is a non-directed and unweighted graph implemented with
+Doubly-linked-list in the adjacency list format. The name of vertex goes by
+its index in order of creation. Each vertex has a list indicating its adjacent
+vertices, and the lists are wrapped in a vector.
+##### Methods
++ `is_member(int u)`: check if vertex u is in the graph
++ `is_edge(int u, int v)`: check if vertex u is adjacent to vertex v
++ `print()`: print all vertices with their adjacent vertices and the number of
+edges and vertices
++ `add_edge(int u, int v)`: add a new edge between vertex u and v
++ `remove_edge(int u, int v)`: remove the edge between vertex u and v
++ `add_vertex()`: add a new vertex
++ `remove_vertex(int u)`: remove vertex u and the edges connected to it accordingly
+##### TODO
++ Implement destructor
++ DFS & BFS
