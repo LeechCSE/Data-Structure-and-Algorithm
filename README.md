@@ -21,10 +21,10 @@ nth node
 + `erase(int n)`: remove nth node
 ##### TODO
 - [x] destructor: need to free Nodes
-- [] operator overloading  
-- [] implement erase/2 method
-- [] bug fix
-- [] more intuitive naming
+- [ ] operator overloading  
+- [ ] implement erase/2 method
+- [ ] bug fix
+- [ ] more intuitive naming
 
 ### Doubly Linked List
 Like singly-linked list, doubly-linked list is templated with nodes pointing
@@ -49,9 +49,9 @@ nth node
 + `erase(int n)`: remove nth node
 ##### TODO
 - [x] destructor: need to free Nodes
-- [] operator overloading
-- [] implement copy constructor
-- [] implemet erase/2 method
+- [ ] operator overloading
+- [ ] implement copy constructor
+- [ ] implemet erase/2 method
 
 ### Queue
 Simple templatedqueue data structure using the same container with the one
@@ -72,7 +72,7 @@ concern.
 + `dequeue()`: remove and return front element of queue in FIFO manner
 + `print_data()`: print all data in queue
 ##### TODO
-- [] operator overloading
+- [ ] operator overloading
 - [x] destructor: need to manually free Nodes
 - [x] change return type of `dequeue()` from T to void
 
@@ -92,7 +92,7 @@ In First Out) manner
 + `pop()`: remove top node
 + `print()`: print all data
 ##### TODO
-- [] operator overloading
+- [ ] operator overloading
 - [x] destructor
 
 ### Graph
@@ -110,7 +110,7 @@ edges and vertices
 + `add_vertex()`: add a new vertex
 + `remove_vertex(int u)`: remove vertex u and the edges connected to it accordingly
 ##### TODO
-- [] Implement destructor - working on it
-- [] `remove_vertex(int u)` bug fix
-- [] DFS
-- [] BFS
+- [ ] Implement destructor - working on it
+- [ ] `remove_vertex(int u)` bug fix
+- [ ] DFS
+- [ ] BFS
