@@ -8,8 +8,10 @@ using namespace std;
 template <typename T>
 struct Node{
   T data;
-  Node<T> *prev = nullptr;
-  Node<T> *next = nullptr;
+  Node<T> *prev;
+  Node<T> *next;
+  Node() : prev(nullptr), next(nullptr){};
+  Node(T data) : data(data), prev(nullptr), next(nullptr){};
 };
 
 template <typename T>
@@ -63,7 +65,10 @@ DoublyLinkedList<T>::DoublyLinkedList(){
 }
 // Destructor
 template <typename T>
-DoublyLinkedList<T>::~DoublyLinkedList(){}
+DoublyLinkedList<T>::~DoublyLinkedList(){
+  while (!isEmpty())
+    pop_head();
+}
 // Return size
 template <typename T>
 int DoublyLinkedList<T>::get_size(){ return size; }
