@@ -39,7 +39,10 @@ template <typename T>
 Stack<T>::Stack() : top(nullptr), size(0){}
 // Destructor
 template <typename T>
-Stack<T>::~Stack(){}
+Stack<T>::~Stack(){
+  while (!isEmpty())
+    pop();
+}
 // Return whether stack is empty or not
 template <typename T>
 bool Stack<T>::isEmpty(){ return !size; }
