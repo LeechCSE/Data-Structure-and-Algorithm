@@ -33,7 +33,7 @@ public:
   // Add data in Queue
   void enqueue(T data);
   // Remove data from Queue
-  T dequeue();
+  void dequeue();
   // Print all data in queue
   void print_data();
 };
@@ -46,7 +46,10 @@ Queue<T>::Queue(){
 }
 // Decontructor
 template <typename T>
-Queue<T>::~Queue(){}
+Queue<T>::~Queue(){
+  while (!isEmpty())
+    dequeue();
+}
 // Return whether queue is empty or not
 template <typename T>
 bool Queue<T>::isEmpty(){ return !size; }
@@ -76,26 +79,22 @@ void Queue<T>::enqueue(T data){
 }
 // Remove and return data from Queue
 template <typename T>
-T Queue<T>::dequeue(){
+void Queue<T>::dequeue(){
   if (isEmpty()){
-    cout << "[Err] dequeue: no data to dequeue!" << endl;
-    return -1;
+    //    cout << "[Err] dequeue: no data to dequeue!" << endl;
+    return;
   }
 
   if (size == 1){
     Node<T> *cur = front;
-    T target = front->data;
-
+    
     front = nullptr;
     back = nullptr;
     delete cur;
     size--;
-
-    return target;
   }
   else {
     Node<T> *cur = front->prev;
-    T target = front->data;
     
     cur->next->prev = nullptr;
     front = cur;
@@ -103,8 +102,6 @@ T Queue<T>::dequeue(){
     front->next = nullptr;
     delete cur;
     size--;
-    
-    return target;
   }
 }
 // Print all data in queue
@@ -125,10 +122,6 @@ int main(){
     q.enqueue(i + 1);
 
   cout << "[Front] "; q.print_data(); cout << "[Back]" << endl;
-  
-  while (!q.isEmpty()){
-    cout << q.dequeue() << endl;
-  }
-  
+   
   return 0;
 }
