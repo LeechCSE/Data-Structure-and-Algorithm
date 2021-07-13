@@ -14,7 +14,23 @@ Graph::Graph(int n){
     adjList.push_back(DoublyLinkedList<int>());
 }
 // Destructor
-Graph::~Graph(){}
+Graph::~Graph(){
+  /*
+  for (int i = 0; i < num_vertex; i++){
+    cout << "removing vertex... " << i << " " << endl;
+    remove_vertex(i);
+  }
+  adjList.clear();
+  */
+  /*
+  for (int i = 0; i < num_vertex; i++){
+    cout << "break " << i << " " << endl;
+    
+    adjList[i].clear();
+    adjList.erase(adjList.begin() + i);
+  }
+  */
+}
 // Check whether vertex u is in graph
 bool Graph::is_member(int u){
   if (u > (num_vertex - 1) || u < 0)
@@ -38,9 +54,15 @@ void Graph::print(){
   cout << num_vertex << " vertices with "  << num_edge << " edges" << endl;
 }
 // Add a new edge(undirected)
-void Graph::add_edge(int u, int v){ // TODO: maybe sorting?  
+void Graph::add_edge(int u, int v){ // TODO: maybe sorting?
+  if (!is_member(u) || !is_member(v))
+    return;
+  if (is_edge(u, v))
+    return;
+
   adjList[u].push_back(v);
   adjList[v].push_back(u);
+
   num_edge++;
 }
 // Remove edge between vertex u and v
@@ -50,7 +72,7 @@ void Graph::remove_edge(int u, int v){
     return;
   if (!is_member(u) || !is_member(v))
     return;
-  
+
   adjList[u].erase(adjList[u].find(v));
   adjList[v].erase(adjList[v].find(u));
   num_edge--;
@@ -81,23 +103,27 @@ int main(){
   g.add_edge(0, 2);
   g.add_edge(3, 0);
   g.add_edge(1, 3);
-
+  cout << "##########Initial state:\n";
   g.print();
 
-  g.remove_edge(5, 0);
-  cout << "\nAfter rm edge ..." << endl;
+  cout << "##########Remove edge 1 3\n";
+  g.remove_edge(1, 3);
   g.print();
 
+  cout << "##########Add vertex:\n";
   g.add_vertex();
+  g.print();
+
+  cout << "##########Add edges:\n";
   g.add_edge(5, 1);
   g.add_edge(5, 3);
   g.add_edge(4, 5);
-  cout << "\nAfter adding vertex ..." << endl;
   g.print();
 
-  g.remove_vertex(5);
+  /*
+  g.remove_vertex(3);
   cout << "\nAfter rm vertex 5 ..." << endl;
   g.print();
-    
+  */
   return 0;
 }
