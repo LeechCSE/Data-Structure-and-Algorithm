@@ -65,7 +65,12 @@ SinglyLinkedList<T>::SinglyLinkedList(){
   }
 // Destructor
 template<typename T>
-SinglyLinkedList<T>::~SinglyLinkedList(){}
+SinglyLinkedList<T>::~SinglyLinkedList(){
+  while (!isEmpty()){
+    pop_front();
+    cout << "POPED!" << endl;
+  }
+}
 // return size
 template<typename T>
 int SinglyLinkedList<T>::get_size(){ return size; }
