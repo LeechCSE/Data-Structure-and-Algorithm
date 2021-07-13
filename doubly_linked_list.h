@@ -129,8 +129,8 @@ template <typename T>
 void DoublyLinkedList<T>::push_back(T data){
   Node<T> *newNode = new Node<T>;
   newNode->data = data;
-  
-  if (!isEmpty()){  
+
+  if (!isEmpty()){
     newNode->prev = tail;
     tail->next = newNode;
     tail = newNode;
@@ -223,7 +223,7 @@ void DoublyLinkedList<T>::pop_back(){
 template <typename T>
 void DoublyLinkedList<T>::pop_head(){
   if (isEmpty()){
-    cout << "[Err] pop_front: no data to pop-front!" << endl;
+    cout << "[Err] pop_head: no data to pop-head!" << endl;
     return;
   }
   else{
@@ -252,8 +252,9 @@ void DoublyLinkedList<T>::erase(int n){
     return;
   }
 
-  if (n == 1)
+  if (n == 1){
     pop_head();
+  }
   else if (n == size)
     pop_back();
   else{
@@ -267,15 +268,37 @@ void DoublyLinkedList<T>::erase(int n){
     cur->next->prev = cur->prev;
     cur->next = nullptr;
     delete cur;
+    size--;
   }
-  size--;
 }
 // Delete all nodes
 template <typename T>
 void DoublyLinkedList<T>::clear(){
-  while (size == 0){
+  while (size != 0){
     pop_head();
   }
 }
+/*
+int main(){
+  DoublyLinkedList<int> list;
 
+  for (int i = 0; i < 5; i++)
+    list.push_back(i);
+
+  for (int i = 0; i < 5; i++){
+    list.print_data();
+    cout << "size: " << list.get_size() << endl;
+    cout << "HT: " << list.get_head() << " " << list.get_tail() << endl;
+    cout << "Target: " << i <<  " & Target index: " << list.find(i) << endl;
+    list.erase(list.find(i));
+    cout << "OK" << endl;
+    list.print_data();
+    cout << endl;
+  }
+
+  list.push_back(22);
+  
+  return 0;
+}
+*/
 #endif
