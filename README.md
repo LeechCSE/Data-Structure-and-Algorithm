@@ -114,7 +114,9 @@ edges and vertices
 - [ ] `remove_vertex(int u)`
 
 ### STL_Graph
-Another graph with STL vector, list, and queue.
+This stl_graph is another graph data structure implemented with STL vector,
+list, and queue. It's more of practicing DFS and BFS itself without stressing
+out from debugging my own data structure of list and queue.
 ##### Methods
 + `print()`: print adjacency list
 + `is_vertex(int u)`: check if vertex u is in graph
