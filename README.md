@@ -111,6 +111,12 @@ edges and vertices
 + `remove_vertex(int u)`: remove vertex u and the edges connected to it accordingly
 ##### TODO
 - [ ] Implement destructor
-- [ ] `remove_vertex(int u)` 
-- [ ] DFS
+- [ ] `remove_vertex(int u)`
+
+### STL_Graph
+Another graph with STL list and queue.
+##### Methods
++ ``:
+##### TODO
 - [ ] BFS
+- [ ] DFS
