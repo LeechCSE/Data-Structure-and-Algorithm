@@ -110,7 +110,7 @@ edges and vertices
 + `add_vertex()`: add a new vertex
 + `remove_vertex(int u)`: remove vertex u and the edges connected to it accordingly
 ##### TODO
-- [x] Implement destructor - temperary O(n^2) rn
-- [ ] `remove_vertex(int u)` bug fix
+- [ ] Implement destructor
+- [ ] `remove_vertex(int u)` 
 - [ ] DFS
 - [ ] BFS
