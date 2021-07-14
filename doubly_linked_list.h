@@ -66,8 +66,7 @@ DoublyLinkedList<T>::DoublyLinkedList(){
 // Destructor
 template <typename T>
 DoublyLinkedList<T>::~DoublyLinkedList(){
-  while (!isEmpty())
-    pop_head();
+  clear();
 }
 // Return size
 template <typename T>
@@ -274,9 +273,8 @@ void DoublyLinkedList<T>::erase(int n){
 // Delete all nodes
 template <typename T>
 void DoublyLinkedList<T>::clear(){
-  while (size != 0){
+  while (size != 0)
     pop_head();
-  }
 }
 /*
 int main(){
