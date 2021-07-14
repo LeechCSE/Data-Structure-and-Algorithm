@@ -15,21 +15,15 @@ Graph::Graph(int n){
 }
 // Destructor
 Graph::~Graph(){
-  /*
-  for (int i = 0; i < num_vertex; i++){
-    cout << "removing vertex... " << i << " " << endl;
-    remove_vertex(i);
+  if (num_vertex > 1){
+    for (int i = 0; i < num_vertex; i++){
+      for (int j = 1; j < num_vertex; j++){
+	remove_edge(i, j);
+      }
+    }    
+    adjList.clear();
+    num_vertex = 0;
   }
-  adjList.clear();
-  */
-  /*
-  for (int i = 0; i < num_vertex; i++){
-    cout << "break " << i << " " << endl;
-    
-    adjList[i].clear();
-    adjList.erase(adjList.begin() + i);
-  }
-  */
 }
 // Check whether vertex u is in graph
 bool Graph::is_member(int u){
