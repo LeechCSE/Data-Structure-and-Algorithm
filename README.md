@@ -114,9 +114,13 @@ edges and vertices
 - [ ] `remove_vertex(int u)`
 
 ### STL_Graph
-Another graph with STL list and queue.
+Another graph with STL vector, list, and queue.
 ##### Methods
-+ ``:
++ `print()`: print adjacency list
++ `is_vertex(int u)`: check if vertex u is in graph
++ `is_edge(int u, int v)`: check if edge between u and v is in graph
++ `add_edge(int u, int v)`: add a new edge between vertex u and v
++ `add_vertex(int u)`: add a new vertex u
 ##### TODO
 - [ ] BFS
 - [ ] DFS
