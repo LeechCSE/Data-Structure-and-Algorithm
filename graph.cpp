@@ -15,6 +15,12 @@ Graph::Graph(int n){
 }
 // Destructor
 Graph::~Graph(){
+  /*
+  for (int i = 0; i < num_vertex; i++)
+    remove_vertex(i);
+  adjList.clear();
+  */
+  /*
   if (num_vertex > 1){
     for (int i = 0; i < num_vertex; i++){
       for (int j = 1; j < num_vertex; j++){
@@ -24,6 +30,7 @@ Graph::~Graph(){
     adjList.clear();
     num_vertex = 0;
   }
+  */
 }
 // Check whether vertex u is in graph
 bool Graph::is_member(int u){
@@ -41,7 +48,7 @@ bool Graph::is_edge(int u, int v){
 }
 // Print graph
 void Graph::print(){
-  for (int i = 0; i < adjList.size(); i++){
+  for (int i = 0; i < num_vertex; i++){
     cout << "Node " << i << ": ";
     adjList[i].print_data();
   }
@@ -54,10 +61,11 @@ void Graph::add_edge(int u, int v){ // TODO: maybe sorting?
   if (is_edge(u, v))
     return;
 
+  
   adjList[u].push_back(v);
-  adjList[v].push_back(u);
-
   num_edge++;
+  if (u == v) return;
+  adjList[v].push_back(u);
 }
 // Remove edge between vertex u and v
 void Graph::remove_edge(int u, int v){
@@ -68,8 +76,9 @@ void Graph::remove_edge(int u, int v){
     return;
 
   adjList[u].erase(adjList[u].find(v));
-  adjList[v].erase(adjList[v].find(u));
   num_edge--;
+  if (u == v) return;
+  adjList[v].erase(adjList[v].find(u));
 }
 // Add a new vertex
 void Graph::add_vertex(){
@@ -77,23 +86,23 @@ void Graph::add_vertex(){
   num_vertex++;
 }
 // Remove vertex u
+/*
 void Graph::remove_vertex(int u){
   // arg sanity check
   if (!is_member(u))
     return;
   // trace u in adj list and remove all
-  for (int i = 0; i < adjList[u].get_size(); i++){
+  while (!adjList[u].isEmpty())
     remove_edge(u, adjList[u].get_head());
-    adjList[u].pop_head();
-  }
   // remove vertex u
-  adjList.erase(adjList.begin() + u - 1);
+  adjList.erase(adjList.begin() + u);
   num_vertex--;
 }
-
+*/
 
 int main(){
   Graph g(5);
+  g.add_edge(0, 0);
   g.add_edge(0, 2);
   g.add_edge(3, 0);
   g.add_edge(1, 3);
@@ -115,8 +124,8 @@ int main(){
   g.print();
 
   /*
+  cout << "##########Remove vertex 3:\n";
   g.remove_vertex(3);
-  cout << "\nAfter rm vertex 5 ..." << endl;
   g.print();
   */
   return 0;
