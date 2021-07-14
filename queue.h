@@ -1,3 +1,6 @@
+#ifndef QUEUE_H
+#define QUEUE_H
+
 #include <iostream>
 
 using namespace std;
@@ -7,7 +10,7 @@ struct Node{
   T data;
   Node<T>* next;
   Node<T>* prev;
-  Node(): next(nullptr){}
+  Node(): prev(nullptr), next(nullptr){}
   Node(T data) : next(nullptr), prev(nullptr), data(data){}
 };
 
@@ -114,7 +117,7 @@ void Queue<T>::print_data(){
   }
 }
 
-
+/*
 int main(){
   Queue<int> q;
 
@@ -125,3 +128,5 @@ int main(){
    
   return 0;
 }
+*/
+#endif

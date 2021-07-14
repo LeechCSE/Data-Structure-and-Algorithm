@@ -1,4 +1,5 @@
 #include "doubly_linked_list.h"
+#include "queue.h"
 #include "graph.h"
 #include <iostream>
 #include <vector>
@@ -10,8 +11,10 @@ Graph::Graph(int n){
   num_vertex = n;
   num_edge = 0;
   
-  for (int i = 0; i < n; i++)
+  for (int i = 0; i < n; i++){
     adjList.push_back(DoublyLinkedList<int>());
+    visited.push_back(false);
+  }
 }
 // Destructor
 Graph::~Graph(){
@@ -99,10 +102,35 @@ void Graph::remove_vertex(int u){
   num_vertex--;
 }
 */
+// Breath-First-Search(BFS)
+void Graph::bfs(int u){
+  Queue<int> q;
+  q.enqueue(u);
+  visited[u] = true;
+
+  while (!q.isEmpty()){
+    int cur = q.get_front();
+    cout << "Now... " << cur << endl;
+    q.dequeue();
+
+    DoublyLinkedList<int> neighbors = adjList[cur];
+    while (!neighbors.isEmpty()){
+      int v = neighbors.get_head();
+      cout << "v: " << v;
+      if (!visited[v]){
+	cout << " yes\n";
+	q.enqueue(v);
+	visited[v] = true;
+      }
+      cout << endl;
+      neighbors.pop_head();
+    }
+  }
+}
 
 int main(){
   Graph g(5);
-  g.add_edge(0, 0);
+  //g.add_edge(0, 0);
   g.add_edge(0, 2);
   g.add_edge(3, 0);
   g.add_edge(1, 3);
@@ -123,6 +151,8 @@ int main(){
   g.add_edge(4, 5);
   g.print();
 
+  cout << "##########BFS\n";
+  g.bfs(0);
   /*
   cout << "##########Remove vertex 3:\n";
   g.remove_vertex(3);

@@ -9,6 +9,7 @@ using namespace std;
 class Graph{
 private:
   int num_vertex, num_edge;
+  vector<bool> visited;
   vector<DoublyLinkedList<int> > adjList;
 
 public:
@@ -29,7 +30,10 @@ public:
   // Add a new vertex
   void add_vertex();
   // Remove vertex u
-  void remove_vertex(int u);  
+  /* void remove_vertex(int u); */
+  // BFS
+  void bfs(int u);
+  // DFS
 };
 
 #endif
