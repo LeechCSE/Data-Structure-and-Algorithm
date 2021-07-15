@@ -123,6 +123,12 @@ out from debugging my own data structure of list and queue.
 + `is_edge(int u, int v)`: check if edge between u and v is in graph
 + `add_edge(int u, int v)`: add a new edge between vertex u and v
 + `add_vertex(int u)`: add a new vertex u
++ `remove_edge(int u, int v)`: remove edge between vertex u and v
++ `bfs(int u)`: Breath-First-Search staring from vertex u
++ `dfs_rec(int u)`: Depth-First-Search staring from vertex u in recursive
+manner
++ `dfs_itr(int u)`: Depth-First-Search staring from vertex u in iterative
+manner
 ##### TODO
-- [ ] BFS
-- [ ] DFS
+- [x] BFS
+- [x] DFS
