@@ -132,3 +132,15 @@ manner
 ##### TODO
 - [x] BFS
 - [x] DFS
+
+### Array
+Array is a dynamically-allocated array. It is an advanced array of C-style
+array, supporting garbage collecting; don't worry about memory leak nor
+annoying `delete`.
+##### Methods
++ `operator []`: access data by index
++ `at(int index)`: access data by index(out-of-range exception checking)
++ `size()`: return size of array
++ `begin()`: return an iterator pointing to the first element of array
++ `end()`: return an iterator pointing to the past-the-end element of array
+##### TODO
