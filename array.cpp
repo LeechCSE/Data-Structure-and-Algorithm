@@ -1,6 +1,6 @@
 #include <string>
 #include <iostream>
-#include <algorithm>
+#include <stdexcept>
 
 using namespace std;
 
@@ -58,9 +58,11 @@ T& Array<T>::at(int index){
 // Return size of array
 template <typename T>
 size_t Array<T>::size(){ return n; }
-// Return iterator pointing to the first element of array 
+// Return iterator pointing to the first element of array
+template <typename T>
 T* Array<T>::begin(){ return data; }
 // Return iterator pointing to the past-the-end element of array
+template <typename T>
 T* Array<T>::end(){ return (data + n); }
 
 int main(){
@@ -75,10 +77,10 @@ int main(){
   cout << endl;
 
   try{
-    arr[99] = -1;    
+    arr.at(99) = -1;
   }
-  catch(...){
-    cout << "Err\n";
+  catch(out_of_range oor){
+    cout << "Err: " << oor.what() << endl;
   }
   
   return 0;
