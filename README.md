@@ -144,3 +144,24 @@ annoying `delete`.
 + `begin()`: return an iterator pointing to the first element of array
 + `end()`: return an iterator pointing to the past-the-end element of array
 ##### TODO
+
+### Circular_linked_list
+Circular linked list is a list of which the last node points to the first
+node; therefore, the list never ends. This implementation mimic C++ STL list,
+having iterator and iterator methods.
+##### Methods
++ `push_front(int val)`: add a new element at the front of the list
++ `pop_front()`: remove the first element from the list
++ `size()`: return the number of nodes in the list
++ `Circular_ll_iterator`: an iterator data type for circular_linked_list
+containing node pointer that points to a node
+  + `operator *()`: return data of node that the iterator is pointing to
+  + `get()`: return node pointer that the iterator
+  + `operator ++()`: advance iterator to the next node by one(pre-increment)
+  + `operator ==(...)`: return true if both iterator points to the same node
+  + `operator !=(...)`:	return false if both iterator points to the same node
++ `begin()`: return an iterator pointing to the head
++ `end()`: return an iterator pointing to the past-the-end element(head)
++ `back_it()`: return an iterator pointing to the tail
+##### TODO
++ finalize copy constructor
