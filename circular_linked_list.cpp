@@ -32,7 +32,7 @@ public:
   void push_front(int val);
   // Remove the first element from the list
   void pop_front();
-  // Return the number of list
+  // Return the number of nodes in the list
   int size();
   
   /*********************************************************
@@ -85,14 +85,14 @@ Circular_ll::Circular_ll(const Circular_ll &list){
     head = new Node(-1);
     NodePtr cur = head;
     Circular_ll_iterator it = list.begin();
-    while (it == list.back_it()){
+    while (it != list.back_it()){
       cur->data = *it;
-      cur->next = it.get()->next;
-      cout << "COPIED: " << cur->data << endl;
+      cur->next = new Node(-1);
       cur = cur->next;
       ++it;
     }
-    tail = it.get();
+    cur->data = *it;
+    tail = cur;
     tail->next = head;
   }
   else{
@@ -101,7 +101,12 @@ Circular_ll::Circular_ll(const Circular_ll &list){
   }
 }
 // Destructor
-Circular_ll::~Circular_ll(){};
+Circular_ll::~Circular_ll(){
+  while (size() != 0){
+    pop_front();
+  }
+  delete head;
+};
 // Add a new element at the front of the list
 void Circular_ll::push_front(int val){
   Node *newNode = new Node(val);
@@ -145,10 +150,10 @@ Circular_ll::Circular_ll_iterator Circular_ll::begin() const{
 }
 // Return an iterator pointing to the past-the-end element(head in this case)
 Circular_ll::Circular_ll_iterator Circular_ll::end(){
-  return Circular_ll_iterator(head);
+  return Circular_ll_iterator(tail);
 }
 Circular_ll::Circular_ll_iterator Circular_ll::end() const{
-  return Circular_ll_iterator(head);
+  return ++Circular_ll_iterator(tail);
 }
 // Return an iterator pointing to the tail
 Circular_ll::Circular_ll_iterator Circular_ll::back_it(){
@@ -157,13 +162,22 @@ Circular_ll::Circular_ll_iterator Circular_ll::back_it(){
 Circular_ll::Circular_ll_iterator Circular_ll::back_it() const{
   return Circular_ll_iterator(tail);
 }
+
+void print(Circular_ll cll){
+  for (auto it = cll.begin(); it != cll.end(); ++it){
+    cout << *it << " ";
+  }
+  cout << endl;
+}
+
 int main(){
   Circular_ll list;
 
   for (int i = 0; i < 10; i++){
     list.push_front(i);
   }
-
+  print(list);
+  
   int cycle = 1;
   int index = 0;
   for (auto it = list.begin(); cycle != 6; ++it){
@@ -180,7 +194,7 @@ int main(){
   
   Circular_ll list2(list);
   list2.push_front(99);
-  cout << "LIST1\n";
+  cout << "LIST1(not changed)\n";
   for (auto it = list.begin(); cycle != 6; ++it){
     index++;
     cout << *it << " ";
@@ -196,7 +210,7 @@ int main(){
   for (auto it = list2.begin(); cycle != 6; ++it){
     index++;
     cout << *it << " ";
-    if (index % (list.size() + 1) == 0){
+    if (index % (list2.size() + 1) == 0){
       cout << "(Cycle " << cycle << ")" << endl;
       cycle++;
     }
@@ -204,5 +218,6 @@ int main(){
   cout << endl;
   cycle = 1;
   index = 0;
+  
   return 0;
 }
