@@ -145,7 +145,7 @@ annoying `delete`.
 + `end()`: return an iterator pointing to the past-the-end element of array
 ##### TODO
 
-### Circular_linked_list
+### Circular Linked List
 Circular linked list is a list of which the last node points to the first
 node; therefore, the list never ends. This implementation mimic C++ STL list,
 having iterator and iterator methods.
@@ -166,7 +166,7 @@ containing node pointer that points to a node
 ##### TODO
 - [x] finalize copy constructor
 
-### Binary tree
+### Binary Treee
 Binary tree is a simple binary tree structure that supports minimum features:
 create, add, find, and traversals. Specifically, it's more about practicing
 tree traversal: pre-, in-, post-, and level-order traversals.
@@ -177,3 +177,18 @@ tree traversal: pre-, in-, post-, and level-order traversals.
 + `in_order`: prints all nodes in in-order manner (left->parent->right)
 + `post_order`: prints all nodes in post-order manner (left->right->parent)
 + `level_order`: prints all nodes by level (Root->Level 1->Level 2-> ...)
+
+### Binary Search Tree
+The binary search tree, a.k.a. BST, is a binary tree with a special
+relationship between a parent node and its child nodes. In fact,  all left
+child nodes have smaller or equal keys than the ones of their parents, and
+all right child nodes have bigger key.
+##### Methods
++ `find`: find and return a node that has the target value
++ `insert`: add a new node keeping the BST rule
++ `pre_order`: prints all nodes in pre-order manner (parent->left->right)
++ `in_order`: prints all nodes in in-order manner (left->parent->right)
++ `post_order`: prints all nodes in post-order manner (left->right->parent)
+##### TODO
+- [ ] implement `level_order` method
+- [ ] implement `remove` method
