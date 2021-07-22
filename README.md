@@ -164,4 +164,16 @@ containing node pointer that points to a node
 + `end()`: return an iterator pointing to the past-the-end element(head)
 + `back_it()`: return an iterator pointing to the tail
 ##### TODO
-+ finalize copy constructor
+- [x] finalize copy constructor
+
+### Binary tree
+Binary tree is a simple binary tree structure that supports minimum features:
+create, add, find, and traversals. Specifically, it's more about practicing
+tree traversal: pre-, in-, post-, and level-order traversals.
+##### Methods
++ `create`: initialize a new tree
++ `add`: find and return a node that contains the target value
++ `pre_order`: prints all nodes in pre-order manner (parent->left->right)
++ `in_order`: prints all nodes in in-order manner (left->parent->right)
++ `post_order`: prints all nodes in post-order manner (left->right->parent)
++ `level_order`: prints all nodes by level (Root->Level 1->Level 2-> ...)
