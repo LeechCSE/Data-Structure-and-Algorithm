@@ -1,5 +1,4 @@
 #include <iostream>
-#include <list>
 #include <algorithm>
 #include <vector>
 
@@ -7,13 +6,8 @@ using namespace std;
 
 struct Job{
   int id, start, end;
-  int len;
-  Job(int i, int s, int e) : id(i), start(s), end(e), len(end - start){}
-  bool operator<(const Job& j) const{
-    if (this->end == j.end)
-      return this->len < j.len;
-    return this->end < j.end;
-  }
+  Job(int i, int s, int e) : id(i), start(s), end(e){}
+  bool operator<(const Job& j) const{ return this->end < j.end; }
 };
 
 void schedule(vector<Job>& list){
@@ -39,7 +33,6 @@ void print(vector<Job> list){
 }
 
 int main(){
-  //  list<Job> list;
   vector<Job> list;
   list.push_back(Job(1, 5, 9));
   list.push_back(Job(2, 6, 20));
