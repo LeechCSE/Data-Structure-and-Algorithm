@@ -193,7 +193,7 @@ all right child nodes have bigger key.
 - [ ] implement `level_order` method
 - [ ] implement `remove` method
 
-##### Greedy Algorithm
+## Greedy Algorithm
 #### Job scheduling
 scheduling.cpp is an example of greedy algorithm that schedules given jobs to
 maximize the number of jobs done without overlapped with each other. The jobs
