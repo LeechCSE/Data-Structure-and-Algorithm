@@ -194,8 +194,12 @@ all right child nodes have bigger key.
 - [ ] implement `remove` method
 
 ## Greedy Algorithm
-#### Job scheduling
+#### Job Scheduling
 scheduling.cpp is an example of greedy algorithm that schedules given jobs to
 maximize the number of jobs done without overlapped with each other. The jobs
 are selected in order of earliest end time, and the overlapped jobs are cut
 off greadily. This greedy approach gives the optimized outcome.
+#### Minimum Spanning Tree
+The minimum spanning tree(MST) algorithm is an algorihtm that makes an
+undirected-weighted graph be a completely connected tree with minimum total
+weight of used edges.
