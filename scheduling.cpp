@@ -1,6 +1,6 @@
 #include <iostream>
 #include <algorithm>
-#include <vector>
+#include <list>
 
 using namespace std;
 
@@ -10,30 +10,23 @@ struct Job{
   bool operator<(const Job& j) const{ return this->end < j.end; }
 };
 
-void schedule(vector<Job>& list){
-  sort(list.begin(), list.end());
+void schedule(list<Job>& list){
+  list.sort();
   
-  for (auto cur = list.begin(); cur != list.end(); cur++){
-    bool erased = false;
-    for (auto it = cur + 1; it != list.end(); erased ? it : it++){
-      if (it->start < cur->end){
+  for (auto cur = list.begin(); cur != list.end(); cur++)
+    for (auto it = next(cur); it != list.end(); it++)
+      if (it->start < cur->end)
 	list.erase(it);
-	erased = true;
-      }
-      else
-	erased = false;
-    }
-  }
 }
 
-void print(vector<Job> list){
+void print(list<Job> list){
   for (auto el: list)
     cout << "["  << el.id << "] " << el.start << " -> " << el.end << endl;
   cout << endl;
 }
 
 int main(){
-  vector<Job> list;
+  list<Job> list;
   list.push_back(Job(1, 5, 9));
   list.push_back(Job(2, 6, 20));
   list.push_back(Job(3, 16, 19));
