@@ -202,4 +202,9 @@ off greadily. This greedy approach gives the optimized outcome.
 #### Minimum Spanning Tree
 The minimum spanning tree(MST) algorithm is an algorihtm that makes an
 undirected-weighted graph be a completely connected tree with minimum total
-weight of used edges.
+weight of used edges. It uses greedy algorithm adding edges with the lowest
+weight as long as they don't make cyclic path in the minimum spanning tree. In
+order to check the cyclicity, the disjoint-set is used. Disjoint-set is a set
+of trees. Union_sets() method combines two trees if input nodes are not in the
+same tree. In other words, this method checks if the new edge creates a cyclic
+path in the minimum spanning tree.
