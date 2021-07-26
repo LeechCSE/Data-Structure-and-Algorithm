@@ -1,8 +1,65 @@
 #include <iostream>
 #include <queue>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
+
+class Disjoint_set{
+public:
+  // Constructor
+  Disjoint_set(int n);
+  // Add a new set having id = x into forest
+  void make_set(int x);
+  // Return root of tree starting node x
+  int find(int x);
+  // Combine two trees that have node x and y by their rank
+  void union_sets(int x, int y);
+private:
+  struct Node{
+    int id, rank, parent;
+    Node(int i, int r, int p) : id(i), rank(r), parent(p){}
+  };
+  vector<Node> forest;
+};
+// Constructor
+Disjoint_set::Disjoint_set(int n){
+  forest.reserve(n);
+  for (int i = 0; i <= n; i++)
+    forest.emplace_back(Node(i, 0, i));
+}
+// Add a new set having id = x into forest
+void Disjoint_set::make_set(int x){
+  forest.emplace_back(Node(x, 0, x));
+}
+// Return root of tree having node x
+int Disjoint_set::find(int x){
+  auto it = find_if(forest.begin(), forest.end(),
+		    [x](Node n){ return n.id == x; });
+  int id_found = (*it).id;
+  
+  while (id_found != forest[id_found].parent)
+    id_found = forest[id_found].parent;
+
+  return id_found;
+}
+// Combine two trees that have node x and y
+void Disjoint_set::union_sets(int x, int y){
+  int root_x = find(x);
+  int root_y = find(y);
+
+  if (root_x == root_y) // same tree
+    return;
+  
+  if (forest[root_x].rank >= forest[root_y].rank){
+    forest[root_y].parent = forest[root_x].parent;
+    forest[root_x].rank++;
+  }
+  else{
+    forest[root_x].parent = forest[root_y].parent;
+    forest[root_y].rank++;
+  }
+}
 
 /*
  * Edge struct
@@ -69,24 +126,25 @@ void Graph::print(){
 }
 
 Graph minimum_spanning_tree(Graph g){
+  // minimum spanning tree for return
   Graph mst(g.vertices());
+  // min-heap of weight of edge
   priority_queue<Edge, vector<Edge>, greater<Edge> > edge_min_heap;
-  
   for (auto e: g.edges())
     edge_min_heap.push(e);
-
+  // disjoint set for checking being cyclic
+  Disjoint_set ds(g.vertices());
+  for (int i = 1; i <= g.vertices(); i++)
+    ds.make_set(i);
+  
   for (int i = 0; i < g.edges().size(); i++){
     Edge e = edge_min_heap.top();
-    
-    if (mst.is_vertex(e.src) && mst.is_vertex(e.dst)){
-      cout << "skip: " << e.src << " " << e.dst << endl;
-    }
-    else{
-      cout << "add" << endl;
-      mst.add_edge(e);
-    }
-
     edge_min_heap.pop();
+
+    if (ds.find(e.src) != ds.find(e.dst)){
+      mst.add_edge(e);
+      ds.union_sets(e.src, e.dst);
+    }
   }
 
   return mst;
