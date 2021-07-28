@@ -208,9 +208,10 @@ order to check the cyclicity, the disjoint-set is used. Disjoint-set is a set
 of trees. Union_sets() method combines two trees if input nodes are not in the
 same tree. In other words, this method checks if the new edge creates a cyclic
 path in the minimum spanning tree.
-#### Graph Coloring
+#### Graph Coloring + Welsh-Powell algorithm
 Graph coloring is an algorithm that decides color of vertices of given graph
 with adjacent vertices not having the same color. This algorithm greedily picks
 a color of a vertex based on its adjacent vertices' color; it simply picks
 colors that are not used by adjacent vetices yet until all vertices' color is
-decided.
+decided. With Welsh-Powell algorithm, which starts coloring the vertex with
+the highest degree, gives less chromatic number.
