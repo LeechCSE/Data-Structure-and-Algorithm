@@ -215,3 +215,11 @@ a color of a vertex based on its adjacent vertices' color; it simply picks
 colors that are not used by adjacent vetices yet until all vertices' color is
 decided. With Welsh-Powell algorithm, which starts coloring the vertex with
 the highest degree, gives less chromatic number.
+#### Non consecutive sorting
+Non-consecutive sorting, given list of numbers, sorts numbers in a way that
+no consecutive number lines next to each other. In addition, among many
+possible cases, it gives lexicographically smallest sorting. It is implemented
+using greedy algorithm. It maps elements with its counts in the list. Then, in
+the sorted list in ascending order, for each elements that has remaining
+counts, it greedily checks the existence of numbers that are greater than
+current number. This problem is from BOJ#1071.
