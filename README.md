@@ -133,6 +133,16 @@ manner
 - [x] BFS
 - [x] DFS
 
+### Graph_Final
+Instead of using adjacent list, this graph library is using a list of edge.
+Since it stores edges themselves, the complexity of implementation is way less
+than one of using adjacency list.
+##### Methods
++ `vertices()`: return the number of vertices
++ `add_edge()`: add a new edge
++ `get_edges_of()`: return edges of which source vertex is given
+
+
 ### Array
 Array is a dynamically-allocated array. It is an advanced array of C-style
 array, supporting garbage collecting; don't worry about memory leak nor
@@ -223,3 +233,16 @@ using greedy algorithm. It maps elements with its counts in the list. Then, in
 the sorted list in ascending order, for each elements that has remaining
 counts, it greedily checks the existence of numbers that are greater than
 current number. This problem is from BOJ#1071.
+
+## Graph Algorithm
+#### BFS
+Graph traversal algorithm. O(V + E) where V is the number of vertices, and E is
+the number of edges. Starting from the given vertex, it traverses all vertices
+visiting adjacent child nodes first and then grand child nodes. It is more
+useful when finding close vertices from the starting vertex. In addition, it
+guarantees the path taken to the arriving node to be the shortest path.
+#### DFS
+Graph traversal algorithm. It also traverses all vertices visiting grand
+children earlier than its children nodes. Therefore, the node to be found would
+better be far from the starting node. It works at O(V + E) where V is the
+number of vertices, and E is the number of edges.
