@@ -7,6 +7,7 @@ template <typename T>
 struct Edge{
   int src, dst;
   T weight;
+  Edge(int s, int d, T w) : src(s), dst(d), weight(w){}
 };
 
 template <typename T>
