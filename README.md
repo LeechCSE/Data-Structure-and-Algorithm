@@ -246,3 +246,10 @@ Graph traversal algorithm. It also traverses all vertices visiting grand
 children earlier than its children nodes. Therefore, the node to be found would
 better be far from the starting node. It works at O(V + E) where V is the
 number of vertices, and E is the number of edges.
+#### Bipartite
+A graph is bipartite if nodes can be divided into two group perfectly, and
+nodes in the same group must be connected with edges. In other words, the
+graph is bipartite if it can be colored by two colors. As this algorithm has to
+traverse all nodes, both DFS and BFS can be used. While traversing nodes, it
+alternately colors nodes with two colors. If adjacent nodes have the same
+color, the graph is not bipartite.
