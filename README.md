@@ -209,7 +209,7 @@ scheduling.cpp is an example of greedy algorithm that schedules given jobs to
 maximize the number of jobs done without overlapped with each other. The jobs
 are selected in order of earliest end time, and the overlapped jobs are cut
 off greadily. This greedy approach gives the optimized outcome.
-#### Minimum Spanning Tree
+#### Minimum Spanning Tree(Kruskal Algorithm)
 The minimum spanning tree(MST) algorithm is an algorihtm that makes an
 undirected-weighted graph be a completely connected tree with minimum total
 weight of used edges. It uses greedy algorithm adding edges with the lowest
@@ -253,3 +253,9 @@ graph is bipartite if it can be colored by two colors. As this algorithm has to
 traverse all nodes, both DFS and BFS can be used. While traversing nodes, it
 alternately colors nodes with two colors. If adjacent nodes have the same
 color, the graph is not bipartite.
+#### MST(Prim Algorithm)
+MST algorithm. It works like BFS algorithm but with minimum heap, implemented
+with priority_queue. Given graph with vertices having infinite distance, it
+compares adjacent vertex v's distance and edge's weight of which destination
+is v. The v's distance is replaced with the smaller one, and the vertex v is
+added into minimum heap. It continues until the heap is empty.
