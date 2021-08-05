@@ -2,6 +2,7 @@
 #include <queue>
 #include <vector>
 #include <algorithm>
+#include <map>
 
 using namespace std;
 
@@ -121,8 +122,35 @@ void Graph::print(){
   vector<Edge> tmp = edgeList;
   sort(tmp.begin(), tmp.end());
 
-  for (auto it = tmp.begin(); it != tmp.end(); it++)
-    cout << "(" << it->src << ")--" << it->weight << "--(" << it->dst << ")\n";
+  int prev;
+  for (auto it = tmp.begin(); it != tmp.end(); it++){
+    if (it->src != prev)
+      cout << endl << it->src << ": ";
+    cout << "{" << it->dst << ", " << it->weight << "}, ";
+    prev = it->src;
+  }
+  cout << endl;
+}
+
+Graph init_graph(){
+  Graph g(9);
+
+  map<int, vector<pair<int, int> > > edge_map;
+  edge_map[1] = { {2, 2}, {5, 3} };
+  edge_map[2] = { {1, 2}, {5, 5}, {4, 1} };
+  edge_map[3] = { {4, 2}, {7, 3} };
+  edge_map[4] = { {2, 1}, {3, 2}, {5, 2}, {6, 4}, {8, 5} };
+  edge_map[5] = { {1, 3}, {2, 5}, {4, 2}, {8, 3} };
+  edge_map[6] = { {4, 4}, {7, 4}, {8, 1} };
+  edge_map[7] = { {3, 3}, {6, 4} };
+  edge_map[8] = { {4, 5}, {5, 3}, {6, 1} };
+
+  for (auto m : edge_map)
+    for (auto p : m.second)
+      g.add_edge(Edge(m.first, p.first, p.second));
+
+  return g;
+
 }
 
 Graph minimum_spanning_tree(Graph g){
@@ -143,6 +171,7 @@ Graph minimum_spanning_tree(Graph g){
 
     if (ds.find(e.src) != ds.find(e.dst)){
       mst.add_edge(e);
+      mst.add_edge(Edge(e.dst, e.src, e.weight));
       ds.union_sets(e.src, e.dst);
     }
   }
@@ -151,20 +180,7 @@ Graph minimum_spanning_tree(Graph g){
 }
 
 int main(){
-  Graph g(8);
-  //         Edge(s, d, w)
-  g.add_edge(Edge(1, 2, 2));
-  g.add_edge(Edge(1, 5, 3));
-  g.add_edge(Edge(5, 8, 3));
-  g.add_edge(Edge(5, 4, 2));
-  g.add_edge(Edge(2, 4, 1));
-  g.add_edge(Edge(8, 4, 5));
-  g.add_edge(Edge(8, 6, 1));
-  g.add_edge(Edge(4, 6, 4));
-  g.add_edge(Edge(3, 4, 2));
-  g.add_edge(Edge(3, 7, 3));
-  g.add_edge(Edge(6, 7, 4));
-
+  Graph g = init_graph();
   g.print();
 
   cout << "MST" << endl;
