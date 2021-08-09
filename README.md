@@ -141,6 +141,7 @@ than one of using adjacency list.
 + `vertices()`: return the number of vertices
 + `add_edge()`: add a new edge
 + `get_edges_of()`: return edges of which source vertex is given
++ `reserve()`: set the number of vertices and edges
 
 
 ### Array
@@ -266,4 +267,4 @@ shortest(least weighted) path from the start node to the target node. From the
 start node, in BFS manner, it updates the distance from start node to vertex u.
 After all iterations, each node has the total distance from the start node.
 Using back-tracing technique, it returns the shortest path and the total
-distance.
+distance. Example in dijkstra_NY.cpp
