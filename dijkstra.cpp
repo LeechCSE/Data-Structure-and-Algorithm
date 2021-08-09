@@ -4,6 +4,8 @@
 #include <set>
 #include <vector>
 #include <map>
+#include <limits>
+#include <algorithm>
 
 using namespace std;
 
@@ -44,24 +46,24 @@ pair<vector<int>, int> dijkstra(Graph<T> g, int start, int target){
   vector<int> parent(g.vertices());
   vector<T> dist(g.vertices(), numeric_limits<T>::max());
   dist[start] = 0;
-  min_heap.emplace(Vertex(start, dist[start]));
+  min_heap.emplace(Vertex<T>(start, dist[start]));
 
   while (!min_heap.empty()){
     Vertex<T> cur = min_heap.top();
     min_heap.pop();
     
     if (visited.find(cur.id) == visited.end()){
-      visited.insert(cur.id);
+      visited.insert(cur.id); 
       
-      for (auto e : g.get_edges_of(cur.id)){
-	if (visited.find(e.dst) == visited.end()){
-	  if (dist[e.dst] > dist[cur.id] + e.weight){
-	    dist[e.dst] = dist[cur.id] + e.weight;
-	    parent[e.dst] = cur.id;
-	    min_heap.emplace(Vertex(e.dst, dist[e.dst]));
+	  for (auto e : g.get_edges_of(cur.id)){
+		if (visited.find(e.dst) == visited.end()){
+			if (dist[e.dst] > dist[cur.id] + e.weight){
+				dist[e.dst] = dist[cur.id] + e.weight;
+				parent[e.dst] = cur.id;
+				min_heap.emplace(Vertex<T>(e.dst, dist[e.dst]));
+			}
+		}
 	  }
-	}
-      }
     }
   }
 
