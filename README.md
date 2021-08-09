@@ -259,3 +259,11 @@ with priority_queue. Given graph with vertices having infinite distance, it
 compares adjacent vertex v's distance and edge's weight of which destination
 is v. The v's distance is replaced with the smaller one, and the vertex v is
 added into minimum heap. It continues until the heap is empty.
+#### Dijkstra Algorithm
+Dijkstra algorithm is a single-source shortest-path-problem. Given a
+positive-weighted graph, start node, and target node, it gives the
+shortest(least weighted) path from the start node to the target node. From the
+start node, in BFS manner, it updates the distance from start node to vertex u.
+After all iterations, each node has the total distance from the start node.
+Using back-tracing technique, it returns the shortest path and the total
+distance.
