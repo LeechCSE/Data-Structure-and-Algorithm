@@ -14,7 +14,10 @@ template <typename T>
 class Graph{
 public:
   // Constructor
+  Graph();
   Graph(int n);
+  // Set the number of vertices and edges
+  void reserve(int n, int m);
   // Return number of vertices
   int vertices();
   // Add a new edge
@@ -28,7 +31,15 @@ private:
 
 // Constructor
 template <typename T>
+Graph<T>::Graph(){}
+template <typename T>
 Graph<T>::Graph(int n) : num_vertex(n){}
+// Set the number of vertices
+template <typename T>
+void Graph<T>::reserve(int n, int m){ 
+	num_vertex = n;
+	edgeList.reserve(m);
+}
 // Return number of vertices
 template <typename T>
 int Graph<T>::vertices(){ return num_vertex; }
