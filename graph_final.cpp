@@ -24,6 +24,8 @@ public:
   void add_edge(Edge<T> e);
   // Return edges from vertex u
   vector<Edge<T> > get_edges_of(int u);
+  // Return edge list
+  vector<Edge<T> > get_edges();
 private:
   int num_vertex;
   vector<Edge<T> > edgeList;
@@ -46,7 +48,7 @@ int Graph<T>::vertices(){ return num_vertex; }
 // Add a new edge
 template <typename T>
 void Graph<T>::add_edge(Edge<T> e){
-  if (e.src >= 1 && e.dst >= 1 && e.src <= num_vertex && e.dst <= num_vertex)
+  if (e.src >= 0 && e.dst >= 0 && e.src <= num_vertex && e.dst <= num_vertex)
     edgeList.emplace_back(e);
 }
 // Return edges from vertex u
@@ -59,3 +61,6 @@ vector<Edge<T> > Graph<T>::get_edges_of(int u){
 
   return rtn;
 }
+// Return edge list
+template <typename T>
+vector<Edge<T> > Graph<T>::get_edges(){ return edgeList; }
