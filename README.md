@@ -268,3 +268,9 @@ start node, in BFS manner, it updates the distance from start node to vertex u.
 After all iterations, each node has the total distance from the start node.
 Using back-tracing technique, it returns the shortest path and the total
 distance. Example in dijkstra_NY.cpp
+#### Bellman-Ford Algorithm
+Bellman-ford algorithm is a graph algorithm that gives the shortest distance 
+from the start node to all nodes. While Dijkstra algorithm cannot deal with the 
+negative edge weight, Bellman-ford algorithm can. With priority queue, Dijkstra 
+runs as O(|V|+|E|log|V|). However, as Bellman-ford algorithm iterates updating 
+algorithm for |V| - 1 times and one checking algorithm, it runs at O(|V||E|).
