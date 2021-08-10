@@ -274,3 +274,4 @@ from the start node to all nodes. While Dijkstra algorithm cannot deal with the
 negative edge weight, Bellman-ford algorithm can. With priority queue, Dijkstra 
 runs as O(|V|+|E|log|V|). However, as Bellman-ford algorithm iterates updating 
 algorithm for |V| - 1 times and one checking algorithm, it runs at O(|V||E|).
+Example in bellman_ford_example.cpp
