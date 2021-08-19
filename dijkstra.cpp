@@ -76,7 +76,7 @@ pair<vector<int>, int> dijkstra(Graph<T> g, int start, int target){
   path.emplace_back(start);
   reverse(path.begin(), path.end());
   
-  return pair<vector<int>, int>(path, dist[target]);;
+  return pair<vector<int>, int>(path, dist[target]);
 }
 
 int main(){
