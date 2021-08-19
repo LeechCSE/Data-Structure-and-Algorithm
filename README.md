@@ -108,7 +108,8 @@ edges and vertices
 + `add_edge(int u, int v)`: add a new edge between vertex u and v
 + `remove_edge(int u, int v)`: remove the edge between vertex u and v
 + `add_vertex()`: add a new vertex
-+ `remove_vertex(int u)`: remove vertex u and the edges connected to it accordingly
++ `remove_vertex(int u)`: remove vertex u and the edges connected to it 
+accordingly
 ##### TODO
 - [ ] Implement destructor
 - [ ] `remove_vertex(int u)`
@@ -275,3 +276,10 @@ negative edge weight, Bellman-ford algorithm can. With priority queue, Dijkstra
 runs as O(|V|+|E|log|V|). However, as Bellman-ford algorithm iterates updating 
 algorithm for |V| - 1 times and one checking algorithm, it runs at O(|V||E|).
 Example in bellman_ford_example.cpp
+
+## Dynamic Programming
+### Pre-requisites
+* Optimal sub-structure: whether the final optimal solution can be constructed
+from its sub-optimal solutions
+* Overlapping sub-problem: whether the problem can be broken down into
+subproblems that are reused serveral times
