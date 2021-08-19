@@ -79,35 +79,35 @@ bool is_bipartite_dfs(Graph<T> g){
 
 template <typename T>
 bool is_bipartite_bfs(Graph<T> g){
-  queue<int> q;
-  set<int> visited;
-  vector<char> colors(g.vertices() + 1);
-  char cur_color = 'B';
-  q.push(1);
-  colors[1] = cur_color;
-  
-  while (!q.empty()){
-    int cur = q.front();
-    q.pop();
-    
-    if (visited.find(cur) == visited.end()){
-      visited.insert(cur);
-      
-      for (auto e : g.get_edges_of(cur)){
-	if (visited.find(e.dst) == visited.end()){
-	  q.push(e.dst);
-	  colors[e.dst] = cur_color;
+	queue<int> q;
+	set<int> visited;
+	vector<char> colors(g.vertices() + 1);
+	char cur_color = 'B';
+	q.push(1);
+	colors[1] = cur_color;
+
+	while (!q.empty()){
+		int cur = q.front();
+		q.pop();
+
+		if (visited.find(cur) == visited.end()){
+			visited.insert(cur);
+
+			for (auto e : g.get_edges_of(cur)){
+				if (visited.find(e.dst) == visited.end()){
+					q.push(e.dst);
+					colors[e.dst] = cur_color;
+				}
+			}
+			cur_color = (cur_color == 'B') ? 'R' : 'B';
+		}
+		else{
+			if (colors[cur] == cur_color)
+				return false;
+		}
 	}
-      }
-      cur_color = (cur_color == 'B') ? 'R' : 'B';
-    }
-    else{
-      if (colors[cur] == cur_color)
-	return false;
-    }
-  }
   
-  return true;
+	return true;
 }
 
 int main(){
