@@ -8,25 +8,17 @@ vector<bool> visited;
 vector<int> color;
 
 void dfs(int cur, int cur_color){
-	
-	// cout << "CUR " << cur << ": " << cur_color << endl;
-	
 	visited[cur] = true;
 	color[cur] = cur_color;
 	
 	for (auto adj : adjList[cur]){
 		if (!visited[adj]){
-			
-			// cout << "   ADJ " << adj << endl;
-
 			dfs(adj, 3 - cur_color);
 		}
 	}
 }
 
 int main(){
-	freopen ("test.txt", "r", stdin);
-	
 	int t;
 	cin >> t;
 	while (t--){
