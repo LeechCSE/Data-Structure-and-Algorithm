@@ -1,4 +1,5 @@
 # Problem Solving: Graph
+
 ## BOJ#12946 육각 보드
  Given slots to color in a hexagonal board, it gives the number of colors to
  color all given slots. The adjacent slots cannot have the same color. In 
@@ -23,3 +24,29 @@ Given a m-by-n matrix, it gives the number of components distinguished by
 the value of matrix and the number of nodes for the largest connected component.
 Considering each element of the matrix as a node of a graph, BFS algorithm is
 used for each connected component.
+
+## BOJ#16928 뱀과 사다리 게임
+Snakes and Ladders is a board game. With a numbered board from 1 to n, some 
+snakes and ladders are given connecting i th grid to j th grid. A ladder
+connects from lower grid to higher grid, and the snakes works oppositely. For 
+each turn, a dice is rolled to move grids. The objective is to reach the 
+end-grid.  
+Given the above rule of the game, the algorithm gives the smallest number of
+rolls to reach the end. The algorithm simulates the board as a vector containing
+0 or x value. In fact, if there is no snake nor ladder, the value of an element 
+is 0; otherwise, the value is the destination of the snake or ladder. Using BFS 
+algorithm, it counts the number of rolls. Due to the characteristic of BFS
+algorithm, it gives the smallest one among the all possible ways.
+
+## BOJ#16948 데스 나이트
+Given a new chess knight that can moves to six possible ways and starting and 
+end point, it gives the minimum number of moves to reach the end from the start.
+As it's of the shortest path, BFS algorithm is used.
+
+## BOJ#14502 연구소
+Given a n-by-m matrix with blocks that is not visitable and multiple starting
+points, as adding three extra blocks, it gives the maximum number of unvisited
+grids. It is a typical problem that requires BFS algorithm but an extra
+restriction: the three extra blocks. Brute-force method is the only way, as 
+there is no optimal solution for this case. For every possible map with the new
+blocks, BFS algorithm is used; therefore, it runs at O((NM)^4).
