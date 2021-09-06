@@ -50,3 +50,16 @@ grids. It is a typical problem that requires BFS algorithm but an extra
 restriction: the three extra blocks. Brute-force method is the only way, as 
 there is no optimal solution for this case. For every possible map with the new
 blocks, BFS algorithm is used; therefore, it runs at O((NM)^4).
+
+## BOJ#12886 돌 그룹
+Given three groups of stones, it checks if the number of stones of each group
+can be the same with the redistribution rule. Pick two groups of which number
+of stones are different. Redistribute x stones of the group of higher number of
+stones to the other. Again, it is a typical problem that requires brute-force
+algorithm, specifically, BFS algorithm taking the number of stones for each
+group as a node. However, as the number of groups are three, the space-complexity
+of `visited` vector is O(N^3) wherer N is the maximum number of stones, which is
+in this case aboud 1500. In order to resolve this issue, the node only takes
+two groups, not three; then it becomes O(N^2). Since it is 'redistribution', 
+the total number of stones for all group remains the same; therefore, the third
+group, which is not taken for the node, can be figured in run-time as well.
