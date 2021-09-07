@@ -44,7 +44,7 @@ end point, it gives the minimum number of moves to reach the end from the start.
 As it's of the shortest path, BFS algorithm is used.
 
 ## BOJ#14502 연구소
-Given a n-by-m matrix with blocks that is not visitable and multiple starting
+Given a N-by-M matrix with blocks that is not visitable and multiple starting
 points, as adding three extra blocks, it gives the maximum number of unvisited
 grids. It is a typical problem that requires BFS algorithm but an extra
 restriction: the three extra blocks. Brute-force method is the only way, as 
@@ -74,3 +74,17 @@ map that has one less wall from the given map; however, as it runs at <img src="
 changed from a simple coordinate (y, x) to (y, x, broken) wherer `broken` 
 represents whether or not it's broken once. By doing so, the time complexity
 becomes <img src="https://latex.codecogs.com/svg.image?\inline&space;O(NM)" title="\inline O(NM)" />.
+
+## BOJ#16946 벽 부수고 이동하기 4
+An N-by-M matrix with zero as an accessible path and one as a inaccessible
+wall is given. Consider this matrix as a graph with grid as node and
+adjacent grid as adjacent nodes connected by edges. It gives the number
+of connected components for each sub-graph assuming that a wall is broken
+so that it is accessible. Initially, the brute-force technique is applied.
+For every wall, execute BFS algorithm to get the number of connected
+components; it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^2M^2)" title="\inline O(N^2M^2)" />.
+It is not acceptable for the given N and M where <img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;N,&space;M&space;\leq1,000" title="\inline 1\leq N, M \leq1,000" />.
+The more efficient way only uses BFS algorithm, which is the bottle-neck,
+once. First, in one iteration of BFS algorithm, obtain all the number of connected
+components for given graph, not considering broken walls. Then, for every wall,
+it checks if some commponents are adjacent. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(NM)" title="\inline O(NM)" />.
