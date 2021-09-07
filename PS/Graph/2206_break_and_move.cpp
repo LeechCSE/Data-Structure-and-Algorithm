@@ -28,8 +28,6 @@ int bfs(vector<vector<int> > map){
 		Node cur = q.front();
 		q.pop();
 		
-		cout << cur.y << " " << cur.x << " " << cur.broken << endl;
-		
 		for (auto move : moves){
 			int newX = cur.x + move.first;
 			int newY = cur.y + move.second;
