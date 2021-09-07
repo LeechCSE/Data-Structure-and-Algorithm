@@ -73,4 +73,4 @@ brute-force method is applied by executing BFS algorithm for all possible
 map that has one less wall from the given map; however, as it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^2M^2)" title="\inline O(N^2M^2)" />, it is not accepted for <img src="https://latex.codecogs.com/svg.image?\inline&space;1&space;\leq&space;N,&space;M\leq&space;1,000" title="\inline 1 \leq N, M\leq 1,000" />. In order to resolve this issue, the node of simulated graph is 
 changed from a simple coordinate (y, x) to (y, x, broken) wherer `broken` 
 represents whether or not it's broken once. By doing so, the time complexity
-becomes O(NM).
+becomes <img src="https://latex.codecogs.com/svg.image?\inline&space;O(NM)" title="\inline O(NM)" />.
