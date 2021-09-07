@@ -49,7 +49,8 @@ points, as adding three extra blocks, it gives the maximum number of unvisited
 grids. It is a typical problem that requires BFS algorithm but an extra
 restriction: the three extra blocks. Brute-force method is the only way, as 
 there is no optimal solution for this case. For every possible map with the new
-blocks, BFS algorithm is used; therefore, it runs at O((NM)^4).
+blocks, BFS algorithm is used; therefore, it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^4M^4)" title="\inline O(N^4M^4)" />, which is acceptable
+for <img src="https://latex.codecogs.com/svg.image?\inline&space;3&space;\leq&space;N,&space;M\leq&space;8" title="\inline 3 \leq N, M\leq 8" />.
 
 ## BOJ#12886 돌 그룹
 Given three groups of stones, it checks if the number of stones of each group
@@ -58,8 +59,18 @@ of stones are different. Redistribute x stones of the group of higher number of
 stones to the other. Again, it is a typical problem that requires brute-force
 algorithm, specifically, BFS algorithm taking the number of stones for each
 group as a node. However, as the number of groups are three, the space-complexity
-of `visited` vector is O(N^3) wherer N is the maximum number of stones, which is
-in this case aboud 1500. In order to resolve this issue, the node only takes
-two groups, not three; then it becomes O(N^2). Since it is 'redistribution', 
+of `visited` vector is <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^3)" title="\inline O(N^3)" /> wherer N is the maximum number of stones, which is
+in this case about 1500. In order to resolve this issue, the node only takes
+two groups, not three; then it becomes <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^2)" title="\inline O(N^2)" />. Since it is 'redistribution', 
 the total number of stones for all group remains the same; therefore, the third
 group, which is not taken for the node, can be figured in run-time as well.
+
+## BOJ#2206 벽 부수고 이동하기
+Given an N-by-M matrix with zero as an accessible path and one as a inaccessible
+wall, it gives the shortes path from (0, 0) to (N-1, M-1). A special restriction
+in this problem is it is allowed to break a wall only once. Initially, the
+brute-force method is applied by executing BFS algorithm for all possible
+map that has one less wall from the given map; however, as it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^2M^2)" title="\inline O(N^2M^2)" />, it is not accepted for <img src="https://latex.codecogs.com/svg.image?\inline&space;1&space;\leq&space;N,&space;M\leq&space;1,000" title="\inline 1 \leq N, M\leq 1,000" />. In order to resolve this issue, the node of simulated graph is 
+changed from a simple coordinate (y, x) to (y, x, broken) wherer `broken` 
+represents whether or not it's broken once. By doing so, the time complexity
+becomes O(NM).
