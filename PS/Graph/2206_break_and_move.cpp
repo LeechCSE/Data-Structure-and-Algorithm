@@ -23,6 +23,7 @@ int bfs(vector<vector<int> > map){
 	
 	q.emplace(start);
 	cnt[start.y][start.x][0] = 1;
+	cnt[start.y][start.y][1] = 1;
 	
 	while (!q.empty()){
 		Node cur = q.front();
@@ -61,7 +62,7 @@ int bfs(vector<vector<int> > map){
 			}
 		}
 	}
-	
+
 	int ans0 = cnt[n - 1][m - 1][0];
 	int ans1 = cnt[n - 1][m - 1][1];
 	
