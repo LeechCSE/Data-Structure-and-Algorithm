@@ -88,3 +88,20 @@ The more efficient way only uses BFS algorithm, which is the bottle-neck,
 once. First, in one iteration of BFS algorithm, obtain all the number of connected
 components for given graph, not considering broken walls. Then, for every wall,
 it checks if some commponents are adjacent. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(NM)" title="\inline O(NM)" />.
+
+## BOJ#14442 벽 부수고 이동하기 2
+Given an N-by-M matrix with zero as an accessible path and one as a inaccessible
+wall, it gives the shortes path from (0, 0) to (N-1, M-1). An extra restriction
+is that it is allowed to break up to K walls if it makes the path shorter.
+BFS algorithm is used with the node consisting of `{y, x, num_broken}` information.
+`y` and `x` represents the coordinate of the given matrix, and `num_broken`
+indicates the number of walls  it has broken so far. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(NM)" title="\inline O(NM)" />.
+
+## BOJ#16933 벽 부수고 이동하기 3
+As with the previous problem, BOJ#14442, an N-by-M matrix with path and
+wall and restriction of breaking up to K walls are given. In addition, 
+an extra restriction of time is given. For every action, time goes from 
+daytime to nighttime or vice versa. Breaking a wall can only be done
+in daytime. In order to embrace the new restriction, a new member, `time`,
+is added to the `Node`. Although space complexity increses, it still runs
+at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(NM)" title="\inline O(NM)" />.
