@@ -105,3 +105,10 @@ daytime to nighttime or vice versa. Breaking a wall can only be done
 in daytime. In order to embrace the new restriction, a new member, `time`,
 is added to the `Node`. Although space complexity increses, it still runs
 at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(NM)" title="\inline O(NM)" />.
+
+## BOJ#16954 움직이는 미로 탈출
+Given an 8-by-8 maze, it checks if it can go from (7, 0) to (0, 7). Each
+row of maze is moving downward for every move. If the wall is moved to
+the current position, it's stuck. Since the maze is given with fixed size
+of 8, the eight possible maps are generated initially. Then, using Node
+of `{y, x,  map_id}`, BFS algorithm is used.
