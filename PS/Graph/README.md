@@ -112,3 +112,16 @@ row of maze is moving downward for every move. If the wall is moved to
 the current position, it's stuck. Since the maze is given with fixed size
 of 8, the eight possible maps are generated initially. Then, using Node
 of `{y, x,  map_id}`, BFS algorithm is used.
+
+## BOJ#16236 아기 상어
+An n-by-n matrix filled with a 0-9 digit per a grid is given. Taking 9
+as a starting point with starting size of 2, the cursor is moving through
+the grids with less than or equal to current size. The cursor is moving for
+the closest target/grid of which value is less than the current size. If there 
+are multiple candidates, it takes the matrix-wise smallest element. It stops
+moving when there are no target anymore. Until the end, it gives the total
+number of moves.  
+`find_fish()` method calls BFS algorithm to get the shortest path from
+the current position to the target, which runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^2)" title="\inline O(N^2)" />, and can be called
+<img src="https://latex.codecogs.com/svg.image?\inline&space;N^2" title="\inline N^2" />
+times in the worst case. Thererfore, this algorithm runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^4)" title="\inline O(N^4)" />.
