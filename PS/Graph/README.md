@@ -125,3 +125,41 @@ number of moves.
 the current position to the target, which runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^2)" title="\inline O(N^2)" />, and can be called
 <img src="https://latex.codecogs.com/svg.image?\inline&space;N^2" title="\inline N^2" />
 times in the worst case. Thererfore, this algorithm runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^4)" title="\inline O(N^4)" />.
+
+## BOJ#6087 레이저 통신
+Given an N-by-M matrix filled with `.` for an accessible path and `*` as a wall
+and starting and end points, it gives the minimum number of mirrors required to 
+connect the two given points with the laser. As the laser goes strainght,
+only the mirror can change its direction.
+```
+Example of 8 x 7 Matrix:
+
+. . . . . . .         . . . . . . .
+. . . . . . C         . . . . . /-C
+. . . . . . *         . . . . . | *
+* * * * * . *         * * * * * | *
+. . . . * . .         . . . . * | .
+. . . . * . .         . . . . * | .
+. C . . * . .         . C . . * | .
+. . . . . . .         . \-------/ .
+```
+The above example shows that three mirrors(`/`or`\`) are required to connect
+the two `C` points.  
+As the problem is of the "minimum" thing, the BFS algorithm is used taking
+each grid as a node, all adjacent nodes on the same straight lines as an edge,
+and the number of straight lines needed as a weight of the edge.
+```
+Count map:
+
+2 2 2 2 2 2 1
+1 1 1 1 1 1 C  <-- Starting point
+2 2 2 2 2 2 *
+* * * * * 2 *
+4 4 4 4 * 2 3
+4 4 4 4 * 2 3
+4 C 4 4 * 2 3
+3 3 3 3 3 2 3
+```
+With the same example, the final `count map` would be the above. The four
+straight lines are required to connect the two points; therefore, three 
+mirrors are requried. As it is a simple BFS algorithm, it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(NM)" title="\inline O(NM)" />.
