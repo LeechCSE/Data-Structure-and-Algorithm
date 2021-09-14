@@ -12,7 +12,7 @@ int bfs(vector<vector<int> > map, Pos start, Pos end){
 	int m = map[0].size();
 	
 	queue<Pos> q;
-	vector<vector<int> > cnt(n, vector<int>(m, 9));
+	vector<vector<int> > cnt(n, vector<int>(m, -1));
 	
 	q.emplace(start);
 	cnt[start.first][start.second] = 0;
@@ -32,7 +32,7 @@ int bfs(vector<vector<int> > map, Pos start, Pos end){
 				if (map[newY][newX] == 1)
 					break;
 				
-				if (cnt[newY][newX] == 9){
+				if (cnt[newY][newX] == -1){
 					q.emplace(Pos(newY, newX));
 					cnt[newY][newX] = cnt[cur.first][cur.second] + 1;
 				}
@@ -47,8 +47,6 @@ int bfs(vector<vector<int> > map, Pos start, Pos end){
 }
 
 int main(){
-	freopen("tc.txt", "r", stdin);
-	
 	int n, m;
 	cin >> m >> n;
 	
@@ -72,17 +70,7 @@ int main(){
 		}
 	}
 	
-	// cout << start.first << " " << start.second << endl;
-	// cout << end.first << " " << end.second << endl;
-	// for (int i = 0; i < n; i++){
-		// for (int j = 0; j < m; j++){
-			// cout << map[i][j] << " ";
-		// }
-		// cout << endl;
-	// }
-	
 	cout << bfs(map, start, end) << endl;
-	
 	
 	return 0;
 }
