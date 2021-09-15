@@ -179,3 +179,5 @@ cannot distinguish between `R` and `G`; therefore, `R` node and `G` node are
 thought to be connected in this case. The BFS algorithm is used for both
 case. In RG-color-weakness case, it simply changes `B` to `R`. It runs
 at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^2)" title="\inline O(N^2)" />.
+
+## BOJ#14395 4연산
