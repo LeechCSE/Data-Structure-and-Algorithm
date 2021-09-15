@@ -169,4 +169,7 @@ Given two four-digit prime numbers, `start` and `end`, by changning one
 digit of `start` at a time, it gives the minimum number of changes to make 
 `start` be `end`. The BFS algorithm is used with all prime numbers in range
 as nodes. At every iteration, it checks the adjacent number is a prime
-number; it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(m\sqrt{n})\&space;where\&space;m\&space;is\&space;the\&space;number\&space;of\&space;digits\&space;of\&space;n" title="\inline O(m\sqrt{n})\ where\ m\ is\ the\ number\ of\ digits\ of\ n" />.
+number; it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(m\sqrt{n})" title="\inline O(m\sqrt{n})" />.
+where m is the number of digits of n.
+
+
