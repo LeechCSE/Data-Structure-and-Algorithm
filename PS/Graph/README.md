@@ -178,6 +178,15 @@ number of connected components. An extra restriction is that RG-color-weakness
 cannot distinguish between `R` and `G`; therefore, `R` node and `G` node are
 thought to be connected in this case. The BFS algorithm is used for both
 case. In RG-color-weakness case, it simply changes `B` to `R`. It runs
-at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^2)" title="\inline O(N^2)" />.
+at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(M\sqrt{N})" title="\inline O(M\sqrt{N})" />
+where M is the number of digits of N.
 
 ## BOJ#14395 4연산
+Given two number `s` and `t`, using arithmetic operations, `*`, `+`, `-`,
+`/`, it gives the operations used to make `s` by `t` with the minimum
+number of operations. As it is about the minimum stuff, the BFS algorithm
+is used with all possible numbers that can be made from the operations.
+It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N)" title="\inline O(N)" />
+where <img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;N\leq&space;10^9" title="\inline 1\leq N\leq 10^9" />.
+Although the input number can be way bigger than one billion, since the 
+algorithm tries to reach the target, it doesn't probe that big number.
