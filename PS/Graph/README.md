@@ -190,3 +190,10 @@ It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N)" ti
 where <img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;N\leq&space;10^9" title="\inline 1\leq N\leq 10^9" />.
 Although the input number can be way bigger than one billion, since the 
 algorithm tries to reach the target, it doesn't probe that big number.
+
+## BOJ#5014 스타트링크
+Given N as the size of problem, starting and end point, and forward
+and backward offsets, it gives the minimum number of steps from the start
+to the end. The BFS algorithm is used with the current position as node
+and the offset as edge; it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N)" title="\inline O(N)" />.
+
