@@ -197,3 +197,10 @@ and backward offsets, it gives the minimum number of steps from the start
 to the end. The BFS algorithm is used with the current position as node
 and the offset as edge; it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N)" title="\inline O(N)" />.
 
+## BOJ#1600 말이 되고픈 원숭이
+Given an N-by-M matrix and `k` that represents the limit of knight-like
+moves, it gives the minimum number of moves from `(0, 0)` to `(N - 1, M - 1)`.
+If the knight-like moves are used beyond the limit, the cursor moves in four
+directions: left, right, up, and down. The BFS algorithm is used with node
+of `{y, x, num_knights}` where `y` and `x` indicates the coordinates and
+`num_knights` shows the number of knight-like moves used.
