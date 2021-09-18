@@ -204,3 +204,8 @@ If the knight-like moves are used beyond the limit, the cursor moves in four
 directions: left, right, up, and down. The BFS algorithm is used with node
 of `{y, x, num_knights}` where `y` and `x` indicates the coordinates and
 `num_knights` shows the number of knight-like moves used.
+
+## BOJ#17086 아기 상어 2
+Given an N-by-M matrix filled with zero or one, it gives the shortest path
+from each grid to 1's grid. For each grid, the BFS algorithm is used to find
+the shortest path to the 1's grid. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^2M^2)" title="\inline O(N^2M^2)" />.
