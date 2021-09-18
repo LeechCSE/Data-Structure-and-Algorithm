@@ -209,3 +209,21 @@ of `{y, x, num_knights}` where `y` and `x` indicates the coordinates and
 Given an N-by-M matrix filled with zero or one, it gives the shortest path
 from each grid to 1's grid. For each grid, the BFS algorithm is used to find
 the shortest path to the 1's grid. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^2M^2)" title="\inline O(N^2M^2)" />.
+
+## BOJ#4991 로봇 청소기
+#### Overview
+Given an N-by-M matrix filled with `.` as path, `*` as target, `x` as inaccessible grid, and `o` as the starting point, it gives the minimum number of moves to reach all targets from the starting point when the cursor can moves into its adjacent grids. 
+#### Challenges
+The total number of moves is not simply the sum of the shortest paths between targets.
+```
+  0 1 2 3 4     Path1: (2, 2) --|1|--> (3, 2) --|3|--> (1, 3) --|2|--> (0, 4) --|4|--> (1, 1)
+0 . . . . *     #Moves: 1 + 3 + 2 + 4 = 10
+1 . * . * .     
+2 . . o . .     Path2: (2, 2) --|1|--> (3, 2) --|3|--> (1, 1) --|2|--> (1, 3) --|2|--> (0, 4)
+3 . . * . .     #Moves: 1 + 3 + 2 + 2 = 8
+4 . . . . .     
+```
+In the above example, both paths take the shortest target at each stage; however, if there are multiple closest targets, the output is not deterministic.
+#### Trials
+The brute-force method is applied for all permutaion of targets. In fact, from the given starting point, all possible combinations of targets become the path. As every stage requries the BFS algorithm, it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;(T&space;*&space;T!)O(NM)" title="\inline (T * T!)O(NM)" /> where T is the number of targets. As the input is given as <img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;N,\&space;M\leq&space;20" title="\inline 1\leq N,\ M\leq 20" /> and <img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;T\leq&space;10" title="\inline 1\leq T\leq 10" />, in the worst case, it takes ~2 minutes.   
+In order to increase the efficiency, memoization technique is used. Since the position of targets and starting point is fixed, at each stage, the BFS algorithm is probing the same graph. By caching the number of moves to reach all positions from the starting point and targets, the duplicated probing is removed. Therefore, it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;(T&space;*&space;T!)O(1)" title="\inline (T * T!)O(1)" />.
