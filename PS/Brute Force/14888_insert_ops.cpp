@@ -24,31 +24,31 @@ int main(){
 	
 	do{
 		auto it = a.begin();
-		int sum = *it;
+		int out = *it;
 		advance(it, 1);
 		
 		for (auto op : ops){
 			switch (op){
 				case 0:
-					sum += *it;
+					out += *it;
 					break;
 				case 1:
-					sum -= *it;
+					out -= *it;
 					break;
 				case 2:
-					sum *= *it;
+					out *= *it;
 					break;
 				case 3:
-					sum /= *it;
+					out /= *it;
 					break;
 			}
 			advance(it, 1);
 		}
 		
-		if (max < sum)
-			max = sum;
-		if (min > sum)
-			min = sum;
+		if (max < out)
+			max = out;
+		if (min > out)
+			min = out;
 	} while (next_permutation(ops.begin(), ops.end()));
 	
 	cout << max << endl << min << endl;
