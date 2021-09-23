@@ -46,3 +46,13 @@ The combination of set `S` with mask is the subsets of set `S`. Using
 be the duplicated sum. Since the answer is obtained using back-tracking technique
 at the end of the program, the duplicated sum would be a mess. Therefore, the sums
 are stored in a set, which only holds unique values in a sorted order.
+
+## BOJ#148888 연산자 끼워넣기
+#### Overview
+N natual numbers and N - 1 operatios(`+`, `-`, `x`, `÷`) are given. The order of 
+N numbers is fixed, and operator precedence is ignored, meaning that the operators
+are executed from the front to the end. It gives the maximum and minimum output.
+#### Trials
+Using `next_permutation()` in `<algorithm>` library, [N-1]-combination, which gives 
+all possible arrangements of N - 1 operators, is obtained. Since operator precedence
+is ignored in this problem, for each operator, the output is accumulated.
