@@ -3,19 +3,19 @@
 
 using namespace std;
 
-pair<int, int> accumulate(vector<int> a, int add, int sub, int mul, int div, 
+pair<int, int> calculate(vector<int> a, int add, int sub, int mul, int div, 
 								int acc, int pos = 1){
 	if (pos == a.size())
 		return pair<int, int>(acc, acc);
 	
 	vector<pair<int, int> > res;
-	if (add) res.emplace_back(accumulate(a, add - 1, sub, mul, div, 
+	if (add) res.emplace_back(calculate(a, add - 1, sub, mul, div, 
 										acc + a[pos], pos + 1));
-	if (sub) res.emplace_back(accumulate(a, add, sub - 1, mul, div, 
+	if (sub) res.emplace_back(calculate(a, add, sub - 1, mul, div, 
 										acc - a[pos], pos + 1));
-	if (mul) res.emplace_back(accumulate(a, add, sub, mul - 1, div, 
+	if (mul) res.emplace_back(calculate(a, add, sub, mul - 1, div, 
 										acc * a[pos], pos + 1));
-	if (div) res.emplace_back(accumulate(a, add, sub, mul, div - 1, 
+	if (div) res.emplace_back(calculate(a, add, sub, mul, div - 1, 
 										acc / a[pos], pos + 1));
 										
 	int max = res[0].first;
@@ -40,7 +40,7 @@ int main(){
 	for (int i = 0; i < 4; i++)
 		cin >> ops[i];
 	
-	pair<int, int> ans = accumulate(a, ops[0], ops[1], ops[2], ops[3], a[0]);
+	pair<int, int> ans = calculate(a, ops[0], ops[1], ops[2], ops[3], a[0]);
 	
 	cout << ans.first << endl << ans.second << endl;
 	
