@@ -82,6 +82,8 @@ Given an N-by-M matrix filled with integers representing scores, it gives the
 maximum score when a tetromino is placed on the matrix. Tetromino can be rotated
 and flipped.
 #### Trials
-![Tetromino Image](https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/All_5_free_tetrominoes.svg/200px-All_5_free_tetrominoes.svg.png)
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/All_5_free_tetrominoes.svg/200px-All_5_free_tetrominoes.svg.png" />
+</p>
 Tetrominoes of shape `I`, `O`, `L`, and `S` can be probed in DFS manner. In fact, all blocks can be covered without turning back to the previous block. On the other side, `T` shape tetromino cannot be covered with DFS manner probing. Based on this observation, `T` shape tetromino is hard-coded, and DFS-like
 probing is applied to the other four tetrominoes.
