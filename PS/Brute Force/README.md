@@ -56,3 +56,22 @@ are executed from the front to the end. It gives the maximum and minimum output.
 Using `next_permutation()` in `<algorithm>` library, [N-1]-combination, which gives 
 all possible arrangements of N - 1 operators, is obtained. Since operator precedence
 is ignored in this problem, for each operator, the output is accumulated.
+
+## BOJ#15658 연산자 끼워넣기 2
+#### Overview
+Given N natural numbers and at least N - 1 operators(`+`, `-`, `x`, `÷`), it
+gives the maximum and minimum output. The operator precedence is ignored.
+#### Challenges
+Since the number of operators are more than or equal to N - 1, [N-1]-combination
+is needed. Simulating `+` as 0, `-` as 1, `x` as 2, and `÷` as 3 with mask,
+the [N-1]-combination is obtained. Then, the permutation of the combination is
+applied to get the output. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(\binom{4N}{N-1}(N-1)!)&space;=&space;O(\frac{(4N)!}{(3N&plus;1)!})" title="\inline O(\binom{4N}{N-1}(N-1)!) = O(\frac{(4N)!}{(3N+1)!})" />, which is terrible at all. Since there are many duplicated 
+arrangements of operators, memoization technique is used with `<map>`. It leads time complexity
+to <img src="https://latex.codecogs.com/svg.image?\inline&space;O(4^{N-1}log(N-1))" title="\inline O(4^{N-1}log(N-1))" />. The time complexity of accessing element of map is <img src="https://latex.codecogs.com/svg.image?\inline&space;O(log(N-1))" title="\inline O(log(N-1))" />. Even with `<unordered_map>`, it 
+takes <img src="https://latex.codecogs.com/svg.image?\inline&space;O(1)" title="\inline O(1)" /> in average
+case and <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N)" title="\inline O(N)" /> in
+the worst case; then it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(4^{N-1})" title="\inline O(4^{N-1})" /> on average case and <img src="https://latex.codecogs.com/svg.image?\inline&space;O(4^{N-1}(N-1))" title="\inline O(4^{N-1}(N-1))" /> in the worst case.
+#### Trials
+In order to achieve solid <img src="https://latex.codecogs.com/svg.image?\inline&space;O(4^{N-1})" title="\inline O(4^{N-1})" />, recursion is used. Calculating operands with given operators, it passes the
+remaining number of operators into the next function call. It removes the duplicated arrangement. 
+In fact, it is a simple brute-force technique with no duplicates without using caching.
