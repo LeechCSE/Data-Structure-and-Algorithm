@@ -75,3 +75,13 @@ the worst case; then it runs at <img src="https://latex.codecogs.com/svg.image?\
 In order to achieve solid <img src="https://latex.codecogs.com/svg.image?\inline&space;O(4^{N-1})" title="\inline O(4^{N-1})" />, recursion is used. Calculating operands with given operators, it passes the
 remaining number of operators into the next function call. It removes the duplicated arrangement. 
 In fact, it is a simple brute-force technique with no duplicates without using caching.
+
+## BOJ#14500 테트로미노
+#### Overview
+Given an N-by-M matrix filled with integers representing scores, it gives the
+maximum score when a tetromino is placed on the matrix. Tetromino can be rotated
+and flipped.
+#### Trials
+![Tetromino Image](https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/All_5_free_tetrominoes.svg/200px-All_5_free_tetrominoes.svg.png)
+Tetrominoes of shape `I`, `O`, `L`, and `S` can be probed in DFS manner. In fact, all blocks can be covered without turning back to the previous block. On the other side, `T` shape tetromino cannot be covered with DFS manner probing. Based on this observation, `T` shape tetromino is hard-coded, and DFS-like
+probing is applied to the other four tetrominoes.
