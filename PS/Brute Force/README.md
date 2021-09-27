@@ -87,3 +87,26 @@ and flipped.
 </p>
 Tetrominoes of shape `I`, `O`, `L`, and `S` can be probed in DFS manner. In fact, all blocks can be covered without turning back to the previous block. On the other side, `T` shape tetromino cannot be covered with DFS manner probing. Based on this observation, `T` shape tetromino is hard-coded, and DFS-like
 probing is applied to the other four tetrominoes.
+
+## BOJ#16197 두 동전
+#### Overview
+Given an N-by-M matrix filled with some `.` as an accessible path, some `#` as
+a wall, and two `o` as a coin, it gives the minimum number of moves to make
+only one coin goes out of the matrix.
+#### Challenges
+There are many restriction in this problem. First, in the matrix, `#` is not
+accessible by any coins; they can only go through `.`grids. In addition, the
+coins  are able to go out of the matrix; however, only one is allowed. The
+maximum number of moves that is allowed is 10.
+#### Trials
+The solution is implemented in recursive manner. There are three base cases:
+1. The number of moves exceeds 10 -- Fail!
+2. Both coins go out of the matrix -- Fail again!
+3. Only one coin goes out of the matrix, and the other stays in -- Valid
+
+Each recursive function call passes the number of moves(`num_clicks`) so far
+and the position of the two coins(`c1`, `c2`). Based on the `num_clicks`,
+it clears the first base case, and `c1` and `c2` clear the second and third
+base cases. Since the first and second bases are not valid, they return `-1`
+representing a failure. Among the outputs from the third base case, it gives
+the minimum number of moves.
