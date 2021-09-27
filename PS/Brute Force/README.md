@@ -110,3 +110,24 @@ it clears the first base case, and `c1` and `c2` clear the second and third
 base cases. Since the first and second bases are not valid, they return `-1`
 representing a failure. Among the outputs from the third base case, it gives
 the minimum number of moves.
+
+## BOJ#16198 에너지 모으기
+#### Overview
+Given a list of number, `w`, and the precedure of gathering energy:
+1. Pick `x`th element where <img src="https://latex.codecogs.com/svg.image?\inline&space;1&space;<&space;x&space;<&space;|w|" title="\inline 1 < x < |w|" />.
+2. Remove `x`th element from `w`
+3. Gather energy = `w[x-1] * w[x+1]`
+4. Update the size of `w` by one less and label the remaining elements by updated order
+
+#### Challenges
+The given precedure requires the repeating job for smaller input where in this case it is `w`. As
+gathering energy, `w` gets smaller and smaller until the size of `w` is 2. In order to this
+repeating job, recursion is used with the input of `w`. Initially, the recursive function
+strictly follows the given precedure; with passed vector `w`, for each `x`, which is from 
+1 to `|w|-1`th element, call itself with updated vector without element `x`. However, in this
+manner, the input of sub-problem is not protected. In fact, at each depth of function call, the input
+must remains the same whatever happen in the lower depth.
+
+#### Trials
+In order to keep the input from being changed by the lower depth process, a temporary vector
+that copies the input `w` and is passed into the lower depth process.
