@@ -127,7 +127,14 @@ strictly follows the given precedure; with passed vector `w`, for each `x`, whic
 1 to `|w|-1`th element, call itself with updated vector without element `x`. However, in this
 manner, the input of sub-problem is not protected. In fact, at each depth of function call, the input
 must remains the same whatever happen in the lower depth.
-
 #### Trials
 In order to keep the input from being changed by the lower depth process, a temporary vector
 that copies the input `w` and is passed into the lower depth process.
+
+## BOJ#9663 N-Queen
+#### Overview
+Given `N` where <img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;N<&space;15" title="\inline 1\leq N< 15" />, it gives the number of arrangement of N queens in an N-by-N chess board without
+conflicting each other.
+#### Trials
+The queen can move any number of grids horizontally, vertically, or digonally. First, considering
+the column of the chess board, there must be one queen per column at most. Therefore, iterating each column, it calls itself if there is no conflict verticall and diagonally.
