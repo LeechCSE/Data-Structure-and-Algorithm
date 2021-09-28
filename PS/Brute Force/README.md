@@ -138,3 +138,18 @@ conflicting each other.
 #### Trials
 The queen can move any number of grids horizontally, vertically, or digonally. First, considering
 the column of the chess board, there must be one queen per column at most. Therefore, iterating each column, it calls itself if there is no conflict verticall and diagonally.
+
+## BOJ#2580 Sudoku
+#### Overview
+It is Sudoku but special one that can be solved with back-tracking technique.  
+For example,  
+<img src="https://upload.acmicpc.net/508363ac-0289-4a92-a639-427b10d66633/-/preview/">  
+Given the special sudoku puzzle, it gives a solution out of many.
+#### Trials
+As the problem speicifies it can be solved with back-tracking method, brute-force
+with back-tracking technique is applied. Caching three vectors, it iterates all
+girds of the puzzle. The followings are the two dimentional cache vectors:
+1. `row_check[i][x]`: whether number `x` exists in row `i`
+2. `col_check[i][x]`: whether number `x` exists in column `i`
+3. `sqr_check[i][x]`: whether number `x` exists in square `i` where squares are
+labeled in row-major order.
