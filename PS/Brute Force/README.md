@@ -153,3 +153,27 @@ girds of the puzzle. The followings are the two dimentional cache vectors:
 2. `col_check[i][x]`: whether number `x` exists in column `i`
 3. `sqr_check[i][x]`: whether number `x` exists in square `i` where squares are
 labeled in row-major order.
+
+## BOJ#3085 사탕 게임
+#### Overview
+Given an N-by-N matrix filled with a alphabet letter per grid, it gives
+the longest common sub-sequence of row or column when swapping two
+adjacent grids once.
+```
+  AAB   swapping (2, 1) and (2, 2)  AAB
+  AAB   ==========================> AAB
+  BBA                               BAB
+  
+(LCS: 2)                          (LCS: 3)
+```
+#### Trials
+There is no special formula for figuring out the maximum LCS of swapping problem.
+Thererfore, the brute-force technique is applied. For each element of the given
+matrix, it swaps its adjacent element for four times(up, down, left, and right).
+With the updated matrix with swapped elements, for each row and column, it 
+obtains LCS and gives the maximum LCS out of them. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^4)" title="\inline O(N^4)" />. Some optimization could be applied.
+First, since the swapping happens in row-major order, it doesn't need to check
+all four directions. Only two directions(down and right) need to be checked.
+In addition, since two elements are swapped at a time, LCS doesn't need to be run
+for all rows and columns but either two rows or two columns depending on the direction
+of swapping.
