@@ -143,7 +143,9 @@ the column of the chess board, there must be one queen per column at most. There
 #### Overview
 It is Sudoku but special one that can be solved with back-tracking technique.  
 For example,  
-<img src="https://upload.acmicpc.net/508363ac-0289-4a92-a639-427b10d66633/-/preview/">  
+<p align="center">
+	<img src="https://upload.acmicpc.net/508363ac-0289-4a92-a639-427b10d66633/-/preview/">  
+</p>
 Given the special sudoku puzzle, it gives a solution out of many.
 #### Trials
 As the problem speicifies it can be solved with back-tracking method, brute-force
@@ -177,3 +179,23 @@ all four directions. Only two directions(down and right) need to be checked.
 In addition, since two elements are swapped at a time, LCS doesn't need to be run
 for all rows and columns but either two rows or two columns depending on the direction
 of swapping.
+
+## BOJ#2529 부등호
+#### Overview
+Given `K` number of inequality symbols, it gives list of `K+1` numbers between 0 and
+9 that meets the inequality symbols. Each number is used only once.
+```
+Given < and >,
+0 < 2 > 1 
+1 < 2 > 0 
+    .
+	.
+	.
+8 < 9 > 6 
+7 < 9 > 8 
+8 < 9 > 7
+```
+#### Trials
+The problem can be easily reduced to a simple one. Among 0-9 numbers, choose
+`K+1` numbers, <img src="https://latex.codecogs.com/svg.image?\inline&space;_{10}C_{k&plus;1}" title="\inline _{10}C_{k+1}" />, and since the order of `K+1` numbers matter, filter 
+permutation of the `K+1` numbers with the given inequality symbols.
