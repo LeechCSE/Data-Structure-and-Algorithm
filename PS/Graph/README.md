@@ -227,3 +227,19 @@ In the above example, both paths take the shortest target at each stage; however
 #### Trials
 The brute-force method is applied for all permutaion of targets. In fact, from the given starting point, all possible combinations of targets become the path. As every stage requries the BFS algorithm, it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;(T&space;*&space;T!)O(NM)" title="\inline (T * T!)O(NM)" /> where T is the number of targets. As the input is given as <img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;N,\&space;M\leq&space;20" title="\inline 1\leq N,\ M\leq 20" /> and <img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;T\leq&space;10" title="\inline 1\leq T\leq 10" />, in the worst case, it takes ~2 minutes.   
 In order to increase the efficiency, memoization technique is used. Since the position of targets and starting point is fixed, at each stage, the BFS algorithm is probing the same graph. By caching the number of moves to reach all positions from the starting point and targets, the duplicated probing is removed. Therefore, it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;(T&space;*&space;T!)O(1)" title="\inline (T * T!)O(1)" />.
+
+## BOJ#2234 성곽
+#### Overview
+An N-by-M matrix with each grid filled 4-bit value in decimal format is given.
+The 4-bit value represents the existence of wall on west, north, east, south
+face respectively. The wall cannot be gone through. It gives the number of
+connected components, the number of nodes in the biggest connected component, 
+and the number of nodes in new biggest connected component when a wall is
+removed.
+#### Trials
+Two different BFS algorithm is used. One is for mapping connected components
+from the given matrix. In `connected_component` map structure,
+`(connected_component#, #nodes)` is stored. The other BFS algorithm is for 
+obtaining the adjacent connected components of each connected component.
+Removing a wall means that combining two connected components; therefore, 
+it can obtain the third answer.
