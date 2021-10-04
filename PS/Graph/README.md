@@ -243,3 +243,56 @@ from the given matrix. In `connected_component` map structure,
 obtaining the adjacent connected components of each connected component.
 Removing a wall means that combining two connected components; therefore, 
 it can obtain the third answer.
+
+## BOJ#12906 New Tower of Hanoi
+#### Overview
+Similar to Tower of Hanoi, there are three towers(`A`, `B`, `C`) and some
+plates that are also labeled with `A`, `B`, or `C`. The objective of this
+puzzle is to put all plates on the right tower; `A`-plate must be on the
+`A`-tower, and so on. With this setting, the algorithm gives the minimum
+number of moves to reach the end.
+#### Challenges
+There is no magic equation to obtain the answer, meaning that it requires
+the brute-force technique. Since this puzzle is not linear type of problem, 
+the BFS algorithm is used. The challenge is how to define the node and 
+how to check visit.
+#### Trials
+The node is defined as `State` that is simply `vector<string>`.
+```
+State[0]: Tower A
+   ㄴ plates on Tower A
+State[1]: Tower B
+   ㄴ plates on Tower C
+State[2]: Tower C
+   ㄴ plates on Tower C
+```
+The visit check is done with `map` with key of `string`. Initially, `State`
+itself is used as key; however, it takes too much memory and too much time
+to access hash map. Therefore, the key is changed to `string`.
+```
+string generate_key(State s){
+	string key = "";
+	
+	for (auto t : s){
+		key += t;
+		key += ".";
+	}
+	
+	return key;
+}
+```
+As shown above, the key is `A-plates.B-plates.C-plates`. The period is a
+delimiter to make each state unique.
+```
+State 1: AA B _ --> key: AAB
+State 2: A  A B --> key: AAB
+```
+The above example shows the possible problem of using the key without the 
+delimeter. Although `State 1` and `State 2` are obviously differenet, due to the
+empty tower, the same keys are generated.
+```
+State 1: AA B _ --> key: AA.B..
+State 2: A  A B --> key: A.A.B.
+```
+The above shows the use of the delimiter`"."`. It distinguishes the plates of
+each tower.
