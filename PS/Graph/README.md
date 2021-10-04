@@ -296,3 +296,21 @@ State 2: A  A B --> key: A.A.B.
 ```
 The above shows the use of the delimiter`"."`. It distinguishes the plates of
 each tower.
+
+## BOJ#17141 연구소 2
+#### Overview
+A number `M` as the number of starting points and an N-by-N matrix filled
+with `0` as an accessible path, `1` as a wall, and `2` as a potential starting 
+point are given. At t = 0s, from the starting points, viruses are placed.
+At each second, the viruses are infected into 4-way direction(up, down, left, 
+and right). The algorithm gives the minimum time taken to infect all accessible
+paths.
+#### Trials
+Among a number of potential starting points(let's say there are `K` starting
+points), `M` number of starting points are chosen using `prev_permutation()` 
+with `mask`. In order to implement combination with `prev_permuation()` or
+`next_permutation()`, which is for permutation as the name indicates, the 
+`mask` is used. `mask` consists of `M` number of `1`s and `K-M` number of
+`0`s and is premutated. Then, the `mask` is `&(operator AND)` with `K` 
+starting points. It gives `M`-combination from `K`. With the chosen `M` 
+starting points, the BFS algorithm is applied to obtain the minimum time.
