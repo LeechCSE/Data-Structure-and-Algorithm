@@ -11,3 +11,17 @@ value-2 intersection. Memoization technique is used in this case.
 <p align="center">
 <img width="65%" src="https://latex.codecogs.com/svg.image?\theta_{ij}=\left\{\begin{matrix}\theta_{(i-1)j}\\\theta_{(i-x)j}\end{matrix}\right.&plus;\left\{\begin{matrix}\theta_{i(j-1)}\&space;where\&space;corresponding\&space;intersection\&space;value&space;=&space;0\&space;or\&space;1\\\theta_{i(j-y)}\&space;where\&space;corresponding\&space;intersection\&space;value&space;=&space;2\&space;\&space;\&space;\&space;\end{matrix}\right.\\\\_{\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;for\&space;smallest\&space;x\&space;s.t.\&space;2\&space;\leq\&space;x\&space;\leq\&space;i\&space;and\&space;intersection\&space;value_{(i-x)j}\&space;\neq\&space;2\&space;and}\\_{\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;\&space;for\&space;smallest\&space;y\&space;s.t.\&space;2\&space;\leq\&space;y\&space;\leq\&space;j\&space;and\&space;intersection\&space;value_{i(j-y)}\&space;\neq\&space;2}" title="\theta_{ij}=\left\{\begin{matrix}\theta_{(i-1)j}\\\theta_{(i-x)j}\end{matrix}\right.+\left\{\begin{matrix}\theta_{i(j-1)}\ where\ correspodint\ intersection\ value = 0\ or\ 1\\\theta_{i(j-y)}\ where\ corresponding\ intersection\ value = 2\ \ \ \ \end{matrix}\right.\\\\_{\ \ \ \ \ \ \ \ \ \ \ \ \ \ for\ smallest\ x\ s.t.\ 2\ \leq\ x\ \leq\ i\ and\ intersection\ value_{(i-x)j}\ \neq\ 2\ and}\\_{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\ smallest\ y\ s.t.\ 2\ \leq\ y\ \leq\ j\ and\ intersection\ value_{i(j-y)}\ \neq\ 2}" />
 </p>
+
+## BOJ#11048 이동하기
+#### Overview
+Given an N-by-M matrix(`A[*][*]`) filled with natural numbers, it gives the 
+maximum summation of the natural numbers moving from `(1, 1)` to `(N, M)` if 
+`(i, j) --> (i+1, j), (i, j+1), or (i+1, j+1)` are allowed.
+#### Optimal solution
+<p align="center">
+<img src="https://latex.codecogs.com/svg.image?\inline&space;\theta_{ij}:&space;the\&space;maximum\&space;summation\&space;upto\&space;(i,&space;j)" title="\inline \theta_{ij}: the\ maximum\ summation\ upto\ (i, j)" />
+<br/ >
+<img src="https://latex.codecogs.com/svg.image?\inline&space;\theta_{ij}=max(\theta_{(i-1)j},\&space;\theta_{i(j-1)},\&space;\theta_{(i-1)(j-1)})\&space;&plus;\&space;A_{ij}" title="\inline \theta_{ij}=max(\theta_{(i-1)j},\ \theta_{i(j-1)},\ \theta_{(i-1)(j-1)})\ +\ A_{ij}" />
+<br/ >
+<img src="https://latex.codecogs.com/svg.image?\inline&space;(2\leq&space;i\leq&space;N,\&space;2\leq&space;j\leq&space;M,\&space;\theta_{11}=A_{11})" title="\inline (2\leq i\leq N,\ 2\leq j\leq M,\ \theta_{11}=A_{11})" />
+</p>
