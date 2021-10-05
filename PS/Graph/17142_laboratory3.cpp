@@ -34,16 +34,8 @@ int bfs(vector<vector<int> > mat, vector<Pos> starting_pts){
 			if (cnt[newY][newX] != -1)
 				continue;
 			
-			// unactivated virus
-			if (mat[newY][newX] == 2){
-				q.emplace(Pos(newY, newX));
-				cnt[newY][newX] = cnt[cur.first][cur.second] + 1;
-			}
-			// path
-			else if (mat[newY][newX] == 0){
-				q.emplace(Pos(newY, newX));
-				cnt[newY][newX] = cnt[cur.first][cur.second] + 1;
-			}
+			q.emplace(Pos(newY, newX));
+			cnt[newY][newX] = cnt[cur.first][cur.second] + 1;
 		}
 	}
 	
@@ -64,8 +56,6 @@ int bfs(vector<vector<int> > mat, vector<Pos> starting_pts){
 }
 
 int main(){
-	freopen("tc.txt", "r", stdin);
-	
 	int n, m;
 	cin >> n >> m;
 	
@@ -85,7 +75,7 @@ int main(){
 		mask[i] = true;
 	
 	int ans = n * n;
-	do{ // k C m
+	do{ // k Choose m where k is #starting points
 		vector<Pos> cand;
 		for (int i = 0; i < starting_pts.size(); i++){
 			if (mask[i])
