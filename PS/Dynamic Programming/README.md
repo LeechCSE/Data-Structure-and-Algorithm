@@ -19,9 +19,9 @@ maximum summation of the natural numbers moving from `(1, 1)` to `(N, M)` if
 `(i, j) --> (i+1, j), (i, j+1), or (i+1, j+1)` are allowed.
 #### Optimal solution
 <p align="center">
-<img src="https://latex.codecogs.com/svg.image?\inline&space;\theta_{ij}:&space;the\&space;maximum\&space;summation\&space;upto\&space;(i,&space;j)" title="\inline \theta_{ij}: the\ maximum\ summation\ upto\ (i, j)" />
+<img width="45%" src="https://latex.codecogs.com/svg.image?\inline&space;\theta_{ij}:&space;the\&space;maximum\&space;summation\&space;upto\&space;(i,&space;j)" title="\inline \theta_{ij}: the\ maximum\ summation\ upto\ (i, j)" />
 <br/ >
-<img src="https://latex.codecogs.com/svg.image?\inline&space;\theta_{ij}=max(\theta_{(i-1)j},\&space;\theta_{i(j-1)},\&space;\theta_{(i-1)(j-1)})\&space;&plus;\&space;A_{ij}" title="\inline \theta_{ij}=max(\theta_{(i-1)j},\ \theta_{i(j-1)},\ \theta_{(i-1)(j-1)})\ +\ A_{ij}" />
+<img width="45%" src="https://latex.codecogs.com/svg.image?\inline&space;\theta_{ij}=max(\theta_{(i-1)j},\&space;\theta_{i(j-1)},\&space;\theta_{(i-1)(j-1)})\&space;&plus;\&space;A_{ij}" title="\inline \theta_{ij}=max(\theta_{(i-1)j},\ \theta_{i(j-1)},\ \theta_{(i-1)(j-1)})\ +\ A_{ij}" />
 <br/ >
-<img src="https://latex.codecogs.com/svg.image?\inline&space;(2\leq&space;i\leq&space;N,\&space;2\leq&space;j\leq&space;M,\&space;\theta_{11}=A_{11})" title="\inline (2\leq i\leq N,\ 2\leq j\leq M,\ \theta_{11}=A_{11})" />
+<img width="25%" src="https://latex.codecogs.com/svg.image?\inline&space;(2\leq&space;i\leq&space;N,\&space;2\leq&space;j\leq&space;M,\&space;\theta_{11}=A_{11})" title="\inline (2\leq i\leq N,\ 2\leq j\leq M,\ \theta_{11}=A_{11})" />
 </p>
