@@ -314,3 +314,19 @@ with `mask`. In order to implement combination with `prev_permuation()` or
 `0`s and is premutated. Then, the `mask` is `&(operator AND)` with `K` 
 starting points. It gives `M`-combination from `K`. With the chosen `M` 
 starting points, the BFS algorithm is applied to obtain the minimum time.
+
+## BOJ#17142 연구소 3
+#### Overview
+Similar to BOJ#17141, a number `M` as the number of starting points and an 
+N-by-N matrix filled with `0` as an accessible path, `1` as a wall, and `2` 
+as a potential starting point are given. However, in this problem, the
+starting points that are not chosen are still on the matrix under `unactivated`
+state. Reaching the unactivated virus, the virus makes it activated. The
+moving mechanism is exactly the same as the above problem.
+#### Trials
+The small difference in the problem doesn't make changes in the source code.
+The unactivated virus can be considered as an accessible path while the viruses
+are spreading. At the end of spreading, the grids with unactivated virus are 
+also considered as infected grid. In fact, if the end point of spreading is 
+the grid of unactivated virus, it is not counted. The only change in code is 
+to handle this special case.
