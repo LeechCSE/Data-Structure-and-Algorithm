@@ -199,3 +199,15 @@ Given < and >,
 The problem can be easily reduced to a simple one. Among 0-9 numbers, choose
 `K+1` numbers, <img src="https://latex.codecogs.com/svg.image?\inline&space;_{10}C_{k&plus;1}" title="\inline _{10}C_{k+1}" />, and since the order of `K+1` numbers matter, filter 
 permutation of the `K+1` numbers with the given inequality symbols.
+
+## 2017 카카오코드 본선: 단체사진 찍기
+#### Overview
+Given eight people(`A`, `C`, `F`, `J`, `M`, `N`, `R`, `T`} and a list of 
+restrictions on arrangement of people in `X~Y=K`, `X~Y<K`, or `X~Y>K` format
+where `X` and `Y` are from the given people and `K` is the number of other 
+people in between `X` and `Y`. With this setting, it gives the number of 
+cases of lining up the people under the restrictions.
+#### Trials
+Lining up eight people is a simple permutaion of them. The permutation is 
+implemented with `next_permution()`. For each permuted arrangement, the 
+restriction is tested. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(8!*8N)" title="\inline O(8!*8N)" />.
