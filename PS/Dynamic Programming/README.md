@@ -25,3 +25,15 @@ maximum summation of the natural numbers moving from `(1, 1)` to `(N, M)` if
 <br/ >
 <img width="25%" src="https://latex.codecogs.com/svg.image?\inline&space;(2\leq&space;i\leq&space;N,\&space;2\leq&space;j\leq&space;M,\&space;\theta_{11}=A_{11})" title="\inline (2\leq i\leq N,\ 2\leq j\leq M,\ \theta_{11}=A_{11})" />
 </p>
+
+## BOJ#11060 점프 점프
+#### Overview
+Given a 1-by-N matrix filled with an integer that represents the maximum number
+of grids per jump, it gives the minimum number of jumps to reach `(0, N-1)` from 
+`(0, 0)`.
+#### Optimal Solution
+<p align="center">
+    <img width="51%" src="https://latex.codecogs.com/svg.image?\inline&space;\theta_i:&space;the\&space;minimum\&space;number\&space;of\&space;jumps\&space;up\&space;to\&space;i^{th}\&space;grid" title="\inline \theta_i: the\ minimum\ number\ of\ jumps\ up\ to\ i^{th}\ grid" />
+<br/ >
+    <img width="37%" src="https://latex.codecogs.com/svg.image?\inline&space;\theta_i&space;=&space;min\&space;\theta_x&space;&plus;&space;1\&space;&space;where\&space;0\leq&space;x&space;\leq&space;(i-1)" title="\inline \theta_i = min\ \theta_x + 1\ where\ 0\leq x \leq (i-1)" />
+</p>
