@@ -49,6 +49,8 @@ Another way of solving of this problem is to apply dynammic programming. By
 using the symmetric characteristic of palindrome, the whole problem can be
 divided into smaller sub-problems of which solution is also applied into the
 other sub-problems, the other larger sub-problems, and even the whole problem.
+With the optimal solution, the solution is filled in bottom-up manner. Unlike
+the typical problems, it cannot be filled in row-major order but diagonal direction.
 #### Optimal Solution
 <p align="center">
     <img width="45%" src="https://latex.codecogs.com/svg.image?\inline&space;\theta_{ij}:whether\&space;[A_i,&space;A_{i&plus;1},&space;...,&space;A_{j-1},&space;A_j]\&space;is\&space;palindrome" title="\inline \theta_{ij}:whether\ [A_i, A_{i+1}, ..., A_{j-1}, A_j]\ is\ palindrome" />
