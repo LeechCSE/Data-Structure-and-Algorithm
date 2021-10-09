@@ -35,5 +35,5 @@ of grids per jump, it gives the minimum number of jumps to reach `(0, N-1)` from
 <p align="center">
     <img width="51%" src="https://latex.codecogs.com/svg.image?\inline&space;\theta_i:&space;the\&space;minimum\&space;number\&space;of\&space;jumps\&space;up\&space;to\&space;i^{th}\&space;grid" title="\inline \theta_i: the\ minimum\ number\ of\ jumps\ up\ to\ i^{th}\ grid" />
 <br/ >
-    <img src="https://latex.codecogs.com/svg.image?\inline&space;\theta_i&space;=&space;min\&space;\theta_x&space;&plus;&space;1\&space;&space;where\&space;0\leq&space;x&space;\leq&space;(i-1)\&space;and\&space;x&plus;A_x\geq&space;i" title="\inline \theta_i = min\ \theta_x + 1\ where\ 0\leq x \leq (i-1)\ and\ x+A_x\geq i" />
+    <img width="51%" src="https://latex.codecogs.com/svg.image?\inline&space;\theta_i&space;=&space;min\&space;\theta_x&space;&plus;&space;1\&space;&space;where\&space;0\leq&space;x&space;\leq&space;(i-1)\&space;and\&space;x&plus;A_x\geq&space;i" title="\inline \theta_i = min\ \theta_x + 1\ where\ 0\leq x \leq (i-1)\ and\ x+A_x\geq i" />
 </p>
