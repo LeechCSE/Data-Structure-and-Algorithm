@@ -211,3 +211,26 @@ cases of lining up the people under the restrictions.
 Lining up eight people is a simple permutaion of them. The permutation is 
 implemented with `next_permution()`. For each permuted arrangement, the 
 restriction is tested. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(8!*8N)" title="\inline O(8!*8N)" />.
+
+## 2021 Kakao Blind Recruitment: 메뉴 리뉴얼
+#### Overview
+Given a list of strings `orders` of which element represents a set of individual
+menus and a list of integers `course` that indicates the number of individual
+menus for the course-menu to make, it gives the list of course-menu, which 
+contains at least two individual menus ordered for the most among all orders 
+that are ordered at least two times.
+```
+orders: "XYZ","WXY"    course: [2,3]
+
+Size-2 course-menu candidates: "XY"(2 times), "XZ", "YZ", "WX", "WY"
+==> "XY" is selected for the Size-2 course-menu
+Size-3 course-menu candidates: "XYZ", "WXY"
+==> None of them are qualified.
+
+ANSWER: ["XY"]
+```
+#### Trials
+Since there is no magic to check if the candidates are qualified, all cases
+must be probed. For each order in `orders`, c-combination is required where
+c is each and every element in `course`. The occurrance of c-combination
+sub-string is counted to check its qualification for the course-menu.
