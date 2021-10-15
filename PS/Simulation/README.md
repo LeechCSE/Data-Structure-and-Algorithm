@@ -36,12 +36,14 @@ the structure of `Dice` in UML diagram, they are labeled that so.
 #### Overview
 Given four gears interlocked and `K` operations in `(Gear#, Dirction)` format,
 it gives the final state of the gears after `K` operations.
+
 <p align="center">
     <img src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/14891/4.png">
 </p>
+
 Shown in the above image, the adjacent teeth are interlocked. Starting from 
-the given `Gear#` it "propagates" rotating operation into adjacent gears. In
-this example, the op-code is `(3, 1)` meaning "rotate 3rd gear in clock-wise."
+the given `Gear#`, it "propagates" rotating operation into adjacent gears. In
+this example, the op-code is `(3, 1)`, meaning "rotate 3rd gear in clock-wise."
 If the magnetic pole of the adjacent tooth of 2nd and 4th are the same, they
 don't rotate and stop propagating into the next gear; otherwise, they rotate and
 propagate into the next gear.
