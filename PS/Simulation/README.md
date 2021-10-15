@@ -53,3 +53,25 @@ In order to implement the rotation, `shift` operation with `bitset` data
 structure is used. More specifically, the circular shift is implemented. The 
 most complicated part of this problem is to propagate the operation. At this time, 
 `propagate()` is hard-coded for four gears; it is not scalable!
+
+## BOJ#14503 로봇 청소기
+#### Overview
+An N-by-M matrix filled with 1 as a wall and 0 as a path and the precedure
+of how the robotic vacuum runs are given.
+
+1. Clean current grid
+2. Probe adjacent grids in counter clock-wise starting from the left grid of 
+the current direction  
+  a. If the grid being probed is not cleaned, change direction to the grid and
+     go forward for one grid and repeat Step 1.  
+  b. If all four adjacent grids are cleaned up, keep current direction and go
+     backward for one grid.
+  c. If it cannot go backward, stop working.
+
+#### Trials
+At every step, the output is stored in `State` that consists of `y`, `x`, and
+`dir`. `y` and `x` represents the position, and `dir` shows the direction of 
+the state. In addition, in order to simulate the special probing precedure, an
+extra layer of abstraction between probing iterator and the next direction. The 
+whole precedure is implemented in iterative version; however, it could be bit 
+simpler in recursive version.
