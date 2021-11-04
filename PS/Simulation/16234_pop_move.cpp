@@ -61,15 +61,6 @@ void bfs(vector<vector<int>> &mat, Pos start, int l, int r){
 		mat[e.first][e.second] = sum / cnt;
 }
 
-void print(vector<vector<int>> mat){
-	for (auto r : mat){
-		for (auto el : r){
-			cout << el << " ";
-		}
-		cout << endl;
-	}
-}
-
 int main(){
 	int n, l, r;
 	cin >> n >> l >> r;
