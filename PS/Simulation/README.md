@@ -75,3 +75,28 @@ the state. In addition, in order to simulate the special probing precedure, an
 extra layer of abstraction between probing iterator and the next direction. The 
 whole precedure is implemented in iterative version; however, it could be bit 
 simpler in recursive version.
+
+## BOJ#16234 인구 이동
+#### Overview
+- Givens
+  - N-by-N matrix represents residential areas with the number of population
+  - `L` and `R` indicates the lower and upper bound to open the area border
+- Population movement mechanism
+  - If the difference in the number of population between two adjacent areas is 
+  in between `L` and `R`, the border is open for a day
+  - The areas that are connected throught the open border are considered *united*
+  - After border opening process is done, population move starts. 
+  - After population movement is done, the population of all *united* areas 
+  becomes **(total number of population / the number of areas in the *united* 
+  area)**
+  - Close borders and day ends
+
+It simulates the above mechanism and gives the number of days to complete the
+population movement.
+
+#### Trials
+Considering the given matrix as a graph, it finds the connected components with
+BFS algorithm. The connected component is the *united* areas; therefore, the 
+number of nodes in the connected component corresponds the number of areas. As 
+there might be many independent connected components, the global `visited` 2D
+vector is used to exhaust all of them.
