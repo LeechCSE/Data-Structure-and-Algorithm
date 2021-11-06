@@ -100,3 +100,30 @@ BFS algorithm. The connected component is the *united* areas; therefore, the
 number of nodes in the connected component corresponds the number of areas. As 
 there might be many independent connected components, the global `visited` 2D
 vector is used to exhaust all of them.
+
+## BOJ#16235 나무 재테크
+#### Overview
+An N-by-N matrix represents the land of tree growing. Each grid has a number 
+that represents its fertility and can contain many trees. The initial fertility
+of each grid is five. Trees grow as the following mechanism:
+- Spring  
+   Trees grow by a year as they consume fertility of their grid as much as their
+   current age. If the fertility is not enough, trees that cannot get nutrients
+   die immediately. If there are multiple trees in a grid, the youngest eats up
+   first.
+- Summer  
+   The dead trees become nutrients adding fertility by its `age / 2`.
+- Fall  
+   Multiple-of-5 aged trees reproduce age-1 trees into its eight adjacents grids.
+- Winter  
+   Fertility is added by the given N-by-N matrix `A`.
+
+#### Trials
+For readability and modularity, the source code is split into `spring()`, 
+`summer()`, `fall()`, `winter()` as the instruction. Initially, `priority_queue`
+as min heap is used to effectively pick the youngest tree in a grid for every
+iteration. This approach is obviously faster than the way that a list having 
+tree information is sorted for every iteration. However, `deque` makes it even
+faster. In fact, it requries only one sorting at the beginning. The FIFO(First
+In, First Out) chacteristic of queue and accessibility to the back of the queue
+with `deque` allow it to keep the descending order in tree age.
