@@ -127,3 +127,35 @@ tree information is sorted for every iteration. However, `deque` makes it even
 faster. In fact, it requries only one sorting at the beginning. The FIFO(First
 In, First Out) chacteristic of queue and accessibility to the back of the queue
 with `deque` allow it to keep the descending order in tree age.
+
+## BOJ#17144 미세먼지 안녕!
+#### Overview
+An R-by-C matrix representing a house floor having an air cleaner(two grids of 
+`-1`) and some amount of dusts(`A[r][c]`) is given. At every second, the 
+following events happens:
+- Dusts diffuse
+   - Dust diffuse into four adjacent grids.
+   - If the adjacent grid is out of bound or has the air cleaner, they don't
+   diffuse.
+   -  Dusts diffuse by `A[r][c] / 5` amount, and the amount of dusts at the 
+   original grid becomes `A[r][c] - A[r][c] / 5 * Number of diffusion`.
+- The air cleaner runs
+   - The air from the upper part of the air cleaner flows in counter-clockwise,
+   and the other flows in clockwise.
+   - Dusts move by one grid in air flow direction
+   - The air from the cleaner has zero dust, and the dusts sucked in it are cleaned.
+The air cleaner is always places at the first column. 
+
+#### Trials
+In *Diffusion* part, the tricky part is how to keep track of the original value.
+In fact, iterating the matrix in row major order, the value of the next grids
+that haven't yet visited is changed by the diffusion from its adjacent grids.
+This causes unexpected output of the diffusion. Therefore, the original values 
+of the matrix are copied at the beginngin and are used as a reference.   
+In addition, the key of the other part of the problem is to manipulate the matrix. 
+The matrix is divided into two parts:
+<p align="center">
+    <img width="50%" src="https://upload.acmicpc.net/94466937-96c7-4f25-9804-530ebd554a59/-/preview/">
+</p>
+The outer shell of upper matrix rotates in counter-clockwise, and one of lower
+matrix rotates in clockwise. 
