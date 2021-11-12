@@ -154,8 +154,40 @@ This causes unexpected output of the diffusion. Therefore, the original values
 of the matrix are copied at the beginngin and are used as a reference.   
 In addition, the key of the other part of the problem is to manipulate the matrix. 
 The matrix is divided into two parts:
+
 <p align="center">
     <img width="50%" src="https://upload.acmicpc.net/94466937-96c7-4f25-9804-530ebd554a59/-/preview/">
 </p>
+
 The outer shell of upper matrix rotates in counter-clockwise, and one of lower
 matrix rotates in clockwise. 
+
+## BOJ#17143 낚시왕
+#### Overview
+A fisherman goes fishing in an R-by-C matrix pool having a shark per a grid.
+
+<p align="center">
+    <img width="50%" src="https://upload.acmicpc.net/85c2ccad-e4b8-4397-9bd6-0ec73b0f44f8/-/preview/">
+</p>
+
+At every second, the following events happen:
+- Starting from the very left side, the fisherman moves toward right by one column
+- The fisherman catches the closest shark from the ground
+- The sharks move
+   - Each shark has its speed(grid per second), size, and direction(1: up, 
+   2: down, 3: right, 4: left).
+   - If sharks move out of the pool, they change their direction into the 
+   opposite keeping their speed
+   - If there are multiple sharks in a grid, the biggest survives.
+Eventually, there is one shark per gird. It ends when the fisherman reaches the
+end of the pool.
+
+#### Trials
+The pool is designed in two-dimensional `vector` with `queue` of `Shark`: `vector<vector<queue<Shark>>>`.
+The 2-D vector represents the physical pool itself. The queue works as a buffer
+that holds the sharks that arrive at the gird until all sharks' moving is done.
+The buffer is freed after figuring out the biggest shark in the grid. `Shark`
+data structure has four member variables: `speed`, `direction`, `size`, and 
+`is_updated`. The first three variables are as given, and `is_updated` indicates
+whether this shark is originally from the grid or not. This flag prevents from
+iterating the same shark more than once in one iteration.
