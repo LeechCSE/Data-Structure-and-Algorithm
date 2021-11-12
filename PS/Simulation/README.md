@@ -11,7 +11,7 @@ of the dice have 0.
 #### Trials
 Simple simulation problem. `Dice` is implemented.
 ```
-----------------
++--------------+
 |     Dice     |
 |--------------|
 |-bot          |
@@ -25,7 +25,7 @@ Simple simulation problem. `Dice` is implemented.
 |+roll_south() |
 |+roll_east()  |
 |+roll_west()  |
-----------------
++--------------+
 ```
 Each members represents each face of the dice, and the methods changes the
 faces after corresponding roll. Technically, since `Dice` is not a class but 
@@ -191,3 +191,21 @@ data structure has four member variables: `speed`, `direction`, `size`, and
 `is_updated`. The first three variables are as given, and `is_updated` indicates
 whether this shark is originally from the grid or not. This flag prevents from
 iterating the same shark more than once in one iteration.
+```
+The structure of Shark
++---------------+
+|     Shark     |
+|---------------|
+|-speed         |
+|-direction     |
+|-size          |
+|-is_updated    |
+|-north         |
+|-south         |
+|---------------|
+|+Shark()       |
+|+Shark(...)    |
+|+operator==    |
+|+operator!=    |
++---------------+
+```
