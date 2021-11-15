@@ -209,3 +209,36 @@ The structure of Shark
 |+operator!=    |
 +---------------+
 ```
+
+## BOJ#17780 새로운 게임
+#### Overview
+Given an N-by-N chess `board` and `K` pieces with the order of iteration, each
+piece moves as the given rule, and the game ends when four pieces are stacked.
+The rule is given as the following:
+- A grid can have multiple pieces stacked up each other in FIFO(First In First
+Out) manner.
+- *move* means that the whole stack, not the sole piece, moves.
+1. If the color of grid where `piece-X` moves to ...  
+   1. White, move by one grid in the given direction of `piece-X`.  
+   2. Red, reverse the order of stack and move by one grid in the given direction 
+   of `piece-X`.
+   3. Blue, flip the direction and go back to *Step 1*. If `piece-X` encounter 
+   Blue again, stay.
+   
+#### Challenges
+Simulation problems typically require turn-by-turn technique. In fact, some given
+data are referred and altered during the iteration at the same time. While they 
+are changed, the original values are looked up by the function; therefore, the 
+original ones must be protected. It is very hard to keep track of what is altered
+and what should be protected.
+#### Trials
+The folowing are data structures made for solving this problem:
+- `Piece`: data structure that has members of `position` and `direction`.
+- `board`: contains the color of grid
+- `arrangement`: indicates the arrangement of `Pieces` by their id stored in `deque`
+- `pieces`: simple vector of `Piece` keeping track of the order of iteration by its
+index.
+
+For each turn, `play()` method that simulates the game is called. Mentioned in
+*Challenge* section, the idea of separating data to be altered from ones to be
+protected is persued using call-by-value and call-by-reference.
