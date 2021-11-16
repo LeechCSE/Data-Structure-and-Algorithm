@@ -57,3 +57,60 @@ the typical problems, it cannot be filled in row-major order but diagonal direct
 <br/ >
     <img width="25%" src="https://latex.codecogs.com/svg.image?\inline&space;\theta_{ij}=\theta_{(i-1)(j-1)}\&space;\bigcap\&space;(A_i=A_j)" title="\inline \theta_{ij}=\theta_{(i-1)(j-1)}\ \bigcap\ (A_i=A_j)" />
 </p>
+
+## BOJ#16874 레벨 햄버거
+#### Overview
+Level burger is defined as the following:
+- Level-0 burger: consists of a patty
+- Level-N burger: consists of bun, Level-(N-1) burger, patty, Level-(N-1) burger, bun.
+
+For example, Level-1 burger is `BPBPB`, and Level-2 burger is `B(BPPPB)P(BPPPB)B`.
+#### Challenges
+Initially, using recursion, the whole burger is made in `string`. However, given
+<img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;N\leq&space;50" title="\inline 1\leq N\leq 50" />, the number of layers of Level-N burger, the length of string 
+in this case, can be ~<img src="https://latex.codecogs.com/svg.image?\inline&space;2^L" title="\inline 2^L" />, which exceeds the max length of string. In fact, no container can hold data 
+size of <img src="https://latex.codecogs.com/svg.image?\inline&space;2^{50}" title="\inline 2^{50}" />.
+#### Trials
+Therefore, instead of obtaining the whole burger, `sol(n, x)` only calculates 
+the number of patties eaten when eating `x` layers of Level-N burger from the
+bottom.
+#### Optimal Solution
+<p align="center">
+<img src="https://latex.codecogs.com/svg.image?\inline&space;ALL_i:\&space;the\&space;total\&space;number\&space;of\&space;layers\&space;in\&space;Level-i\&space;burger" title="\inline ALL_i:\ the\ total\ number\ of\ layers\ in\ Level-i\ burger" />
+<br />
+<img src="https://latex.codecogs.com/svg.image?\inline&space;ALL_i=1&plus;ALL_{i-1}&plus;1&plus;ALL_{i-1}&plus;1=2*ALL_{i-1}&plus;3" title="\inline ALL_i=1+ALL_{i-1}+1+ALL_{i-1}+1=2*ALL_{i-1}+3" />
+<br /><br />
+<img src="https://latex.codecogs.com/svg.image?\inline&space;PATTY_i:\&space;the\&space;number\&space;of\&space;patties\&space;in\&space;Level-i\&space;burger" title="\inline PATTY_i:\ the\ number\ of\ patties\ in\ Level-i\ burger" />
+<br />
+<img src="https://latex.codecogs.com/svg.image?\inline&space;PATTY_i=PATTY_{i-1}&plus;1&plus;PATTY_{i-1}=2*PATTY_{i-1}&plus;1" title="\inline PATTY_i=PATTY_{i-1}+1+PATTY_{i-1}=2*PATTY_{i-1}+1" />
+</p>
+
+With the above information, `sol(n, x)` is obtained.
+```
++--------------+
+|Level-N Burger|
++--------------+
+|      B       |  - case 5
+|      |       |
+|  Level-(N-1) |  ~ case 4
+|      |       |
+|      P       |  - case 3
+|      |       |
+|  Level-(N-1) |  ~ case 2  
+|      |       |            
+|      B       |  - case 1 
++--------------+
+```
+0. The base case: `n == 0`, the number of patties eaten is always 1 because
+Level-0 burger consists of a patty.
+1. When eating the lowest layer(`x == 1`), since the lowest layer is always the
+bun, the answer is 0.
+2. When eating some layers up to Level-(N-1), the asnwer is the same as `sol(n-1, x-1)`.
+The lowest layer is the bun; therefore, it is excluded. The remaining part is
+Level-(N-1) burger itself.
+3. When eating some layers exactly up to the middle, since the middle is a patty,
+it returns the number of patties of Level-(N-1) + 1.
+4. When eating some layers up to the second Level-(N-1), the logic is the same
+as *Case 2*.
+5. When eating all layers, since the top layer is the bun, it simply returns
+the total number of patties of Level-N burger.
