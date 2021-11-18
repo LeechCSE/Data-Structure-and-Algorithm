@@ -191,8 +191,6 @@ int count_blocks(){
 }
 
 int main(){
-	freopen("tc.txt", "r", stdin);
-	
 	int n;
 	cin >> n;
 	
