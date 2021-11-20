@@ -242,3 +242,62 @@ index.
 For each turn, `play()` method that simulates the game is called. Mentioned in
 *Challenge* section, the idea of separating data to be altered from ones to be
 protected is persued using call-by-value and call-by-reference.
+
+## BOJ#20061 모노미노모미노 2
+#### Overview
+<p align="center">
+    <b>Game board</b> <br />
+    <img width="50%" src="https://upload.acmicpc.net/8043086d-a85c-4d9e-8505-7a4ffd8c4439/-/preview/"> 
+    <br />
+    <b>Three types of block</b>
+    <br />
+    <img width="20%" src="https://upload.acmicpc.net/1453b25c-e0c1-4b99-9eda-bba9336beab1/-/preview/">
+</p>
+
+With the above board given, the game is just like Tetris but in two ways. At each
+turn, one of the three different blocks are placed in `Red` zone. Then, it moves
+down to `Green` zone and right to `Blue` zone and is stacked up if there are other
+blocks under it. If whole lines are filled, they is removed, and the blocks above
+them are shifted down by the number of lines removed. Just like Tetris! Special
+zone makes this game different from Tetris. It is in `0` and `1` lines of each 
+`Green` and `Blue` board. If even a grid of the special zone is filled, blocks
+are removed by the number of lines filled. For example, if `Blue[1][2]` and
+`Blue[0][1]` are filled, it counts two lines of the special zone are filled.
+Therefore, Row 5 and 4 of `Blue` are removed.
+
+#### Trials
+```
++-----------------+
+|      Domino     |
+|-----------------|
+|-red             |
+|-blue            |
+|-green           |
+|-place1()        |
+|-place2()        |
+|-place3()        |
+|-filled()        |
+|-shift_right()   |
+|-shift_down()    |
+|-----------------|
+|+Domino()        |
+|+place()         |
+|+score()         |
+|+special_check() |
++-----------------+
+
+```
+The whole process is the following:
+- Create a game
+   - With the constructor `Domino()`, a new game is set up; `Red`, `Blue`, and
+   `Green` boards are individually created as given size.
+- Place a block
+   - `place()` method is a wrapper function of `place1()`, `place2()`, and 
+   `place3()`. The type of block determines which method is used.
+- Score
+   - `score()` method checks whether lines are filled or not with `filled()`
+   private method. In that case, shifting occurs by `shift_right()` and/or 
+   `shift_down()` depending on the board.
+- Check the special zone
+   - At last, `special_check()` checks if any of special grids is filled. If
+   filled, shifting occurs.
