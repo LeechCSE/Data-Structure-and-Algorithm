@@ -234,3 +234,20 @@ Since there is no magic to check if the candidates are qualified, all cases
 must be probed. For each order in `orders`, c-combination is required where
 c is each and every element in `course`. The occurrance of c-combination
 sub-string is counted to check its qualification for the course-menu.
+
+## 2018 Kakao Blind Recruitment: 비밀지도
+#### Overview
+Two arrays of natural numbers are given. Each number in binary represent a map
+consisting of walls and rooms; `1` indicates a wall, and `0` indicates a room. 
+The secret map is the map made of the two given maps overlapped.
+<p align="center">
+    <img src="http://t1.kakaocdn.net/welcome2018/secret8.png">
+</p>
+
+#### Trials
+"Overlapping" of binary numbers in this problem simply means `OR` operation. 
+`bitset` datastructure is used to convert given `int` decimal to binary. One 
+minor challenge of using `bitset` is that `bitset` cannot be initialized dynamically,
+meaning that the size of `bitset` must be constant at the time of initialization.
+Therefore, the maximum size of `N` is chosed. With the bitset data of two arrays,
+`|(OR)` operation is applied.
