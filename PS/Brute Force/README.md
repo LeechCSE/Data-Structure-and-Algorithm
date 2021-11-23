@@ -251,3 +251,26 @@ minor challenge of using `bitset` is that `bitset` cannot be initialized dynamic
 meaning that the size of `bitset` must be constant at the time of initialization.
 Therefore, the maximum size of `N` is chosed. With the bitset data of two arrays,
 `|(OR)` operation is applied.
+
+## 2018 Kakao Blind Recruiment: 다트게임
+#### Overview
+Given the result of three shots in dart game in `Score|Bonus|[Option]` format,
+it calculates the final score of the result. `Score` is inbetween 0-10. `Bonus`
+is among `S`(single power), `D`(double power), and `T`(triple power). `Option`
+is optional as the name indicates; it is either `*` or `#`. The option`*` means 
+the previous and current score are doubled, and `#` leads to multiplying -1 to
+the current score. Both option can exist in a game.
+```
+Result: 1D2S#3T*
+
+1st shot: 1D  = 1^2                         =  1
+2nd shot: 2S# = 2^1 * 2(from 3rd shot) * -1 = -4
+3rd shot: 3T* = 3^3 * 2                     = 54
+
+Final score: 1 - 4 + 54 = 51
+```
+#### Trials
+Since there are only three shots, it manually iterates all shots with `id` backward.
+The reason why it iterates backward is that the option `#` affects the previous
+shot and `Score`, which is digit, always exists working as a delimiter of each
+shot.
