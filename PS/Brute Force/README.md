@@ -274,3 +274,18 @@ Since there are only three shots, it manually iterates all shots with `id` backw
 The reason why it iterates backward is that the option `#` affects the previous
 shot and `Score`, which is digit, always exists working as a delimiter of each
 shot.
+
+## 2018 Kakao Blind Recruitment: 캐시
+#### Overview
+With LRU(Least Recently Used) cache of `city`, given:
+- a list of cities
+- cache size: `N`
+- cache hit cost: 1
+- cache miss cost: 5
+
+It caches cities in the given order.
+#### Trials
+In order to implement LRU cache machanism, `deque<string>` is used. `deque` allows
+to access and modify both front and back element in <img src="https://latex.codecogs.com/svg.image?\inline&space;O(1)" title="\inline O(1)" />. 
+In addition, it also supports iterator access; thererfore, it is easy to find 
+and ultimately to modify a target.
