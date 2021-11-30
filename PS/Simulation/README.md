@@ -301,3 +301,40 @@ The whole process is the following:
 - Check the special zone
    - At last, `special_check()` checks if any of special grids is filled. If
    filled, shifting occurs.
+   
+## 2018 Kakao Blind Recruitment: 셔틀버스
+#### Overview
+`n` shuttle buses depart every `t` minutes starting at 09:00. Arriving the station, 
+the shuttle takes `m` people in the line and departs immediately. Given the 
+arrive-time of people in the line(`timetable`), it computes the lastest time 
+to line up.
+
+**Example**
+
+| n | t | m | timetable | answer |
+|:-:|:-:|:-:|:--------- |:------:|
+| 1 | 1 | 5 | ["08:00", "08:01", "08:02", "08:03"] | "09:00" |
+| 2 | 10| 2	| ["09:10", "09:09", "08:00"] | "09:09"
+| 2 | 1 | 2	| ["09:00", "09:00", "09:00", "09:00"] | "08:59"
+| 1 | 1 | 5	| ["00:01", "00:01", "00:01", "00:01", "00:01"] |	"00:00"
+| 1	| 1	| 1	| ["23:59"] | 	"09:00"
+| 10| 60| 45| ["23:59","23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59"] | "18:00"
+#### Trials
+In order to get the lastest time to line up, it need to check whether the last 
+shuttle is full or not. In fact, if it is not full, the lastest time would be
+the arrive-time of the last shuttle; otherwise, it would be "slightly earlier"
+than arrive-time of the last person in the line. In this case, it is one minute
+ealier. Since the last shuttle matters, shuttles are populated from the first shuttle.
+The shuttles are abstracted with `map<int, vector<string>>`. Each shuttle is 
+represented by its arrive-time, and `vector<string>` indicates the seats; its
+elements are line-up-time of people.
+
+| n | t | m | timetable | answer |
+|:-:|:-:|:-:|:--------- |:------:|
+| 2 | 10| 2	| ["09:10", "09:09", "08:00"] | "09:09"
+
+The above example's output woule be
+```
+Shuttle 09:00 : "08:00"
+Shuttle 09:10 : "09:09", "09:10"
+```
