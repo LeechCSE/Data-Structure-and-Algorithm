@@ -338,3 +338,28 @@ The above example's output woule be
 Shuttle 09:00 : "08:00"
 Shuttle 09:10 : "09:09", "09:10"
 ```
+
+## 2018 Kakao Blind Recruitment: 프렌즈4블록
+#### Overview
+Given an M-by-N matrix filled with characters, 2x2 blocks of the same characters,
+called `Friends4Block`, are eliminated, and the blocks stacked above the eliminated 
+are dropped down. It continues until no `Friends4Block` exists in the board. It 
+computes the number of blocks eliminated.
+
+**Example:**
+<p align="center">
+    <img src="http://t1.kakaocdn.net/welcome2018/pang1.png">
+    <img src="http://t1.kakaocdn.net/welcome2018/pang2.png">
+    <img src="http://t1.kakaocdn.net/welcome2018/pang3.png">
+    <img src="http://t1.kakaocdn.net/welcome2018/pang4.png">
+</p>
+
+#### Trials
+In this problem, there are two main mechanisms: check and eliminate. These two
+mechanisms are repeated until no `Friends4Block` remains. First, iterating all
+elements, it stores all positions of a `Friends4Block` in `set` for all 
+`Friends4Blocks`. Since multiple `Friends4Blocks` can share their members with each 
+other, `set` can pick the duplicates out when storing, which is efficient!
+Then, elimination part is straightforward. For all elements in the `set`, which 
+represents all positions of `Friends4Blocks`, it replaces the elements with 
+the above elements.
