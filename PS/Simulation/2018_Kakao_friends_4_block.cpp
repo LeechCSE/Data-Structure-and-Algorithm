@@ -26,21 +26,16 @@ int solution(int m, int n, vector<string> board) {
                 }
             }
         }
-        
+        // base case
         if (hits.size() == 0) break;
-        
         // erase 4-blocks
         for (auto cur: hits){
             int i = cur.first; 
             int j = cur.second;
             
-            if (i == 0) 
-                board[i][j] = 'X';
-            else{
-                for (int k = 1; k <= i; k++)
-                    board[i - k + 1][j] = board[i - k][j];
-                board[0][j] = 'X';
-            }
+            for (int k = 1; k <= i; k++) 
+					board[i - k + 1][j] = board[i - k][j];
+            board[0][j] = 'X';
         }
         
         answer += hits.size();
