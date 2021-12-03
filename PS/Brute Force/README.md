@@ -3,7 +3,7 @@
 ## BOJ#6603 로또
 #### Overview
 Given a set `S` with `K` numbers, it gives the 6-combination of set `S`.
-#### Trials
+#### Trials & Solution
 Instead of using recursion, `prev_permutation()` in `<algorithm>` library is used.
 `prev_permutation()` and `next_permutation()` of a set give the permutation of the set.
 In order to obtain the combination instead of permutaion, a helper vector of boolean values
@@ -16,7 +16,7 @@ vector format.
 Given a set `S` with `N` integers and target number `target`, it gives the
 number of subset of which elements are summed up to `target`. The empty set
 is not considered.
-#### Trials
+#### Trials & Solution
 A subset of a set `S` is a combination of `S`. In order to check the validity,
 all possible subsets must be checked from 1-combination to N-combination.
 Again, using `prev_permutation()` with mask of size 1 to N, all subsets are
@@ -40,7 +40,7 @@ Given S = [5, 1, 2],
 
 ANS: 4
 ```
-#### Trials
+#### Trials & Solution
 The combination of set `S` with mask is the subsets of set `S`. Using 
 `prev_permutation()`, the sum of subsets is obtained. One tricky part would
 be the duplicated sum. Since the answer is obtained using back-tracking technique
@@ -52,7 +52,7 @@ are stored in a set, which only holds unique values in a sorted order.
 N natual numbers and N - 1 operatios(`+`, `-`, `x`, `÷`) are given. The order of 
 N numbers is fixed, and operator precedence is ignored, meaning that the operators
 are executed from the front to the end. It gives the maximum and minimum output.
-#### Trials
+#### Trials & Solution
 Using `next_permutation()` in `<algorithm>` library, [N-1]-combination, which gives 
 all possible arrangements of N - 1 operators, is obtained. Since operator precedence
 is ignored in this problem, for each operator, the output is accumulated.
@@ -71,7 +71,7 @@ to <img src="https://latex.codecogs.com/svg.image?\inline&space;O(4^{N-1}log(N-1
 takes <img src="https://latex.codecogs.com/svg.image?\inline&space;O(1)" title="\inline O(1)" /> in average
 case and <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N)" title="\inline O(N)" /> in
 the worst case; then it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(4^{N-1})" title="\inline O(4^{N-1})" /> on average case and <img src="https://latex.codecogs.com/svg.image?\inline&space;O(4^{N-1}(N-1))" title="\inline O(4^{N-1}(N-1))" /> in the worst case.
-#### Trials
+#### Trials & Solution
 In order to achieve solid <img src="https://latex.codecogs.com/svg.image?\inline&space;O(4^{N-1})" title="\inline O(4^{N-1})" />, recursion is used. Calculating operands with given operators, it passes the
 remaining number of operators into the next function call. It removes the duplicated arrangement. 
 In fact, it is a simple brute-force technique with no duplicates without using caching.
@@ -81,7 +81,7 @@ In fact, it is a simple brute-force technique with no duplicates without using c
 Given an N-by-M matrix filled with integers representing scores, it gives the
 maximum score when a tetromino is placed on the matrix. Tetromino can be rotated
 and flipped.
-#### Trials
+#### Trials & Solution
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/All_5_free_tetrominoes.svg/200px-All_5_free_tetrominoes.svg.png" />
 </p>
@@ -98,7 +98,7 @@ There are many restriction in this problem. First, in the matrix, `#` is not
 accessible by any coins; they can only go through `.`grids. In addition, the
 coins  are able to go out of the matrix; however, only one is allowed. The
 maximum number of moves that is allowed is 10.
-#### Trials
+#### Trials & Solution
 The solution is implemented in recursive manner. There are three base cases:
 1. The number of moves exceeds 10 -- Fail!
 2. Both coins go out of the matrix -- Fail again!
@@ -127,7 +127,7 @@ strictly follows the given precedure; with passed vector `w`, for each `x`, whic
 1 to `|w|-1`th element, call itself with updated vector without element `x`. However, in this
 manner, the input of sub-problem is not protected. In fact, at each depth of function call, the input
 must remains the same whatever happen in the lower depth.
-#### Trials
+#### Trials & Solution
 In order to keep the input from being changed by the lower depth process, a temporary vector
 that copies the input `w` and is passed into the lower depth process.
 
@@ -135,7 +135,7 @@ that copies the input `w` and is passed into the lower depth process.
 #### Overview
 Given `N` where <img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;N<&space;15" title="\inline 1\leq N< 15" />, it gives the number of arrangement of N queens in an N-by-N chess board without
 conflicting each other.
-#### Trials
+#### Trials & Solution
 The queen can move any number of grids horizontally, vertically, or digonally. First, considering
 the column of the chess board, there must be one queen per column at most. Therefore, iterating each column, it calls itself if there is no conflict verticall and diagonally.
 
@@ -147,7 +147,7 @@ For example,
 	<img src="https://upload.acmicpc.net/508363ac-0289-4a92-a639-427b10d66633/-/preview/">  
 </p>
 Given the special sudoku puzzle, it gives a solution out of many.
-#### Trials
+#### Trials & Solution
 As the problem speicifies it can be solved with back-tracking method, brute-force
 with back-tracking technique is applied. Caching three vectors, it iterates all
 girds of the puzzle. The followings are the two dimentional cache vectors:
@@ -168,7 +168,7 @@ adjacent grids once.
   
 (LCS: 2)                          (LCS: 3)
 ```
-#### Trials
+#### Trials & Solution
 There is no special formula for figuring out the maximum LCS of swapping problem.
 Thererfore, the brute-force technique is applied. For each element of the given
 matrix, it swaps its adjacent element for four times(up, down, left, and right).
@@ -195,7 +195,7 @@ Given < and >,
 7 < 9 > 8 
 8 < 9 > 7
 ```
-#### Trials
+#### Trials & Solution
 The problem can be easily reduced to a simple one. Among 0-9 numbers, choose
 `K+1` numbers, <img src="https://latex.codecogs.com/svg.image?\inline&space;_{10}C_{k&plus;1}" title="\inline _{10}C_{k+1}" />, and since the order of `K+1` numbers matter, filter 
 permutation of the `K+1` numbers with the given inequality symbols.
@@ -207,7 +207,7 @@ restrictions on arrangement of people in `X~Y=K`, `X~Y<K`, or `X~Y>K` format
 where `X` and `Y` are from the given people and `K` is the number of other 
 people in between `X` and `Y`. With this setting, it gives the number of 
 cases of lining up the people under the restrictions.
-#### Trials
+#### Trials & Solution
 Lining up eight people is a simple permutaion of them. The permutation is 
 implemented with `next_permution()`. For each permuted arrangement, the 
 restriction is tested. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(8!*8N)" title="\inline O(8!*8N)" />.
@@ -229,7 +229,7 @@ Size-3 course-menu candidates: "XYZ", "WXY"
 
 ANSWER: ["XY"]
 ```
-#### Trials
+#### Trials & Solution
 Since there is no magic to check if the candidates are qualified, all cases
 must be probed. For each order in `orders`, c-combination is required where
 c is each and every element in `course`. The occurrance of c-combination
@@ -244,7 +244,7 @@ The secret map is the map made of the two given maps overlapped.
     <img src="http://t1.kakaocdn.net/welcome2018/secret8.png">
 </p>
 
-#### Trials
+#### Trials & Solution
 "Overlapping" of binary numbers in this problem simply means `OR` operation. 
 `bitset` datastructure is used to convert given `int` decimal to binary. One 
 minor challenge of using `bitset` is that `bitset` cannot be initialized dynamically,
@@ -269,7 +269,7 @@ Result: 1D2S#3T*
 
 Final score: 1 - 4 + 54 = 51
 ```
-#### Trials
+#### Trials & Solution
 Since there are only three shots, it manually iterates all shots with `id` backward.
 The reason why it iterates backward is that the option `#` affects the previous
 shot and `Score`, which is digit, always exists working as a delimiter of each
@@ -284,8 +284,29 @@ With LRU(Least Recently Used) cache of `city`, given:
 - cache miss cost: 5
 
 It caches cities in the given order.
-#### Trials
+#### Trials & Solution
 In order to implement LRU cache machanism, `deque<string>` is used. `deque` allows
 to access and modify both front and back element in <img src="https://latex.codecogs.com/svg.image?\inline&space;O(1)" title="\inline O(1)" />. 
 In addition, it also supports iterator access; thererfore, it is easy to find 
 and ultimately to modify a target.
+
+## 2018 Kakao Blind Recruitment: N진법 게임
+#### Overview
+N-ary game is a game that `m` people say a single digit of `n`-ary numbers 
+starting from 0. It gives `t` predictions as `p`th turn in the game.  
+
+| n | t | m | p |
+|:-:|:-:|:-:|:---|
+| 2 | 4 | 2	| 1 |["09:10", "09:09", "08:00"] 
+
+```
+Binary(n = 2). 1th turn with 2 people in total. 4 predictions.
+0, 1, 10, 11, 100, ...
+--> 0 1 1 0 1 1 1 0 0...
+    ^   ^   ^   ^
+Predictions: 0111
+```
+#### Trials & Solution
+The key of this problem is to convert decimal numbers into n-ary number. The
+converted number is stored into `string` to break the "division" of numbers into
+a single line of characters and to eventually access them easily.
