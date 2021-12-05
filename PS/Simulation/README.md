@@ -8,7 +8,7 @@ At each instruction, if the integer of grid where the dice is on is 0, the
 bottom face of the dice is copied to the grid; otherwise, the gird integer
 is copied to the bottom face of the dice and becomes 0. Initially, all faces
 of the dice have 0.
-#### Trials
+#### Trials & Solution
 Simple simulation problem. `Dice` is implemented.
 ```
 +--------------+
@@ -48,7 +48,7 @@ If the magnetic pole of the adjacent tooth of 2nd and 4th are the same, they
 don't rotate and stop propagating into the next gear; otherwise, they rotate and
 propagate into the next gear.
 
-#### Trials
+#### Trials & Solution
 In order to implement the rotation, `shift` operation with `bitset` data
 structure is used. More specifically, the circular shift is implemented. The 
 most complicated part of this problem is to propagate the operation. At this time, 
@@ -68,7 +68,7 @@ the current direction
      backward for one grid.
   c. If it cannot go backward, stop working.
 
-#### Trials
+#### Trials & Solution
 At every step, the output is stored in `State` that consists of `y`, `x`, and
 `dir`. `y` and `x` represents the position, and `dir` shows the direction of 
 the state. In addition, in order to simulate the special probing precedure, an
@@ -94,7 +94,7 @@ simpler in recursive version.
 It simulates the above mechanism and gives the number of days to complete the
 population movement.
 
-#### Trials
+#### Trials & Solution
 Considering the given matrix as a graph, it finds the connected components with
 BFS algorithm. The connected component is the *united* areas; therefore, the 
 number of nodes in the connected component corresponds the number of areas. As 
@@ -118,7 +118,7 @@ of each grid is five. Trees grow as the following mechanism:
 - Winter  
    Fertility is added by the given N-by-N matrix `A`.
 
-#### Trials
+#### Trials & Solution
 For readability and modularity, the source code is split into `spring()`, 
 `summer()`, `fall()`, `winter()` as the instruction. Initially, `priority_queue`
 as min heap is used to effectively pick the youngest tree in a grid for every
@@ -146,7 +146,7 @@ following events happens:
    - The air from the cleaner has zero dust, and the dusts sucked in it are cleaned.
 The air cleaner is always places at the first column. 
 
-#### Trials
+#### Trials & Solution
 In *Diffusion* part, the tricky part is how to keep track of the original value.
 In fact, iterating the matrix in row major order, the value of the next grids
 that haven't yet visited is changed by the diffusion from its adjacent grids.
@@ -182,7 +182,7 @@ At every second, the following events happen:
 Eventually, there is one shark per gird. It ends when the fisherman reaches the
 end of the pool.
 
-#### Trials
+#### Trials & Solution
 The pool is designed in two-dimensional `vector` with `queue` of `Shark`: `vector<vector<queue<Shark>>>`.
 The 2-D vector represents the physical pool itself. The queue works as a buffer
 that holds the sharks that arrive at the gird until all sharks' moving is done.
@@ -231,7 +231,7 @@ data are referred and altered during the iteration at the same time. While they
 are changed, the original values are looked up by the function; therefore, the 
 original ones must be protected. It is very hard to keep track of what is altered
 and what should be protected.
-#### Trials
+#### Trials & Solution
 The folowing are data structures made for solving this problem:
 - `Piece`: data structure that has members of `position` and `direction`.
 - `board`: contains the color of grid
@@ -265,7 +265,7 @@ are removed by the number of lines filled. For example, if `Blue[1][2]` and
 `Blue[0][1]` are filled, it counts two lines of the special zone are filled.
 Therefore, Row 5 and 4 of `Blue` are removed.
 
-#### Trials
+#### Trials & Solution
 ```
 +-----------------+
 |      Domino     |
@@ -319,7 +319,7 @@ to line up.
 | 1 | 1 | 5	| ["00:01", "00:01", "00:01", "00:01", "00:01"] |	"00:00"
 | 1	| 1	| 1	| ["23:59"] | 	"09:00"
 | 10| 60| 45| ["23:59","23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59"] | "18:00"
-#### Trials
+#### Trials & Solution
 In order to get the lastest time to line up, it need to check whether the last 
 shuttle is full or not. In fact, if it is not full, the lastest time would be
 the arrive-time of the last shuttle; otherwise, it would be "slightly earlier"
@@ -354,7 +354,7 @@ computes the number of blocks eliminated.
     <img src="http://t1.kakaocdn.net/welcome2018/pang4.png">
 </p>
 
-#### Trials
+#### Trials & Solution
 In this problem, there are two main mechanisms: check and eliminate. These two
 mechanisms are repeated until no `Friends4Block` remains. First, iterating all
 elements, it stores all positions of a `Friends4Block` in `set` for all 
@@ -363,3 +363,22 @@ other, `set` can pick the duplicates out when storing, which is efficient!
 Then, elimination part is straightforward. For all elements in the `set`, which 
 represents all positions of `Friends4Blocks`, it replaces the elements with 
 the above elements.
+
+## 2018 Kakao Blind Recruitment: 압축"
+#### Overview
+It simulates LWZ compression only for capital alphabet letters(A-Z).
+LWZ compression procedure:
+1. Initialize dictionary for all length-1 letters.
+2. Find the longest string `w` that contains the current input in the dictionary.
+3. Print index number of `w` and remove `w` from the current input.
+4. If there exists the remaining input `c`, add `w + c` to the dictionary.
+5. Go to *Step 2*.
+
+#### Trials & Solution
+The procedure is given cleary; therefore, implementing LWZ compression is straighforward.
+The dictionary of LWZ is abstracted with `map<string, int>`. The reason why
+`string` is used as a key, not `int` that is the index number is to utilize
+`find()` method of `map` effectively. At each iteration, sub-string of given 
+message, which is to be compressed, is looked up, and the index number is outputed.
+Although the dictionary in the description has `<index, string>` format, the swapped
+data structure is more effective in implementation.
