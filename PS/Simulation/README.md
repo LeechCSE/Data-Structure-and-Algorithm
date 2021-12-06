@@ -364,7 +364,7 @@ Then, elimination part is straightforward. For all elements in the `set`, which
 represents all positions of `Friends4Blocks`, it replaces the elements with 
 the above elements.
 
-## 2018 Kakao Blind Recruitment: 압축"
+## 2018 Kakao Blind Recruitment: 압축
 #### Overview
 It simulates LWZ compression only for capital alphabet letters(A-Z).
 LWZ compression procedure:
@@ -382,3 +382,56 @@ The dictionary of LWZ is abstracted with `map<string, int>`. The reason why
 message, which is to be compressed, is looked up, and the index number is outputed.
 Although the dictionary in the description has `<index, string>` format, the swapped
 data structure is more effective in implementation.
+
+## 2018 Kakao Blind Recruitment: 파일명 정렬
+#### Overview
+Filename consists of three components:
+- `HEAD`: non-digit alphabet with special characters (" ", ".", and "-"). At
+    least one character.
+- `NUMBER`: one to five digit number at maximum. it can have leading zeros.
+- `TAIL`: the rest part.
+
+Example
+```          
+            |  HEAD | NUMBER | TAIL
+------------+-------+--------+------
+"img12.png" |  img  |   12   | .png          
+"img10.png" |  img  |   10   | .png
+"img02.png" |  img  |   02   | .png
+"img1.png"  |  img  |   1    | .png
+"IMG01.GIF" |  IMG  |   01   | .GIF
+"img2.JPG"  |  img  |   2    | .JPG
+
+```
+Sorting rule:
+- Sort `HEAD` alphabetically ignoring capitalization. 
+- if same `HEAD` but capitalization, compare `NUMBER` as integers ignoring leading zeros.
+- if `NUMBER` doesn't make difference, keep the given order.
+
+Example(`HEAD` ignoring capitalization, `NUMBER` ignoring leading zeros)
+```          
+            |  HEAD | NUMBER | TAIL
+------------+-------+--------+------
+"img1.png"  |  img  |   1    | .png
+"IMG01.GIF" |  img  |   1    | .GIF
+"img02.png" |  img  |   2    | .png
+"img2.JPG"  |  img  |   2    | .JPG
+"img12.png" |  img  |   12   | .png          
+"img10.png" |  img  |   10   | .png
+
+Given:  ["img12.png", "img10.png", "img02.png", "img1.png", "IMG01.GIF", "img2.JPG"]
+Sorted: ["img1.png", "IMG01.GIF", "img02.png", "img2.JPG", "img10.png", "img12.png"]
+```
+#### Trials & Solution
+First, the given filenames are splited into tokens: `HEAD`, `NUMBER`, and `TAIL`. 
+In sorting process, each token is treated differently; therefore, spliting is the
+most efficient way to solve the problem. Then, sort the files as the given rule 
+using `stable_sort()` of `<algorithm>` library. The reason why `stable_sort()` 
+instead of `sort()` is used is to guarantee the original order of the given files
+when both `HEAD` and `NUMBER` don't make differece in sorting. In addition, when
+sorting based on `NUMBER`, `stoi()` cannot be used. In order to ignore leading zeros,
+`stoi()` method is a handy way; however, the filename can be 100 long, meaning that
+`NUMBER` can be <img src="https://latex.codecogs.com/svg.image?\inline&space;10^{98}" title="\inline 10^{98}" />.
+In this case, none of `sto*()`, even `stoull()`, which converts `string` to 
+`unsigned long long`, can handle that long number. Therefore, leading zeros are
+parsed in spliting procedure, and `NUMBER` is treated as pure `string`.
