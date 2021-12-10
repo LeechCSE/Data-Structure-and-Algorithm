@@ -435,3 +435,38 @@ sorting based on `NUMBER`, `stoi()` cannot be used. In order to ignore leading z
 In this case, none of `sto*()`, even `stoull()`, which converts `string` to 
 `unsigned long long`, can handle that long number. Therefore, leading zeros are
 parsed in spliting procedure, and `NUMBER` is treated as pure `string`.
+
+## 2018 Kakao Blind Recruitment: 방금 그 곡
+#### Overview
+Given notes of a part of song(`C, C#, D, D#, E, F, F#, G, G#, A, A#, B`) and
+a list of song information broadcasted on the radio, it finds the song matched
+with the given notes. Each note takes one minute.
+```
+Given: 
+  Target song: CC#BCC#BCC#BCC#B	
+  List of songs: ["03:00, 03:30, FOO, CC#B", "04:00, 04:08, BAR, CC#BCC#BCC#B"]
+  
+Song1 plays for 30 minutes with CC#B notes => CC#BCC#BCC#BCC#BCC#BCC#BCC#BCC#BCC#BCC#B
+Song2 plays for 8 minutes with CC#BCC#BCC#B. The whole notes aren't able to be
+played in 8 minutes => CC#BCC#BCC#.
+
+Answer: FOO
+```
+#### Trials & Solution
+Each information of the given list of songs is parsed into `Info` struct.
+```
+struct Info{
+    int play_time;
+    string title, note;
+};
+```
+`play_time` is the amount of time played for the song and is obtained from 
+`end time - start time`. `title` is the title of the song from the 3rd token. 
+`note` is all notes played during `play_time`. If the length of given note is 
+shorter than `play_time`, repeated notes are played; otherwise, given notes are cut.
+One tricky part of this problem is the existence of `#`. It leads to the difference
+between the length of notes and the play time due to the `#`. For example, for 
+`CC#B` notes, the length is 4; however, the play time is 3(`C`, `C#`, and `B`). 
+In addition, when matching with the target notes, another problem arises.
+Using `find()` method of `string` library, `CCB` is found twice in `CCB#CCB`.
+However, the first found of `[CCB]#CCB` is incorrect due to `#`.
