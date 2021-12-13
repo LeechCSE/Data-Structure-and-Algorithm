@@ -470,3 +470,28 @@ between the length of notes and the play time due to the `#`. For example, for
 In addition, when matching with the target notes, another problem arises.
 Using `find()` method of `string` library, `CCB` is found twice in `CCB#CCB`.
 However, the first found of `[CCB]#CCB` is incorrect due to `#`.
+
+## 2019 Kakao Blind Recruitment: 오픈채팅방
+#### Overview
+Given raw logs of an open chatroom recorded chronologically, it gives the 
+modified logs. The logs are among: 
+- `Enter user-id nickname`: indicates the user with `user-id` entered with `nickname`.
+    If the same user enters for multiple times with different nickname, the last
+    one is taken.
+- `Leave user-id`: indicates the user with `user-id` left.
+- `Change user-id nickname`: indicates the user with `user-id` changed his/her nickname to `nickname`.
+    If the user changes his/her nickname for multiple times, the last nickname is taken.
+
+```
+"Enter uid1234 Muzi"   => "Prodo님이 들어왔습니다." (Change op)
+"Enter uid4567 Prodo"  => "Ryan님이 들어왔습니다." (Multiple Enter op)
+"Leave uid1234"        => "Prodo님이 나갔습니다."
+"Enter uid1234 Prodo"  => "Prodo님이 들어왔습니다."
+"Change uid4567 Ryan"
+```
+#### Trials & Solution
+The given log is tokenized into `Message` with members of `op`, `id`, and `nickname`.
+First, iterating given logs, it adds mapping between user id and nickname into 
+`map` of `<user-id, nickname>` pair unless `op` is `Leave`. Then, in another 
+iterations of logs, it prints out the modified logs referring to the user-id-nickname
+hash map.
