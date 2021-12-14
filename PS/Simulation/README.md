@@ -495,3 +495,21 @@ First, iterating given logs, it adds mapping between user id and nickname into
 `map` of `<user-id, nickname>` pair unless `op` is `Leave`. Then, in another 
 iterations of logs, it prints out the modified logs referring to the user-id-nickname
 hash map.
+
+## 2019 Kakao Blind Recruitment: 실패율
+#### Overview
+Given the number of stages `N` and the number of players at each stage, it gives
+the list of stages sorted by the failure rate in increasing order.  
+<img src="https://latex.codecogs.com/svg.image?\inline&space;Failure\&space;rate\&space;of\&space;StageX&space;=&space;\frac{The\&space;number\&space;of\&space;unclears}{The\&space;number\&space;of\&space;players\&space;who\&space;reach\&space;StageX}" title="\inline Failure\ rate\ of\ StageX = \frac{The\ number\ of\ unclears}{The\ number\ of\ players\ who\ reach\ StageX}" />
+#### Example
+| N | Stages | Results |
+|:-:|:-------|:--------|
+| 2 | [2, 1, 2, 6, 2, 4, 3, 3] | [3,4,2,1,5]
+| 4	| [4, 4, 4, 4, 4] |	[4,1,2,3] | 
+#### Trials & Solution
+In order to calculate the failure rate of each stage, the number of players
+who reach the stage and do not clear the stage are obtained by iterating the 
+given `Stages` list. Further, divided-by-zero exception is considered when
+calculating the failure rate. Sorting the stages is performed by `sort()` with 
+lambda expression.
+
