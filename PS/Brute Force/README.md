@@ -310,3 +310,39 @@ Predictions: 0111
 The key of this problem is to convert decimal numbers into n-ary number. The
 converted number is stored into `string` to break the "division" of numbers into
 a single line of characters and to eventually access them easily.
+
+
+## 2019 Kakao Blind Recruitment: 후보키
+#### Overview
+Given a relation of database, it gives the number of candidate keys.
+Candidate keys meet the following characteristics:
+- Uniqueness: keys that identify tuples in the table (Superkeys)
+- Minimality: among superkeys, keys with no repeated attributes
+#### Trials & Solution
+First, it obtains the superkeys, which meet the uniqueness characteristic.
+Iterating all combinations of attributes, it checks the uniqueness of values.
+There is no other way than brute-force. To be more precise, not all combinations
+be checked if the minimality characteristic check is conducted simultaneously.
+However, due to complexity of the above implementation, the two checkings of the
+characteristics are divided. Then, among the superkeys, it checks the minimality 
+characteristic. The combination is implemented bit mask; therefore, superkeys 
+are in form of bits(e.g. `1010`: the combination of 1st and 3rd attributes).
+The minimality can be checked by bitwise AND operator. Specifically, assuming
+`100`, `010`, and `011` are superkeys in size-3 relation, the first superkey
+is always a candidate key since the uniqueness check is conducted in increasing
+size order. Then, the remaining superkeys are bitwise-AND'd with the candidate 
+keys. If the output is the same as compared candidate key, the superkey is not
+minimal; otherwise, it is.   
+For example, at the first compairson,
+```
+Candidate keys: 100
+Superkeys: 010, 011
+Comparison: 100 & 010 = 000 (Minimal!)  
+```
+Then, 
+```
+Candidate keys: 100, 010
+Superkeys: 011
+Comparison: 100 & 011 = 000 (Minimal yet)
+Comparison: 010 & 011 = 010 (Not minimal)
+```
