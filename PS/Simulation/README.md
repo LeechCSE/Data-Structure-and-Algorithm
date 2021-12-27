@@ -513,3 +513,45 @@ given `Stages` list. Further, divided-by-zero exception is considered when
 calculating the failure rate. Sorting the stages is performed by `sort()` with 
 lambda expression.
 
+## 2019 Kakao Blind Recruitment: 무지의 먹방 라이브
+#### Overview
+Given `N` plates labeled from 1 to `N` in a rotating table, Muzi eats every plate
+for a second. Each plate requires some seconds to be eaten up. It gives which
+plate to eat after `K` second.
+#### Example
+| Plates | K | Answer |
+|:------:|:- |:-------|
+| [3, 1, 2] | 5 | 1 |
+
+| Time(s) | Remaining Plates |
+|:-------:|:----------------:|
+|    0    |     [3, 1, 2]    |
+|    1    |     [**2**, 1, 2]|
+|    2    |     [2, **0**, 2]|
+|    3    |     [2, 0, **1**]|
+|    4    |     [**1**, 0, 1]|
+|    5    |     [1, 0, **0**]|
+
+After `K=5` seconds `[1, 0, 0]` is remaining. Therefore, the answer would be `1`.
+
+#### Trials & Solution
+First, considering this problem as a simple simulation, at each second, it
+updates the remaining plates for `K` seconds. However, since given `K` is 
+<img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;K\leq&space;2\cdot&space;10^{13}" title="\inline 1\leq K\leq 2\cdot 10^{13}" />, and `N` is <img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;N\leq&space;200,000" title="\inline 1\leq N\leq 200,000" />,
+the naive approach, which takes <img src="https://latex.codecogs.com/svg.image?\inline&space;O(KN)" title="\inline O(KN)" />,
+is too slow.  
+The plates are updated at every "remaining `N`" seconds. In fact, if there are `N`
+plates remain, after `N` second, all plates are updated, meaning each time-to-eat
+value of plates is decremented. Then, in the next iteration, again, 
+time-to-eat values of each plate remaining are updated after `M` seconds.
+Since the size of remaining plates can make it independent to the given `K`, the 
+updating routine starts with the plate that has the least time-to-eat value.
+If the current `K` can consume the least time-to-eat value, updating routine is
+conducted; otherwise, the iteration stops, and the naive algorithrm is applied
+with the remaining `K`. In conclusion, it takes `O(K)`.  
+
+| K |  Remaining Plates: Time-to-eat value(Index)  | Computation |
+|:-:|:------------------|:---------------------:|
+| 5 | [1(2), 2(3), 3(1)] | (K=5) -= (Least=1) * (Size=3) |
+| 2 | [**0**(2), **1**(3), **2**(1)] --> [1(3), 2(1)] | (K=3) -= (Least=1) * (Size=2)
+| 0 | [**0**(3), **1**(1)] --> [1(1)] | DONE |
