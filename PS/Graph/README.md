@@ -224,7 +224,7 @@ The total number of moves is not simply the sum of the shortest paths between ta
 4 . . . . .     
 ```
 In the above example, both paths take the shortest target at each stage; however, if there are multiple closest targets, the output is not deterministic.
-#### Trials
+#### Trials & Solution
 The brute-force method is applied for all permutaion of targets. In fact, from the given starting point, all possible combinations of targets become the path. As every stage requries the BFS algorithm, it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;(T&space;*&space;T!)O(NM)" title="\inline (T * T!)O(NM)" /> where T is the number of targets. As the input is given as <img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;N,\&space;M\leq&space;20" title="\inline 1\leq N,\ M\leq 20" /> and <img src="https://latex.codecogs.com/svg.image?\inline&space;1\leq&space;T\leq&space;10" title="\inline 1\leq T\leq 10" />, in the worst case, it takes ~2 minutes.   
 In order to increase the efficiency, memoization technique is used. Since the position of targets and starting point is fixed, at each stage, the BFS algorithm is probing the same graph. By caching the number of moves to reach all positions from the starting point and targets, the duplicated probing is removed. Therefore, it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;(T&space;*&space;T!)O(1)" title="\inline (T * T!)O(1)" />.
 
@@ -236,7 +236,7 @@ face respectively. The wall cannot be gone through. It gives the number of
 connected components, the number of nodes in the biggest connected component, 
 and the number of nodes in new biggest connected component when a wall is
 removed.
-#### Trials
+#### Trials & Solution
 Two different BFS algorithm is used. One is for mapping connected components
 from the given matrix. In `connected_component` map structure,
 `(connected_component#, #nodes)` is stored. The other BFS algorithm is for 
@@ -256,7 +256,7 @@ There is no magic equation to obtain the answer, meaning that it requires
 the brute-force technique. Since this puzzle is not linear type of problem, 
 the BFS algorithm is used. The challenge is how to define the node and 
 how to check visit.
-#### Trials
+#### Trials & Solution
 The node is defined as `State` that is simply `vector<string>`.
 ```
 State[0]: Tower A
@@ -305,7 +305,7 @@ point are given. At t = 0s, from the starting points, viruses are placed.
 At each second, the viruses are infected into 4-way direction(up, down, left, 
 and right). The algorithm gives the minimum time taken to infect all accessible
 paths.
-#### Trials
+#### Trials & Solution
 Among a number of potential starting points(let's say there are `K` starting
 points), `M` number of starting points are chosen using `prev_permutation()` 
 with `mask`. In order to implement combination with `prev_permuation()` or
@@ -323,10 +323,60 @@ as a potential starting point are given. However, in this problem, the
 starting points that are not chosen are still on the matrix under `unactivated`
 state. Reaching the unactivated virus, the virus makes it activated. The
 moving mechanism is exactly the same as the above problem.
-#### Trials
+#### Trials & Solution
 The small difference in the problem doesn't make changes in the source code.
 The unactivated virus can be considered as an accessible path while the viruses
 are spreading. At the end of spreading, the grids with unactivated virus are 
 also considered as infected grid. In fact, if the end point of spreading is 
 the grid of unactivated virus, it is not counted. The only change in code is 
 to handle this special case.
+
+## 2019 Kakao Blind Recruitment: 길 찾기 게임
+#### Overview
+<p align="center">
+    <img width="35%" src="https://grepp-programmers.s3.amazonaws.com/files/production/dbb58728bd/a5371669-54d4-42a1-9e5e-7466f2d7b683.jpg">
+    <img width="35%" src="https://grepp-programmers.s3.amazonaws.com/files/production/6bd8f6496a/50e1df20-5cb7-4846-86d6-2a2f1e70c5da.jpg">
+</p>
+
+Given indexed nodes represented in `(x, y)` coordinate, it construct a binary
+search tree and gives preorder and postorder of nodes. All `x`-coordinates are
+unique; however, `y`-coordinates aren't. `y`-coordinate represents the level of
+tree, and `x`-coordinate acts as the key of tree, which determines whether
+a node belongs to left or right sub-tree.
+
+#### Trials & Solution
+First, the given data is sorted by `y`-coordinates in decreasing order. Since
+`insert_node()` method of the binary search tree doesn't care about the level of 
+nodes. In fact, it determines whether the new node is in the left or right
+sub-tree based on the key, `x`-coordinate in this case.   
+Then, with the `Node` struct, the binary tree is made in recursive fashion by
+`insert_node()` method.
+```
+struct Node{
+    int data;
+    int key;
+    Node* left;
+    Node* right;
+    
+    Node(int _data, int _key){
+        data = _data;
+        key = _key;
+        left = nullptr;
+        right = nullptr;
+    }
+};
+
+...
+
+Node* insert_node(Node* root, int data, int key){
+    if (root == nullptr)
+        return new Node(data, key);
+    
+    if (key < root->key)
+        root->left = insert_node(root->left, data, key);
+    else
+        root->right = insert_node(root->right, data, key);
+    
+    return root;
+}
+```
