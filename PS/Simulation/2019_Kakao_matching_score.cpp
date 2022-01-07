@@ -12,14 +12,13 @@ string parse(string page, string s_target, string e_target, size_t start = 0){
     return page.substr(s_pos, e_pos - s_pos);
 }
 
-vector<string> get_links(string body){
+vector<string> parse_links(string body){
     vector<string> rtn;
     
     string s_target = "<a href=\"https://";
     string e_target = "\"";
     
     size_t before = 0;
-    
     while (true){
         size_t s_pos = body.find(s_target, before);
         if (s_pos == string::npos)
@@ -47,9 +46,7 @@ string parse_text(string body){
         }
         
         rtn += body.substr(before, found - before);
-        
         before = body.find("</a>", found);
-        before += 4;
     }
     
     return rtn;
@@ -92,12 +89,11 @@ int solution(string word, vector<string> pages) {
         
         string id = parse(page, "https://", "\"", page.find("<meta property=\"og:url\""));
         string body = parse(page, "<body>", "</body>");
-        vector<string> links = get_links(body);
+        vector<string> links = parse_links(body);
         
         list.emplace_back(id);
         link_count[id] = links.size();
-        for (auto l: links)
-            link_map[l].emplace_back(id);
+        for (auto l: links) link_map[l].emplace_back(id);
         b_score[id] = base_score(word, body, links.empty());
     }
     
