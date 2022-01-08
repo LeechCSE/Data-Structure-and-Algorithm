@@ -555,3 +555,46 @@ with the remaining `K`. In conclusion, it takes `O(K)`.
 | 5 | [1(2), 2(3), 3(1)] | (K=5) -= (Least=1) * (Size=3) |
 | 2 | [**0**(2), **1**(3), **2**(1)] --> [1(3), 2(1)] | (K=3) -= (Least=1) * (Size=2)
 | 0 | [**0**(3), **1**(1)] --> [1(1)] | DONE |
+
+## 2019 Kakao Blind Recruitment: 매칭 점수
+#### Overview
+Given a list of HTML texts and a target word, it returns the page that has the 
+highest "Matching score." Matching score is the sum of Base score and Link score.
+* Base score of Page X: the frequency of target word(case-insensitive) in the 
+text of the web page
+* Link score of Page X: the sum of (Base score of pages that are linked toward
+Page X) / (the number of pages that are out-wardly linked from Page X)
+#### Example
+<p align="center">
+    <img src="https://grepp-programmers.s3.amazonaws.com/files/production/48a36ec7fa/243a621b-f823-4ccd-99f1-2d8d3e14050d.jpg">
+</p>
+
+```
+Target Word: HI
+
+Matching score of Page A = Base score of Page A + Link score of Page A = 1 + 5 = 6
+    Base score of Page A = Frequency of the word, "HI", in the text = 1
+    Page B and Page C are linked toward Page A.
+    Link score of Page A =
+        Base score of Page B / The number of out-wardly linked of Page B +
+        Base score of Page C / The number of out-wardly linked of Page C
+    =   4 / 2 + 9 / 3
+    =   5
+```
+
+#### Trials & Solution
+The key to solve this problem is to efficiently parse the target portion of string
+out of the given string.
+```
+string parse(string page, string s_target, string e_target, size_t start = 0){
+    size_t s_pos = page.find(s_target, start);
+    s_pos += s_target.length();
+    size_t e_pos = page.find(e_target, s_pos);
+    
+    return page.substr(s_pos, e_pos - s_pos);
+}
+```
+The above `parse()` method extracts string in between the end of `s_target` and
+the begging of `e_target`. For example, in order to parse the text of `<body>`
+tag from the web page, `parse(page, "<body>", "</body>");` is called. Likewise,
+it can parse all information required, such as the current URL, outward links, etc.
