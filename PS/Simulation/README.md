@@ -598,3 +598,21 @@ The above `parse()` method extracts string in between the end of `s_target` and
 the begging of `e_target`. For example, in order to parse the text of `<body>`
 tag from the web page, `parse(page, "<body>", "</body>");` is called. Likewise,
 it can parse all information required, such as the current URL, outward links, etc.
+
+2021 Kakao Blind Recruitment: 신규 아이디 추천
+#### Overview
+Given a user-id, it appies the following seven steps to the given user-id:
+* Step1: convert all characters into lowercases
+* Step2: remove all characters other than alphabet, digit, dash(-), underscore(_), 
+and period(.)
+* Step3: replace consecutive periods with a period
+* Step4: remove starting and ending period
+* Step5: if the given user-id is empty, put "a"
+* Step6: if the user-id is longer than 15 letters, truncate it up to 15 letters.
+If the last letter of the truncated string is a period, remove it
+* Step7: if the user-id is shorter than 3 letters, append the last character
+until the length becomes 3.
+#### Trials & Solution
+Simple simulation problem. Initially, all the steps are implemented into one
+method; however, it doesn't have any advantages in performance but reduces its
+readability. Therefore, each step is implemented in a seperate function.
