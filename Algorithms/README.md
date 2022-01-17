@@ -1,5 +1,5 @@
 Algorithms
--------------------
+===
 ## Greedy Algorithm
 #### Job Scheduling
 scheduling.cpp is an example of greedy algorithm that schedules given jobs to

@@ -1,5 +1,5 @@
 Data Strunctures
-------------------
+===
 ### Singly Linked List
 Templated singly-linked list. As the name indicates, each node only points to
 'next' forward.
