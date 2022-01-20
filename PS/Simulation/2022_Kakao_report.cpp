@@ -25,7 +25,7 @@ vector<int> solution(vector<string> id_list, vector<string> report, int k) {
         num_reported[id_list[i]] = 0;
     }
     
-    for (auto r: report){
+    for (auto r: report){ // O(n * log m) where n = #reports and m = #users
         Report cur = split(r);
         
         auto it = who_reported[cur.reported].find(cur.reporter);
@@ -35,7 +35,7 @@ vector<int> solution(vector<string> id_list, vector<string> report, int k) {
         }
     }
     
-    for (auto el: num_reported){
+    for (auto el: num_reported){ // O(m * log m)
         string reported = el.first;
         
         if (el.second >= k){

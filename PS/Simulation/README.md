@@ -599,7 +599,7 @@ the begging of `e_target`. For example, in order to parse the text of `<body>`
 tag from the web page, `parse(page, "<body>", "</body>");` is called. Likewise,
 it can parse all information required, such as the current URL, outward links, etc.
 
-2021 Kakao Blind Recruitment: 신규 아이디 추천
+## 2021 Kakao Blind Recruitment: 신규 아이디 추천
 #### Overview
 Given a user-id, it appies the following seven steps to the given user-id:
 * Step1: convert all characters into lowercases
@@ -616,3 +616,28 @@ until the length becomes 3.
 Simple simulation problem. Initially, all the steps are implemented into one
 method; however, it doesn't have any advantages in performance but reduces its
 readability. Therefore, each step is implemented in a seperate function.
+
+## 2022 Kakao Blind Recruitment: 신고 결과 받기
+#### Overview
+Given a user-reporting system and a log from it, it computes the number of 
+reporting receipt for each user. The reporting system works as the following:
+* Each user can reports a user at a time
+    * Multiple reportings are allows
+    * Duplicate reporting to the same user is counted as one reporting
+* Users who get reported for more than and equal to `k` times get banned, and 
+the reporters get the reporting receipt
+
+#### Trials & Solution
+Three `maps` are used:
+* `index_map`: since the problem's output requires to remember the given order 
+of users, it simply stores `ID: given index` data
+* `num_reported`: stores `ID: #reported`
+* `who_reported`: stores `ID: [reporters ...]`
+
+Iterating the given log, first, the log is splited into `Report`, which consists 
+of `reported` and `reporter`. Then, it checks if a report is a duplicate with `who_reported`.
+If `who_reported[current reported]` contains `current reporter`, it is a duplicate 
+therefore ignores this report; otherwise, it add this report information to the maps.
+With the processed maps, it finds users who got >=`k` reports and sends the 
+reporting receipts. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O((N&space;&plus;&space;M)logM)" title="\inline O((N + M)logM)" /> at the worst case 
+where N is the number of reports, and M is the number of users.
