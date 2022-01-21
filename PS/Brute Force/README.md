@@ -346,3 +346,69 @@ Superkeys: 011
 Comparison: 100 & 011 = 000 (Minimal yet)
 Comparison: 010 & 011 = 010 (Not minimal)
 ```
+
+## BOJ#12100 2048(Easy)
+#### Overview
+It is based off [2048 Game](https://play2048.co/). The only difference is that
+no new block is added while playing the game. That is, given N-by-N matrix
+with blocks of numbers, it computes the maximum possible number within five moves.
+
+#### Trials & Solution
+As the problem asks the maximum number within only five moves, this can be solved 
+with brute-force fashion. First, the game functionalities are implemented. There
+are four directions of move. All directions of move share the same mechanisms:
+`compress` and `combine`.  
+
+`compress` mechanism(or compaction) occurs in a level of row of the matrix. 
+Iterating from either left or right depending on the direction of move, it 
+compactly copies the values into a new row vector.
+```
+void compress_left(vector<int> &row){
+   int n = row.size();
+   
+   vector<int> tmp(n, 0);
+   int cur = 0;
+   
+   for (int j = 0; j < n; j++)
+      if (row[j] != 0) 
+        tmp[cur++] = row[j];
+   
+   row = tmp;
+}
+```
+`combine_left` mechanism also happens in a level of row vector. It checks if two 
+successive numbers are the same or not, starting from either left or right of
+the row vector depending on the direction of move.
+```
+void combine_left(vector<int> &row){
+   auto it = row.begin();
+   
+   while (it != row.end()){
+      if (*it == 0){ 
+         advance(it, 1);
+         continue;
+      }
+      
+      if (*it == *next(it)){
+         *it *= 2;
+         *next(it) = 0;
+         advance(it, 2);
+      }
+      else
+         advance(it, 1);
+   }
+   compress_left(row);
+}
+```
+Another remarkable point of mechanism is that `move_up()` and `move_down()`
+methods require transpose of matrix. Since `compress` and `combine` works with
+row vector, the column becomes a row in transposed matrix. With above mechanisms, 
+the following move functionalities are implemented:
+* `move_left()`: `compress_left` + `combine_left`
+* `move_right()`: `compress_right` + `combine_right`
+* `move_up()`: `tranpose` + `compress_left` + `combine_left`
+* `move_down()`: `transpose` + `compress_right` + `combine_right`
+
+With these functionalities, `solve()` function runs all possible combinations of
+five moves and computes the maximum possible number. In this solution, DFS 
+technique is used; however, pure permutation could've been used using `next_permutation()`.
