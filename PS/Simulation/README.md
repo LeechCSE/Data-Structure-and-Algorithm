@@ -641,3 +641,29 @@ therefore ignores this report; otherwise, it add this report information to the 
 With the processed maps, it finds users who got >=`k` reports and sends the 
 reporting receipts. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O((N&space;&plus;&space;M)logM)" title="\inline O((N + M)logM)" /> at the worst case 
 where N is the number of reports, and M is the number of users.
+
+## BOJ#3190 뱀
+#### Overview
+Given an N-by-N matrix filled with `k` apples, a snake wanders around as the 
+following rules:
+* Place its head into the next grid
+* If there is an apple in the next grid, the snake eats the apple and don't move
+its tail
+* Otherwise, its tail follows
+
+Initial position of snake is (0, 0), and direction is to the right.
+In addition, `l` numbers of move instructions are given. `(int X, char C)` 
+where `X` is the time when this instruction is conduncted, and `C` is the 
+direction of head turning(either `L`: to the left 90 degrees or `D`: to the 
+right 90 degrees). The game is over if the snake goes out of the map or hits 
+itself. It simulates snake's moving and computes the time when the game is over.
+
+#### Trials & Solution
+First, the snake is implemented with `head` and `tail` of which data structure 
+is `Position`. `Position` consists of two integers that indicates x and y 
+coordinates. Given the rule of moving, `head` moves first. Then, it checks if 
+the game is over. If it's not over yet, it checks if there is an apple in the 
+grid where head is currently located. In the case of existence of apple, it is 
+so trivial that it simply removes the apple. On the other hand, if there is no
+apple, the tail must follow up. In order to obtain the follow-up grid of tail, 
+`queue` is used. `queue` acts as a buffer that remembers the trace of head.
