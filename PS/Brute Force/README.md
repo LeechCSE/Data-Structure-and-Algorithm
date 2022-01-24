@@ -347,7 +347,7 @@ Comparison: 100 & 011 = 000 (Minimal yet)
 Comparison: 010 & 011 = 010 (Not minimal)
 ```
 
-## BOJ#12100 2048(Easy)
+## BOJ#12100: 2048(Easy)
 #### Overview
 It is based off [2048 Game](https://play2048.co/). The only difference is that
 no new block is added while playing the game. That is, given N-by-N matrix
@@ -412,3 +412,42 @@ the following move functionalities are implemented:
 With these functionalities, `solve()` function runs all possible combinations of
 five moves and computes the maximum possible number. In this solution, DFS 
 technique is used; however, pure permutation could've been used using `next_permutation()`.
+
+## BOJ#14889: 스타트와 링크
+#### Overview
+Given `N` players where N is an even number and list `S` of which element 
+`S[i][j]` represents the synergy score between player i and j, it computes the
+combination that results the minimum difference in team score. Team score is the
+sum of synergy scores.
+```
+Example
+
+N = 4
+S:
+i\j  1  2  3  4
+  1  0  1  2  3
+  2  4  0  5  6
+  3  7  1  0  2
+  4  3  4  5  0 
+  
+CASE 1)
+Team1: player 1 and 2
+    Team1 Score = S[1][2] + S[2][1] = 1 + 4 = 5
+Team2: player 3 and 4
+    Team2 Score = S[3][4] + S[4][3] = 6 + 4 = 10
+=> Score diff = 5
+CASE 2)
+Team1: player 1 and 4
+    Team1 Score = S[1][4] + S[4][1] = 6
+Team2: player 2 and 3
+    Team2 Score = S[2][3] + S[3][2] = 6
+=> Score diff = 0
+```
+
+#### Trials & Solution
+Initially, permutation is used because `S[i][j]` and `S[j][i]` are not always
+equal to each other. However, besides the computation cost of calculating score 
+difference, permutation results in N! cases, which is too many. Furthermore, 
+the team score is sum of `S[i][j]` and `S[j][i]` for all players. It allows it 
+to use combination. Therefore, `n C n/2` is used with `prev_permutation()` with
+bit-mask. Overall, it runs at ~<img src="https://latex.codecogs.com/svg.image?\inline&space;O(2^NN^{3/2})" title="\inline O(2^NN^{3/2})" />.
