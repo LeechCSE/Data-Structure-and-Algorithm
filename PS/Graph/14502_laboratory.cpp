@@ -1,95 +1,106 @@
 #include <iostream>
 #include <vector>
-#include <queue>
 #include <algorithm>
+#include <queue>
 
 using namespace std;
-using Pos = pair<int, int>;
 
-int bfs(vector<vector<int> > map, vector<Pos> virus){
-	int n = map.size();
-	int m = map[0].size();
-	vector<Pos> moves = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
-	int num_blocks = 0;
-	for (auto v : map)
-		num_blocks += count(v.begin(), v.end(), 1);
-	
-	queue<Pos> q;
-	vector<vector<bool> > visited(n, vector<bool>(m, false));
-	vector<vector<int> > cnt(n, vector<int>(m, -1));
-	
-	for (auto v : virus){
-		q.emplace(v);
-		visited[v.second][v.first] = true;
-		cnt[v.second][v.first] = 0;
-	}
-	
-	while (!q.empty()){
-		Pos cur = q.front();
-		q.pop();
-		
-		for (auto move : moves){
-			int newX = cur.first + move.first;
-			int newY = cur.second + move.second;
-			
-			if (0 <= newX && newX < m && 0 <= newY && newY < n){
-				if (map[newY][newX] == 0){
-					if (!visited[newY][newX]){
-						visited[newY][newX] = true;
-						q.emplace(Pos(newX, newY));
-						cnt[newY][newX] = cnt[cur.second][cur.first] + 1;
-					}
-				}
-			}
-		}
-	}
-	
-	int unvisiteds = 0;
-	for (int i = 0; i < n; i++)
-		unvisiteds += count(visited[i].begin(), visited[i].end(), false);
-		
-	return unvisiteds - num_blocks;
+const int NUM_WALLS = 3;
+
+struct Position{
+   int y, x;
+};
+
+int get_safe(vector<vector<int>> mat, 
+      vector<Position> viruses, vector<Position> walls){
+   int n = mat.size();
+   int m = mat[0].size();
+   vector<Position> moves = { {-1, 0}, {1, 0}, {0, 1}, {0, -1} };
+   // set new walls
+   for (auto w_pos: walls)
+      mat[w_pos.y][w_pos.x] = 1;
+   // simulate virus diffusion w/ BFS
+   queue<Position> q;
+   vector<vector<bool>> visited(n, vector<bool>(m, false));
+   for (auto v_pos: viruses){
+      q.emplace(v_pos);
+      visited[v_pos.y][v_pos.x] = true;
+   }
+   
+   while (!q.empty()){
+      Position cur = q.front();
+      q.pop();
+      
+      for (auto move: moves){
+         int ny = cur.y + move.y;
+         int nx = cur.x + move.x;
+         // out-of-bound check
+         if (!(0 <= ny && ny < n && 0 <= nx && nx < m))
+            continue;
+         // wall check
+         if (mat[ny][nx] == 1)
+            continue;
+         // another virus
+         else if (mat[ny][nx] == 2)
+            continue;
+         // visit check
+         if (visited[ny][nx])
+            continue;
+         
+         visited[ny][nx] = true;
+         mat[ny][nx] = 2;
+         q.emplace(Position{ny, nx});
+      }
+   }
+   
+   int num_safe = 0;
+   for (int i = 0; i < n; i++){
+      for (int j = 0; j < m; j++){
+         if (mat[i][j] == 0)
+            num_safe++;
+      }
+   }
+   
+   return num_safe;
 }
 
 int main(){
-	int n, m;
-	cin >> n >> m;
-	
-	vector<vector<int> > map(n, vector<int>(m));
-	vector<Pos> virus;
-	vector<Pos> room;
-	for (int i = 0; i < n; i++){
-		for (int j = 0; j < m; j++){
-			cin >> map[i][j];
-			if (map[i][j] == 2)
-				virus.emplace_back(Pos(j, i));
-			else if(map[i][j] == 0)
-				room.emplace_back(Pos(j, i));
-		}
-	}
-	
-	int ans = 0;
-	for (int i = 0; i < room.size() - 2; i++){
-		map[room[i].second][room[i].first] = 1;
-		
-		for (int j = i + 1; j < room.size() - 1; j++){
-			map[room[j].second][room[j].first] = 1;
-			
-			for (int k = j + 1; k < room.size(); k++){
-				map[room[k].second][room[k].first] = 1;
-				
-				int num_safe = bfs(map, virus);
-				if (ans < num_safe)
-					ans = num_safe;
-				
-				map[room[k].second][room[k].first] = 0;
-			}
-			map[room[j].second][room[j].first] = 0;
-		}
-		map[room[i].second][room[i].first] = 0;
-	}
-	
-	cout << ans << endl;
-	
-	return 0;
+   freopen("tc.txt", "r", stdin);
+   
+   int answer = 0;
+   
+   int n, m;
+   cin >> n >> m;
+   vector<vector<int>> mat(n, vector<int>(m, 0));
+   vector<Position> viruses;
+   vector<Position> rooms;
+   for (int i = 0; i < n; i++){
+      for (int j = 0; j < m; j++){
+         cin >> mat[i][j];
+         
+         if (mat[i][j] == 0)
+            rooms.emplace_back(Position{i, j});
+         else if (mat[i][j] == 2)
+            viruses.emplace_back(Position{i, j});
+      }
+   }
+   // #rooms Choose 3
+   vector<bool> mask(rooms.size(), false);
+   for (int i = 0; i < NUM_WALLS; i++)
+      mask[i] = true;
+   do{
+      vector<Position> walls;
+      for (int i = 0; i < (int)rooms.size(); i++){
+         if (mask[i])
+            walls.emplace_back(rooms[i]);
+      }
+      
+      int num_safe = get_safe(mat, viruses, walls);
+      if (answer < num_safe)
+         answer = num_safe;
+   } while (prev_permutation(mask.begin(), mask.end()));
+   
+   cout << answer << endl;
+   
+   return 0;
 }
