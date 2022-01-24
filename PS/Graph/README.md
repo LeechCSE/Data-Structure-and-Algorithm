@@ -43,15 +43,6 @@ Given a new chess knight that can moves to six possible ways and starting and
 end point, it gives the minimum number of moves to reach the end from the start.
 As it's of the shortest path, BFS algorithm is used.
 
-## BOJ#14502 연구소
-Given a N-by-M matrix with blocks that is not visitable and multiple starting
-points, as adding three extra blocks, it gives the maximum number of unvisited
-grids. It is a typical problem that requires BFS algorithm but an extra
-restriction: the three extra blocks. Brute-force method is the only way, as 
-there is no optimal solution for this case. For every possible map with the new
-blocks, BFS algorithm is used; therefore, it runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^4M^4)" title="\inline O(N^4M^4)" />, which is acceptable
-for <img src="https://latex.codecogs.com/svg.image?\inline&space;3&space;\leq&space;N,&space;M\leq&space;8" title="\inline 3 \leq N, M\leq 8" />.
-
 ## BOJ#12886 돌 그룹
 Given three groups of stones, it checks if the number of stones of each group
 can be the same with the redistribution rule. Pick two groups of which number
@@ -150,7 +141,7 @@ each grid as a node, all adjacent nodes on the same straight lines as an edge,
 and the number of straight lines needed as a weight of the edge.
 ```
 Count map:
-
+14
 2 2 2 2 2 2 1
 1 1 1 1 1 1 C  <-- Starting point
 2 2 2 2 2 2 *
@@ -380,3 +371,14 @@ Node* insert_node(Node* root, int data, int key){
     return root;
 }
 ```
+
+## BOJ#14502 연구소
+#### Overview
+Given an N-by-N matrix filled with `0` as room, `1` as wall, and `2` as virus, 
+it computes the number of uninfected grids setting three new walls in the empty 
+rooms.
+#### Trials & Solution
+It is trivial to set three new walls in the given matrix: combination(`#rooms
+Choose 3`). `prev_permutation()` with bit-mask is used to implement the combination.
+With the chosen three walls, BFS algorithm is conducted to find the number of
+safe grids. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^4M^4)" title="\inline O(N^4M^4)" />.
