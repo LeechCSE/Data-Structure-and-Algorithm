@@ -451,3 +451,28 @@ difference, permutation results in N! cases, which is too many. Furthermore,
 the team score is sum of `S[i][j]` and `S[j][i]` for all players. It allows it 
 to use combination. Therefore, `n C n/2` is used with `prev_permutation()` with
 bit-mask. Overall, it runs at ~<img src="https://latex.codecogs.com/svg.image?\inline&space;O(2^NN^{3/2})" title="\inline O(2^NN^{3/2})" />.
+
+## 2022 Kakao Blind Recruitment: k진수에서 소수 개수 구하기
+#### Overview
+Given integer `N` and base number `K`, it finds the number of prime numbers from 
+parsed numbers from `K-ary N`. The parsing rule is the following:
+* `0X`: number after 0
+* `X0`: number before 0
+* `0X0`: number in between 0s  
+
+**Example**
+```
+N = 437674, K = 3
+N in K base = 211020101011
+
+Candidates = [211, 2, 1, 1, 11]
+#Prime = 3
+```
+
+#### Trials & Solution
+The solution consists of three parts: `convert` N's base to K, `parse` candidates,
+and `is_prime` checking. `convert()` returns the k-ary number in string for 
+easier parsing in the next step. `parse()` literally parse numbers before, in-between,
+and after zero. It returns a list of `long long` integers. Some parsed number exceeds
+the range of `int`. For example, 997,244 in base 3 is 1,212,122,221,222. Then, all
+candidates are passed to `is_prime()`.
