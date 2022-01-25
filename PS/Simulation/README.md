@@ -667,3 +667,30 @@ grid where head is currently located. In the case of existence of apple, it is
 so trivial that it simply removes the apple. On the other hand, if there is no
 apple, the tail must follow up. In order to obtain the follow-up grid of tail, 
 `queue` is used. `queue` acts as a buffer that remembers the trace of head.
+
+## BOJ#14890: 경사로
+#### Overview
+Given an N-by-N positive integer matrix where row and column represent a path
+with height, it checks whether the path is accessible with inclined planes. 
+A path is accessible with inclined planes when:
+* Inclined planes are placed on `L` number of the lower flat grounds
+* The height difference between higher and lower ground is 1
+* The inclined plane cannot be placed on the ground that has another plane.
+
+**"Can-do"s**
+<p align="center">
+    <img src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/14890/3.png">
+</p>
+
+**"Cannot-do"s**
+<p align="center">
+    <img src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/14890/4.png">
+</p>
+
+
+#### Trials & Solution
+Checking if a path is accessible or not is on the level of a row. `is_valid()` 
+checks a row is accessible with inclined planes. Iterating the row with two 
+iterators, it checks if inclined planes can be placed based on the hieght 
+difference between blocks that the two iterators points. In order to handle 
+columns of the given matrix, `transposed()` function is used.
