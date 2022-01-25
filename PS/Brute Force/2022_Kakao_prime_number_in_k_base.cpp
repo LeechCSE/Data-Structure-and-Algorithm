@@ -5,7 +5,7 @@
 
 using namespace std;
 
-string to_k_base(int n, int k){
+string convert(int n, int k){
     string rtn = "";
     
     while (n != 0){
@@ -53,7 +53,7 @@ bool is_prime(long long n){
 int solution(int n, int k) {
     int answer = 0;
     
-    string n_in_k = to_k_base(n, k);
+    string n_in_k = convert(n, k);
     vector<long long> cand = parse(n_in_k);
     for (auto el: cand){
         if (is_prime(el))
