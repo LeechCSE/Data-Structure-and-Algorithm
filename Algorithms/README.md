@@ -32,17 +32,59 @@ counts, it greedily checks the existence of numbers that are greater than
 current number. This problem is from BOJ#1071.
 
 ## Graph Algorithm
-#### BFS
-Graph traversal algorithm. O(V + E) where V is the number of vertices, and E is
-the number of edges. Starting from the given vertex, it traverses all vertices
-visiting adjacent child nodes first and then grand child nodes. It is more
-useful when finding close vertices from the starting vertex. In addition, it
-guarantees the path taken to the arriving node to be the shortest path.
+#### BFS 
+###### for finding shortest path in evenly weighted graph
+Graph traversal algorithm. O(V + E) with adjacency list where V is the number of 
+vertices, and E is the number of edges. Starting from the given vertex, it 
+traverses all vertices visiting adjacent child nodes first and then grand child 
+nodes. It is more useful when finding close vertices from the starting vertex. 
+In addition, it guarantees the path taken to the arriving node to be the shortest 
+path.
+
+**Source code**
+```
+void bfs(vector<vector<int>> adj_list,  int src){
+   queue<int> q;
+   q.emplace(src);
+   visited[src] = true; // declared globally
+   
+   while (!q.empty()){
+      int cur = q.front();
+      q.pop();
+      
+      cout << cur << " ";
+      
+      for (auto v: adj_list[cur]){
+         // visit check
+         if (visited[v])
+            continue;
+         
+         visited[v] = true;
+         q.emplace(v);
+      }
+   }
+}
+```
 #### DFS
+###### for exhausted search and back-tracking with search criteria
 Graph traversal algorithm. It also traverses all vertices visiting grand
 children earlier than its children nodes. Therefore, the node to be found would
-better be far from the starting node. It works at O(V + E) where V is the
-number of vertices, and E is the number of edges.
+better be far from the starting node. It works at O(V + E) with adjacency list 
+where V is the number of vertices, and E is the number of edges.
+
+**Source code**
+```
+void dfs(vector<vector<int>> adj_list, int src){
+   // visit check
+   if (visited[src])
+      return;
+   
+   cout << src << " ";
+   visited[src] = true;
+   for (auto v: adj_list[src])
+      dfs(adj_list, v);
+}
+```
 #### Bipartite
 A graph is bipartite if nodes can be divided into two group perfectly, and
 nodes in the same group must be connected with edges. In other words, the
@@ -56,7 +98,9 @@ with priority_queue. Given graph with vertices having infinite distance, it
 compares adjacent vertex v's distance and edge's weight of which destination
 is v. The v's distance is replaced with the smaller one, and the vertex v is
 added into minimum heap. It continues until the heap is empty.
+
 #### Dijkstra Algorithm
+###### for shortest path in positively weighted graph
 Dijkstra algorithm is a single-source shortest-path-problem. Given a
 positive-weighted graph, source node, and destination node, it gives the
 shortest(least weighted) path from the source node to the destination node. 
