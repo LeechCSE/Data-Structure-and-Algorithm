@@ -382,3 +382,33 @@ It is trivial to set three new walls in the given matrix: combination(`#rooms
 Choose 3`). `prev_permutation()` with bit-mask is used to implement the combination.
 With the chosen three walls, BFS algorithm is conducted to find the number of
 safe grids. It runs at <img src="https://latex.codecogs.com/svg.image?\inline&space;O(N^4M^4)" title="\inline O(N^4M^4)" />.
+
+## Programmers: 단어 변환
+#### Overview
+Given source string `src`, destination string `dst`, and a list of string `words`, 
+it computes the number of derivations from `src` to `dst`. A word changes as the 
+following:
+* Change a character at a time
+* Change into only words that is in `words`
+
+**Example**
+```
+src = "hit" ==> dst = "cog"
+
+"hit" -> "hot" -> "dot" -> "dog" -> "cog" in 4 steps!
+```
+
+#### Trials  & Solution
+The derivatives of a word are like the neighbors of a graph node. The shortest 
+path from `src` to `dst` through derivation can be obtained by BFS algorithm with
+a graph where vertex is string word, and weight is 1 as one derivation step. 
+From `words`, it extracts all possible characters for each index of a word. 
+```
+words = ["hot","dot","dog","lot","log","cog"]
+pool:
+   index 0: 'h', 'd', 'l', 'c'
+   index 1: 'o' 
+   index 2: 't', 'g'
+```
+With this `pool`, all possible combinations of derivative word are made. Among
+them, only the valid derivatives are passed in BFS algorithm.
