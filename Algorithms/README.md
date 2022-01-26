@@ -58,12 +58,64 @@ is v. The v's distance is replaced with the smaller one, and the vertex v is
 added into minimum heap. It continues until the heap is empty.
 #### Dijkstra Algorithm
 Dijkstra algorithm is a single-source shortest-path-problem. Given a
-positive-weighted graph, start node, and target node, it gives the
-shortest(least weighted) path from the start node to the target node. From the
-start node, in BFS manner, it updates the distance from start node to vertex u.
-After all iterations, each node has the total distance from the start node.
-Using back-tracing technique, it returns the shortest path and the total
-distance. Example in dijkstra_NY.cpp
+positive-weighted graph, source node, and destination node, it gives the
+shortest(least weighted) path from the source node to the destination node. 
+From the source node, in BFS manner, it updates the distance from start node to 
+vertex u. After all iterations, each node has the total distance from the start 
+node. Using back-tracing technique, it returns the shortest path and the total
+distance. E.g. dijkstra_NY.cpp
+
+**Source code**
+```
+using Info = pair<int, int> // <v, w> in edge (u)--w-->(v)
+
+vector<int> dikstra(vector<vector<Info>> adj_list, int src, int dst){
+   int num_v = adj_list.size();
+   // init
+   priority_queue<Node, vector<Node>, greater<Node>> min_heap;
+   vector<int> distance(num_v, numeric_limits<int>::max());
+   vector<bool> visited(num_v, false);
+   vector<int> parent(num_v);
+   
+   distance[src] = 0;
+   min_heap.emplace(Node{src, distance[src]});
+   
+   while (!min_heap.empty()){
+      Node cur = min_heap.top();
+      min_heap.pop();
+      // reach the target
+      if (cur.vertex == dst)
+         break;
+      // visit check
+      if (visited[cur.vertex]) 
+         continue;
+      
+      visited[cur.vertex] = true;
+      // update neighbors' distance from src
+      for (auto adj_node: adj_list[cur.vertex]){
+         int dest = adj_node.first;
+         int weight = adj_node.second;
+         
+         if (distance[dest] > cur.distance + weight){
+            distance[dest] = cur.distance + weight;
+            min_heap.emplace(Node{dest, distance[dest]});
+            parent[dest] = cur.vertex;
+         }
+      }
+   }
+   // shortest path: src -> dst
+   vector<int> path;
+   int cur = dst;
+   while (cur != src){
+      path.emplace_back(cur);
+      cur = parent[cur];
+   }
+   path.emplace_back(src);
+   reverse(path.begin(), path.end());
+   
+   return path;
+}
+```
 #### Bellman-Ford Algorithm
 Bellman-ford algorithm is a graph algorithm that gives the shortest distance 
 from the start node to all nodes. While Dijkstra algorithm cannot deal with the 
