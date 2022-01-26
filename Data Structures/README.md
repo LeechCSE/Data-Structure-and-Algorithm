@@ -194,6 +194,81 @@ The binary search tree, a.k.a. BST, is a binary tree with a special
 relationship between a parent node and its child nodes. In fact,  all left
 child nodes have smaller or equal keys than the ones of their parents, and
 all right child nodes have bigger key.
+##### Source code
+```
+struct Node{
+   int data;
+   Node* left;
+   Node* right;
+   
+   Node(int d): data(d), left(nullptr), right(nullptr){}
+};
+
+Node* insert(Node* root, int data){
+   if (root == nullptr) // base case
+      return new Node(data);
+   
+   if (data < root->data)
+      root->left = insert(root->left, data);
+   else
+      root->right = insert(root->right, data);
+   
+   return root;
+}
+
+Node* create(vector<int> data_set){
+   Node* root = nullptr;
+   for (auto data: data_set)
+      root = insert(root, data);
+   
+   return root;
+}
+
+void pre_order(Node* root){
+   if (root == nullptr)
+      return;
+   
+   cout << root->data << " ";
+   pre_order(root->left);
+   pre_order(root->right);
+}
+
+void in_order(Node* root){
+   if (root == nullptr)
+      return;
+   
+   in_order(root->left);
+   cout << root->data << " ";
+   in_order(root->right);
+}
+
+void post_order(Node* root){
+   if (root == nullptr)
+      return;
+   
+   post_order(root->left);
+   post_order(root->right);
+   cout << root->data << " ";
+}
+
+int main(){
+    ...
+    Node* root = create(dataset);
+    
+    return 0;
+}
+```
+##### Example
+```
+Data = [4, 2, 6, 1, 3, 5, 9]
+Tree:
+         4
+      2     6
+     1 3   5 9
+Pre-order:  4 2 1 3 6 5 9 (ROOT->LEFT->RIGHT)
+In-order:   1 2 3 4 5 6 9 (LEFT->ROOT->RIGHT)
+Post-order: 1 3 2 5 9 6 4 (LEFT->RIGHT->ROOT)
+```
 ##### Methods
 + `find`: find and return a node that has the target value
 + `insert`: add a new node keeping the BST rule
