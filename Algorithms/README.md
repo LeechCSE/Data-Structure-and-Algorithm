@@ -41,7 +41,7 @@ nodes. It is more useful when finding close vertices from the starting vertex.
 In addition, it guarantees the path taken to the arriving node to be the shortest 
 path.
 
-**Source code**
+**Sample code**
 ```
 void bfs(vector<vector<int>> adj_list,  int src){
    queue<int> q;
@@ -72,7 +72,7 @@ children earlier than its children nodes. Therefore, the node to be found would
 better be far from the starting node. It works at O(V + E) with adjacency list 
 where V is the number of vertices, and E is the number of edges.
 
-**Source code**
+**Sample code**
 ```
 void dfs(vector<vector<int>> adj_list, int src){
    // visit check
@@ -93,7 +93,7 @@ traverse all nodes, both DFS and BFS can be used. While traversing nodes, it
 alternately colors nodes with two colors. If adjacent nodes have the same
 color, the graph is not bipartite.
 
-**Source code**
+**Sample code**
 ```
 void dfs(int cur, int cur_color){
    if (visited[cur])
@@ -145,7 +145,7 @@ vertex u. After all iterations, each node has the total distance from the start
 node. Using back-tracing technique, it returns the shortest path and the total
 distance. E.g. dijkstra_NY.cpp
 
-**Source code**
+**Sample code**
 ```
 using Info = pair<int, int> // <v, w> in edge (u)--w-->(v)
 
