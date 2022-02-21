@@ -92,6 +92,42 @@ graph is bipartite if it can be colored by two colors. As this algorithm has to
 traverse all nodes, both DFS and BFS can be used. While traversing nodes, it
 alternately colors nodes with two colors. If adjacent nodes have the same
 color, the graph is not bipartite.
+
+**Source code**
+```
+void dfs(int cur, int cur_color){
+   if (visited[cur])
+      return;
+   
+	visited[cur] = true;
+	color[cur] = cur_color;
+	
+	for (auto adj : adjList[cur]){
+		if (!visited[adj]){
+			dfs(adj, TOTAL_NUM_COLORS - cur_color);
+		}
+	}
+}
+
+void color_nodes(){
+   for (int i = 1; i < adjList.size(); i++){
+      if (!color[i])
+         dfs(i, RED);
+   }
+}
+
+bool is_bipartite(){
+   for (int u = 1; u < adjList.size(); u++){
+      for (auto v : adjList[u]){
+         if (color[u] == color[v])
+            return false;
+      }
+   }
+   
+   return true;
+}
+```
+
 #### MST(Prim Algorithm)
 MST algorithm. It works like BFS algorithm but with minimum heap, implemented
 with priority_queue. Given graph with vertices having infinite distance, it
