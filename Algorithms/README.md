@@ -95,6 +95,12 @@ color, the graph is not bipartite.
 
 **Sample code**
 ```
+// Nodes are labeled from 1 to N
+// Each vector is size of N + 1
+vector<vector<int> > adjList;
+vector<bool> visited;
+vector<int> color;
+
 void dfs(int cur, int cur_color){
    if (visited[cur])
       return;
