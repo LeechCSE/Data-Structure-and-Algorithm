@@ -99,14 +99,13 @@ void dfs(int cur, int cur_color){
    if (visited[cur])
       return;
    
-	visited[cur] = true;
-	color[cur] = cur_color;
+   visited[cur] = true;
+   color[cur] = cur_color;
 	
 	for (auto adj : adjList[cur]){
-		if (!visited[adj]){
-			dfs(adj, TOTAL_NUM_COLORS - cur_color);
-		}
-	}
+      if (!visited[adj])
+         dfs(adj, TOTAL_NUM_COLORS - cur_color);
+   }
 }
 
 void color_nodes(){
