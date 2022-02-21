@@ -102,7 +102,7 @@ void dfs(int cur, int cur_color){
    visited[cur] = true;
    color[cur] = cur_color;
 	
-	for (auto adj : adjList[cur]){
+   for (auto adj : adjList[cur]){
       if (!visited[adj])
          dfs(adj, TOTAL_NUM_COLORS - cur_color);
    }
